@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap");
+//@--- bootstrap ---@//
+@import "~bootstrap/scss/functions";
+
+@import "./helper/variables";
+
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/bootstrap";
+
+//@--- helper ---@//
+@import "./helper/helper";
+@import "./helper/plugin";
+@import "./helper/basic";
+
+//@--- view ---@//
+@import "./view/components.scss";
+@import "./view/view.scss";

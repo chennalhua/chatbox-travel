@@ -1,0 +1,16 @@
+.splide {
+    &__pagination {
+        position: absolute;
+        bottom: -30px;
+        justify-content: start !important;
+        &__page.is-active {
+            background: #049385 !important;
+        }
+    }
+    &__slide {
+        width: 100% !important;
+        @include view-768 {
+            width: 400px !important;
+        }
+    }
+}
