@@ -1,36 +1,43 @@
 body,
 html {
-    height: 100vh;
-    overflow-x: hidden !important;
+  height: 100vh;
+  overflow-x: hidden !important;
 }
 
 .chat {
-    &-wrap {
-        background: #f0f0f0;
-        height: 100vh;
+  &-wrap {
+    background: $primary-light;
+    height: 90vh;
+    position: relative;
+  }
+  &-input-wrap {
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 110px;
+    padding: 0 20px;
+  }
+  &-input {
+    &-icon {
+      position: absolute;
+      right: 24px;
     }
-    &-input {
-        position: absolute;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100%;
-        padding: 0 15px;
+  }
+  input {
+    box-shadow: 0 0 27px 5px rgba(112, 112, 112, 0.2);
+    &:active,
+    &:focus {
+      box-shadow: 0 0 27px 5px rgba(112, 112, 112, 0.2);
     }
-    input {
-        box-shadow: 0 0 27px 5px rgba(112, 112, 112, 0.2);
-        &:active,
-        &:focus {
-            box-shadow: 0 0 27px 5px rgba(112, 112, 112, 0.2);
-        }
-    }
+  }
 }
 
 .splide {
-    &-img-wrap {
-        border-radius: 20px;
-        overflow: hidden;
-        // border: 2px solid #272727;
-        // box-shadow: 5px 5px 0px -1px #272727;
-    }
+  &-img-wrap {
+    border-radius: 20px;
+    overflow: hidden;
+    // border: 2px solid #272727;
+    // box-shadow: 5px 5px 0px -1px #272727;
+  }
 }

@@ -1,29 +1,40 @@
-import React, { useState } from 'react';
+import Icon from "components/Icon";
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 const Nav = () => {
-    let navList = [
-        { path: 'chat', name: '聊天' },
-        { path: 'chat', name: '天氣' },
-        { path: 'chat', name: '旅遊' }
-    ]
-    return (
-        <>
-            <div className='nav mt-5'>
-                <div className='container'>
-                    <div className="row justify-content-center">
-                        {
-                            navList?.map((item, index) => {
-                                return (
-                                    <div className="col-4 text-center" key={`navList-${index}`}>
-                                        <a href={`/${item?.path}`} className='btn nav-btn'></a>
-                                        <p>{item?.name}</p>
-                                    </div>
-                                )
-                            })
-                        }
-                    </div>
+  let navList = [
+    { path: "", name: "首頁", icon: "home" },
+    { path: "chat", name: "聊天", icon: "mes" },
+    { path: "weather", name: "天氣", icon: "map" },
+    { path: "tag", name: "收藏", icon: "tag" },
+  ];
+  return (
+    <>
+      <div className="nav">
+        <div className="container">
+          <div className="d-flex justify-content-evenly">
+            {navList?.map((item, index) => {
+              return (
+                <div className="text-center" key={`navList-${index}`}>
+                  <NavLink
+                    to={`/${item?.path}`}
+                    className={({ isActive, isPending }) =>
+                      isPending
+                        ? "pending"
+                        : isActive
+                        ? "active"
+                        : "btn nav-btn"
+                    }
+                  >
+                    <Icon icon={item?.icon} size={24} color="#4493bd" />
+                  </NavLink>
                 </div>
-            </div>
-        </>
-    )
-}
-export default Nav
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+export default Nav;
