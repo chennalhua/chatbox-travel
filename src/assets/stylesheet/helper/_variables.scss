@@ -298,8 +298,13 @@ $cyans: (
 // fusv-enable
 
 // scss-docs-start theme-color-variables
-$primary:       $blue !default;
-$secondary:     $gray-600 !default;
+$primary:      #6bc7ff !default;
+$primary-light:#e7f2f9 !default;
+$primary-dark: #52c3ff !default;
+$secondary:    #f9ae2b !default;
+$purple:       #7383c0 !default;
+$green:        #54ad67 !default;
+$green-light:  #5ae2e2 !default;
 $success:       $green !default;
 $info:          $cyan !default;
 $warning:       $yellow !default;
@@ -310,9 +315,13 @@ $dark:          $gray-900 !default;
 
 // scss-docs-start theme-colors-map
 $theme-colors: (
-  "primary":    #486289,
-  "secondary":  #31A6AD,
-  "third":      #E5E9F1,
+  "primary":      $primary,
+  "primary-light":$primary-light,
+  "primary-dark": $primary-dark,
+  "secondary":    $secondary,
+  "purple":       $purple,
+  "green":        $green,
+  "green-light":  $green-light,
   "success":    $success,
   "info":       $info,
   "warning":    $warning,

@@ -2,17 +2,35 @@
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
-    font-family: "Noto Sans TC", "Poppins", sans-serif !important;
-    // font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+  font-family: "Noto Sans TC", "Poppins", sans-serif !important;
+  // font-family: 'Poppins', sans-serif;
 }
 
 input,
 button {
-    &:active,
-    &:focus {
-        border: none;
-        box-shadow: none;
-        border: 0px;
-    }
+  &:active,
+  &:focus {
+    border: none;
+    box-shadow: none;
+    border: 0px;
+  }
+}
+
+//@ img @//
+.img {
+  &-circle-mask {
+    border-radius: 50%;
+    overflow: hidden;
+  }
+}
+
+//@ scroll bar @//
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #575757;
+  border-radius: 5px;
 }
