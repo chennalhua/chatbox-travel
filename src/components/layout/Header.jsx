@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 const Header = () => {
   return (
-    <div
-      className="container"
-    >
+    <div className="container">
       <div className="header-wrap">
         <h1 style={{ fontSize: "24px" }}>
           <span style={{ fontSize: "16px", color: "#959595" }}>Hello,</span>
