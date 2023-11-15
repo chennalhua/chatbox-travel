@@ -6,14 +6,14 @@ const Header = () => {
         <h1 style={{ fontSize: "24px" }}>
           <span style={{ fontSize: "16px", color: "#959595" }}>Hello,</span>
           <br />
-          陳乃華
+          User
         </h1>
         <div
           className="img-circle-mask"
           style={{ width: "50px", height: "50px" }}
         >
           <img
-            src="https://picsum.photos/100/100?random=1"
+            src={`https://picsum.photos/1000/1000?random=100`}
             className="img-fluid"
             alt="xxx"
           />

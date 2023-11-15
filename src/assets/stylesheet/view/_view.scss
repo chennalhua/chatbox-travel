@@ -16,12 +16,15 @@ html {
     padding: 10px 15px;
   }
   &-input-wrap {
-    width: 100%;
+    width: 50%;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     bottom: 97px;
     padding: 0 20px;
+    @include view-576{
+      width: 100%;
+    }
   }
   &-input {
     &-icon {

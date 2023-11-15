@@ -10,14 +10,22 @@ const HomePage = () => {
   let splideOptions = {
     rewind: true,
     width: "100%",
-    // height: splideSlideValue,
     gap: "0.5em",
     type: "loop",
-    // padding: "-100px",
-    perPage: 1,
     focus: "start",
     pagination: true,
     arrows: false,
+    breakpoints: {
+      992: {
+          perPage: 3
+      },
+      768: {
+          perPage: 2
+      },
+      576: {
+          perPage: 1,
+      },
+  }
   };
   return (
     <div
@@ -52,7 +60,7 @@ const HomePage = () => {
                       }}
                     >
                       <img
-                        src={`https://picsum.photos/400/400?random=${
+                        src={`https://picsum.photos/1000/1000?random=${
                           index + 1
                         }`}
                         alt={`img-${index}`}
@@ -84,7 +92,7 @@ const HomePage = () => {
                 </p>
               </div>
             </div>
-            <div className="col-6">
+            <div className="col-6 text-end">
               <img
                 src={require("assets/image/weather/sun.png")}
                 className="img-fluid"
