@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 import Icon from "components/Icon";
 import dayjs from "dayjs";
 import { getWeek } from "assets/function/dateTool";
+import { DotLoader } from "components/Loading";
+import scrollToBottom from "assets/function/scrollToBottom";
 const MesBox = ({ type, data }) => {
+  let [isLoader, setIsLoader] = useState(true);
+
   const handleStyle = {
     imgMask: {
       width: "50px",
@@ -38,7 +42,9 @@ const MesBox = ({ type, data }) => {
     typeFormat: function (type, data) {
       switch (type) {
         case "text":
-          return <div className="bg-light p-3 rounded d-inline-block">{data}</div>;
+          return (
+            <div className="bg-light p-3 rounded d-inline-block">{data}</div>
+          );
         case "card":
           return (
             <Splide hasTrack={false} options={splideOptions}>
@@ -141,15 +147,29 @@ const MesBox = ({ type, data }) => {
     },
   };
 
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoader(false);
+    }, 800);
+  }, []);
+
+  useEffect(() => {
+    scrollToBottom('#chat');
+  }, [isLoader]);
+
   return (
     <>
-      <div className="mb-4">
+      <div className="mb-4 position-relative">
         <img
           src="https://picsum.photos/200/200"
           className="img-fluid"
           style={handleStyle?.imgMask}
         />
-        <div className="mt-2">{handleEvent?.typeFormat(type, data)}</div>
+        {isLoader ? (
+          <DotLoader isLoader={isLoader} />
+        ) : (
+          <div className="mt-2">{handleEvent?.typeFormat(type, data)}</div>
+        )}
       </div>
     </>
   );
