@@ -4,6 +4,7 @@ import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 import Icon from "components/Icon";
 import dayjs from "dayjs";
 import { getWeek } from "assets/function/dateTool";
+import Login from 'assets/function/lineLogin'
 const HomePage = () => {
   let splideSlideList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   let splideSlideValue = "400px";
@@ -17,15 +18,15 @@ const HomePage = () => {
     arrows: false,
     breakpoints: {
       992: {
-          perPage: 3
+        perPage: 3
       },
       768: {
-          perPage: 2
+        perPage: 2
       },
       576: {
-          perPage: 1,
+        perPage: 1,
       },
-  }
+    }
   };
   return (
     <div
@@ -33,6 +34,7 @@ const HomePage = () => {
       style={{ height: "85vh", overflow: "scroll" }}
     >
       <div className="container">
+        <Login />
         <div className="chat mb-4">
           <div className="d-flex align-items-center">
             <input
@@ -60,9 +62,8 @@ const HomePage = () => {
                       }}
                     >
                       <img
-                        src={`https://picsum.photos/1000/1000?random=${
-                          index + 1
-                        }`}
+                        src={`https://picsum.photos/1000/1000?random=${index + 1
+                          }`}
                         alt={`img-${index}`}
                       />
                     </div>
