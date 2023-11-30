@@ -4,7 +4,6 @@ import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 import Icon from "components/Icon";
 import dayjs from "dayjs";
 import { getWeek } from "assets/function/dateTool";
-import Login from 'assets/function/lineLogin'
 const HomePage = () => {
   let splideSlideList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   let splideSlideValue = "400px";
@@ -34,7 +33,6 @@ const HomePage = () => {
       style={{ height: "85vh", overflow: "scroll" }}
     >
       <div className="container">
-        <Login />
         <div className="chat mb-4">
           <div className="d-flex align-items-center">
             <input

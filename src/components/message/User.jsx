@@ -3,6 +3,7 @@ import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 import Icon from "components/Icon";
 import dayjs from "dayjs";
 import { getWeek } from "assets/function/dateTool";
+import { Decrypt } from "assets/function/AES";
 const MesBox = ({ type, data }) => {
   const handleStyle = {
     imgMask: {
@@ -12,12 +13,18 @@ const MesBox = ({ type, data }) => {
     },
   };
 
+  let userData = localStorage?.getItem("_LOGINDATA");
+
   return (
     <>
       <div className="mt-2 mb-4">
         <div className="text-end">
           <img
-            src={`https://picsum.photos/1000/1000?random=100`}
+            src={
+              userData !== null
+                ? JSON.parse(Decrypt(userData))?.picture
+                : require("assets/image/user.jpg")
+            }
             className="img-fluid"
             style={handleStyle?.imgMask}
           />

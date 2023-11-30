@@ -5,8 +5,8 @@ const Nav = () => {
   let navList = [
     { path: "", name: "首頁", icon: "home" },
     { path: "chat", name: "聊天", icon: "mes" },
-    { path: "weather", name: "天氣", icon: "map" },
-    { path: "tag", name: "收藏", icon: "tag" },
+    // { path: "weather", name: "天氣", icon: "map" },
+    // { path: "tag", name: "收藏", icon: "tag" },
   ];
   return (
     <>

@@ -47,8 +47,8 @@ const Chat = () => {
     [mesVal, setMesVal] = useState(""), //輸入框
     [keywordList, setKeyWordList] = useState([
       "現在天氣",
-      "嘉義景點推薦",
-      "高雄美食",
+      "台南景點推薦",
+      "台南美食",
     ]);
 
   //@ EVENT
@@ -65,22 +65,34 @@ const Chat = () => {
       });
       //* 解析關鍵字
       function robotParseKeyword(val) {
-        historyData.push({
-          key: key,
-          type: "robot",
-          component: (
-            <Robot type="card" data={data} />
-          ),
-        });
+        if (val.includes("天氣")) {
+          historyData.push({
+            key: key,
+            type: "robot",
+            component: <Robot type="weather" data={data} />,
+          });
+        } else if (val.includes("景點")) {
+          historyData.push({
+            key: key,
+            type: "robot",
+            component: <Robot type="card" data={data} />,
+          });
+        } else {
+          historyData.push({
+            key: key,
+            type: "robot",
+            component: <Robot type="text" data='尚無搜尋到推薦' />,
+          });
+        }
       }
       robotParseKeyword(val);
       setChatData(historyData);
-    }
+    },
   };
 
-  useEffect(()=>{
-    scrollToBottom('#chat')
-  },[])
+  useEffect(() => {
+    scrollToBottom("#chat");
+  }, []);
 
   //聊天室
   return (
@@ -134,8 +146,7 @@ const Chat = () => {
                 <button
                   type="button"
                   className="btn chat-input-icon"
-                  onClick={(e) => (
-                    handleEvent?.setChatData("user", mesVal))}
+                  onClick={(e) => handleEvent?.setChatData("user", mesVal)}
                 >
                   <Icon icon="send" size={24} color="#252525" />
                 </button>

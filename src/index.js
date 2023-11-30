@@ -5,6 +5,7 @@ import Router from "./router/AppRouter";
 import '@splidejs/react-splide/css';
 import '@splidejs/react-splide/css/core';
 import 'assets/stylesheet/all.scss'
+import 'bootstrap/dist/js/bootstrap.min.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

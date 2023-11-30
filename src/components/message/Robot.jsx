@@ -6,7 +6,8 @@ import { getWeek } from "assets/function/dateTool";
 import { DotLoader } from "components/Loading";
 import scrollToBottom from "assets/function/scrollToBottom";
 const MesBox = ({ type, data }) => {
-  let [isLoader, setIsLoader] = useState(true);
+  let [isLoader, setIsLoader] = useState(true),
+    [modalData, setModalData] = useState(null);
 
   const handleStyle = {
     imgMask: {
@@ -47,47 +48,57 @@ const MesBox = ({ type, data }) => {
           );
         case "card":
           return (
-            <Splide hasTrack={false} options={splideOptions}>
-              <SplideTrack options={{ gap: "1em" }}>
-                {data?.map((item, index) => {
-                  return (
-                    <SplideSlide key={`slider-${index}`}>
-                      <div className="card me-2" style={{ width: "350px" }}>
-                        <div
-                          style={{
-                            width: "100%",
-                            height: "180px",
-                            overflow: "hidden",
-                          }}
-                        >
-                          <img
-                            src={`https://picsum.photos/1000/1000?random=${
-                              index + 1
-                            }`}
-                            className="card-img-top"
-                            alt=""
-                          />
-                        </div>
-                        <div className="card-body">
-                          <h5 className="card-title">{item?.title}</h5>
-                          <p
-                            className="card-text"
-                            dangerouslySetInnerHTML={{
-                              __html: item?.introduction,
+            <>
+              <Splide hasTrack={false} options={splideOptions}>
+                <SplideTrack options={{ gap: "1em" }}>
+                  {data?.map((item, index) => {
+                    return (
+                      <SplideSlide key={`slider-${index}`}>
+                        <div className="card me-2" style={{ width: "350px" }}>
+                          <div
+                            style={{
+                              width: "100%",
+                              height: "180px",
+                              overflow: "hidden",
                             }}
-                          ></p>
-                          <div className="text-center">
-                            <a href="#" className="btn btn-primary d-block">
-                              查看更多
-                            </a>
+                          >
+                            <img
+                              src={`https://picsum.photos/1000/1000?random=${
+                                index + 1
+                              }`}
+                              className="card-img-top"
+                              alt=""
+                            />
+                          </div>
+                          <div className="card-body">
+                            <h5 className="card-title">{item?.title}</h5>
+                            <p
+                              className="card-text"
+                              dangerouslySetInnerHTML={{
+                                __html: item?.introduction,
+                              }}
+                            ></p>
+                            <div className="text-center">
+                              <button
+                                type="button"
+                                className="btn btn-primary w-100"
+                                data-bs-toggle="modal"
+                                data-bs-target="#exampleModal"
+                                onClick={(e) => (
+                                  e.preventDefault(), setModalData(item)
+                                )}
+                              >
+                                查看更多
+                              </button>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </SplideSlide>
-                  );
-                })}
-              </SplideTrack>
-            </Splide>
+                      </SplideSlide>
+                    );
+                  })}
+                </SplideTrack>
+              </Splide>
+            </>
           );
         case "weather":
           return (
@@ -154,14 +165,14 @@ const MesBox = ({ type, data }) => {
   }, []);
 
   useEffect(() => {
-    scrollToBottom('#chat');
+    scrollToBottom("#chat");
   }, [isLoader]);
 
   return (
     <>
       <div className="mb-4 position-relative">
         <img
-          src="https://picsum.photos/200/200"
+          src={require("assets/image/robot.jpg")}
           className="img-fluid"
           style={handleStyle?.imgMask}
         />
@@ -170,6 +181,49 @@ const MesBox = ({ type, data }) => {
         ) : (
           <div className="mt-2">{handleEvent?.typeFormat(type, data)}</div>
         )}
+      </div>
+      <div className="container">
+        <div
+          className="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog modal-dialog-centered modal-xl">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h1 className="modal-title fs-5" id="exampleModalLabel">
+                  {modalData?.title}
+                </h1>
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div className="modal-body">
+                <img
+                  src={`https://picsum.photos/1000/1000?random=101`}
+                  className="card-img-top"
+                  width='50%'
+                  alt=""
+                />
+                <p className="mt-3">{modalData?.introduction}</p>
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  關閉
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
