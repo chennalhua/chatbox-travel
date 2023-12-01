@@ -5,6 +5,8 @@ import Robot from "components/message/Robot";
 import User from "components/message/User";
 import axios from "axios";
 import scrollToBottom from "assets/function/scrollToBottom";
+import fuzzyQuery from "assets/function/fuzzyQuery";
+import { callAttractions } from "API/callAttractions";
 const Chat = () => {
   //景點 data
   let data = [
@@ -47,52 +49,131 @@ const Chat = () => {
     [mesVal, setMesVal] = useState(""), //輸入框
     [keywordList, setKeyWordList] = useState([
       "現在天氣",
-      "台南景點推薦",
-      "台南美食",
+      "台北景點推薦",
+      "台北中山區景點",
+      "台北美食",
     ]);
+
+  useEffect(() => {
+    let getHistoryData = localStorage.getItem('_HISTORY')
+    console.log(JSON.parse(getHistoryData))
+    if (getHistoryData !== null && getHistoryData !== undefined && getHistoryData !== 'undefined') {
+      setChatData(JSON.parse(getHistoryData))
+    }
+  }, [])
 
   //@ EVENT
   const handleEvent = {
-    setChatData: function (type, val) {
-      setMesVal(""); //reset
-      let historyData = chatData;
+    chat: function (type, val) {
       let key = `key-${chatData?.length}`;
 
-      historyData.push({
+      setChatData(oldArray => [...oldArray, {
         key: key,
         type: "user",
-        component: <User data={val} />,
-      });
+        component: { val },
+      }]);
       //* 解析關鍵字
       function robotParseKeyword(val) {
-        if (val.includes("天氣")) {
-          historyData.push({
-            key: key,
-            type: "robot",
-            component: <Robot type="weather" data={data} />,
-          });
-        } else if (val.includes("景點")) {
-          historyData.push({
-            key: key,
-            type: "robot",
-            component: <Robot type="card" data={data} />,
-          });
-        } else {
-          historyData.push({
-            key: key,
-            type: "robot",
-            component: <Robot type="text" data='尚無搜尋到推薦' />,
-          });
+        let keyWord = {
+          allCity: { rule: /台北|臺北|基隆|新北|宜蘭|新竹市|新竹縣|桃園|苗栗|台中市|臺中市|台中|臺中|彰化|南投|嘉義市|嘉義縣|雲林|台南|臺南|台南|臺南|高雄|屏東|台東|花蓮|澎湖|金門|連江/ },
+          city: { rule: /台北|台北市|臺北|臺北市/ },
+          area: { rule: /區/ },
+          weather: { rule: /天氣|溫度|幾度|度/ },
+          attractions: { rule: /景點|好玩|玩|地方/ }
+        }
+        let fuzzyKeyWord = {
+          allCity: fuzzyQuery(keyWord.allCity.rule, val),
+          city: fuzzyQuery(keyWord.city.rule, val),
+          area: fuzzyQuery(keyWord.area.rule, val),
+          weather: fuzzyQuery(keyWord.weather.rule, val),
+          attractions: fuzzyQuery(keyWord.attractions.rule, val)
+        }
+
+        //@ run 模組
+        function runModal(key) {
+          console.log(key)
+          if (fuzzyKeyWord?.attractions) { //* run 景點
+            switch (key) {
+              case '1': return setChatData(oldArray => [...oldArray, {
+                key: key,
+                type: "robot",
+                component: { type: "card", data: callAttractions(val), val, setMesVal },
+              }]);
+              case '2': return setChatData(oldArray => [...oldArray, {
+                key: key,
+                type: "robot",
+                component: { type: "chooseArea", data, val, setMesVal },
+              }]);
+              case '3': return setChatData(oldArray => [...oldArray, {
+                key: key,
+                type: "robot",
+                component: { type: "chooseArea", data, val, setMesVal },
+              }]);
+              case '4': return setChatData(oldArray => [...oldArray, {
+                key: key,
+                type: "robot",
+                component: { type: "chooseArea", data, val, setMesVal },
+              }]);
+              default: break;
+            }
+          } else if (fuzzyKeyWord?.weather) {//* run 天氣
+            if (fuzzyKeyWord?.allCity) {
+              return setChatData(oldArray => [...oldArray, {
+                key: key,
+                type: "robot",
+                component: { type: "weather", data, val, setMesVal },
+              }]);
+            } else {
+              return setChatData(oldArray => [...oldArray, {
+                key: key,
+                type: "robot",
+                component: { type: "chooseCity", data, val, setMesVal },
+              }]);
+            }
+          } else { //* no run
+            switch (key) {
+              case '1':
+              case '2':
+              case '3': return setChatData(oldArray => [...oldArray, {
+                key: key,
+                type: "robot",
+                component: { type: "chooseType", data, val, setMesVal },
+              }]);
+              case '4': return setChatData(oldArray => [...oldArray, {
+                key: key,
+                type: "robot",
+                component: { type: "text", data: '請提供更完整的條件\n景點查詢：ex. 台北市信義區景點\n天氣：ex.台北市天氣', val, setMesVal }
+              }]);
+              default: break;
+            }
+          }
+        }
+
+        if (fuzzyKeyWord?.city && fuzzyKeyWord?.area) {// 符合 台北市 臺北市 有區
+          runModal('1')
+        } else if (fuzzyKeyWord?.city && !fuzzyKeyWord?.area) {// 符合 台北市 臺北市 沒區
+          runModal('2')
+        } else if (!fuzzyKeyWord?.city && fuzzyKeyWord?.area) { //符合區域
+          runModal('3')
+        } else if (!fuzzyKeyWord?.city && !fuzzyKeyWord?.area) {
+          runModal('4')
         }
       }
       robotParseKeyword(val);
-      setChatData(historyData);
+      setMesVal(""); //reset
     },
   };
 
   useEffect(() => {
     scrollToBottom("#chat");
   }, []);
+
+  useEffect(() => {
+    if (chatData?.length > 0) {
+      localStorage.setItem('_HISTORY', JSON.stringify(chatData))
+    }
+  }, [chatData])
+
 
   //聊天室
   return (
@@ -104,14 +185,12 @@ const Chat = () => {
             <div className="chat-content" id="chat">
               {chatData?.length > 0 &&
                 chatData?.map((item, index) => {
-                  return item?.component;
+                  if (item?.type == 'user') {
+                    return <User data={item?.component?.val} />
+                  } else {
+                    return <Robot type={item?.component?.type} data={item?.component?.data} mes={item?.component?.val} setMesVal={item?.component?.setMesVal} />
+                  }
                 })}
-              {/* <User data="為我推薦台南景點" />
-              <Robot type="card" data={data} />
-              <User data="我要搜尋高雄美食" />
-              <Robot type="text" data="不好意思，目前搜尋不到任何美食" />
-              <User data="請給我目前的天氣預報" />
-              <Robot type="weather" data="不好意思，目前搜尋不到任何景點" /> */}
             </div>
           </div>
         </div>
@@ -146,7 +225,7 @@ const Chat = () => {
                 <button
                   type="button"
                   className="btn chat-input-icon"
-                  onClick={(e) => handleEvent?.setChatData("user", mesVal)}
+                  onClick={(e) => handleEvent?.chat("user", mesVal)}
                 >
                   <Icon icon="send" size={24} color="#252525" />
                 </button>

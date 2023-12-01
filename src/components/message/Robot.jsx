@@ -5,7 +5,11 @@ import dayjs from "dayjs";
 import { getWeek } from "assets/function/dateTool";
 import { DotLoader } from "components/Loading";
 import scrollToBottom from "assets/function/scrollToBottom";
-const MesBox = ({ type, data }) => {
+import cityCountyData from 'assets/data/cityCountyData.json'
+import TextLongToDot from "assets/function/TextLongToDot";
+import WeatherBox from "components/WeatherBox";
+import { callWeather, getCityKey } from "API/callWeather";
+const MesBox = ({ type, data, mes, setMesVal }) => {
   let [isLoader, setIsLoader] = useState(true),
     [modalData, setModalData] = useState(null);
 
@@ -38,13 +42,26 @@ const MesBox = ({ type, data }) => {
     },
   };
 
+  //@ VALUE
+  let [weatherData, setWeatherData] = useState(null)
+  //@ EVENT
+  useEffect(() => {
+    const getWeather = async () => {
+      const response = await callWeather(getCityKey(mes));
+      setWeatherData(response)
+    }
+    getWeather()
+  }, [])
+
   //@ EVENT
   const handleEvent = {
     typeFormat: function (type, data) {
       switch (type) {
         case "text":
           return (
-            <div className="bg-light p-3 rounded d-inline-block">{data}</div>
+            <>
+              <div className="bg-light p-3 rounded d-inline-block" style={{ whiteSpace: 'pre-line' }} >{data}</div>
+            </>
           );
         case "card":
           return (
@@ -62,20 +79,23 @@ const MesBox = ({ type, data }) => {
                               overflow: "hidden",
                             }}
                           >
-                            <img
-                              src={`https://picsum.photos/1000/1000?random=${
-                                index + 1
-                              }`}
-                              className="card-img-top"
-                              alt=""
-                            />
+                            {item?.images?.length > 0 ?
+                              <img src={item?.images[0].src}
+                                className="card-img-top"
+                                alt={item?.name}
+                              /> :
+                              <img src={require('assets/image/robot.jpg')}
+                                className="card-img-top"
+                                alt={`${item?.name}-沒有相關圖片 QQ`}
+                              />
+                            }
                           </div>
                           <div className="card-body">
-                            <h5 className="card-title">{item?.title}</h5>
+                            <h5 className="card-title">{item?.name}</h5>
                             <p
                               className="card-text"
                               dangerouslySetInnerHTML={{
-                                __html: item?.introduction,
+                                __html: TextLongToDot(item?.introduction),
                               }}
                             ></p>
                             <div className="text-center">
@@ -102,50 +122,95 @@ const MesBox = ({ type, data }) => {
           );
         case "weather":
           return (
-            <div className="bg-light p-3 rounded d-inline-block">
-              <p>為您顯示目前天氣</p>
-              <div className="bg-primary-light p-3 rounded">
-                {/* 主要目前天氣 */}
-                <div className="d-flex align-items-center">
-                  <Icon
-                    icon="sun"
-                    size={40}
-                    color="#353535"
-                    className="text-center"
+            <WeatherBox data={weatherData} />
+          );
+        case "chooseArea":
+          return (
+            <div>
+              <div className="card me-2" style={{ width: "335px" }}>
+                <div
+                  style={{
+                    width: "100%",
+                    height: "180px",
+                    overflow: "hidden",
+                  }}
+                >
+                  <img
+                    src={require('assets/image/robot.jpg')}
+                    className="card-img-top"
+                    alt=""
                   />
-                  <div className="fw-bolder ms-4 text-dark">
-                    <p className="my-0">
-                      {dayjs().format("YYYY/MM/DD")}{" "}
-                      <span className="ms-2">{getWeek(dayjs().day())}</span>
-                    </p>
-                    <p className="my-0" style={{ fontSize: "20px" }}>
-                      25 °C
-                    </p>
-                  </div>
                 </div>
-                <hr />
-                {/* 其他天氣資訊 */}
-                <div className="mt-2 fw-bolder">
-                  <div className="row justify-content-center">
-                    <div className="col-3 text-center">
-                      <div>
-                        10時 <p>25 °C</p>
-                      </div>
+                <div className="card-body">
+                  <h5 className="card-title mb-4">搜尋條件不足，請繼續提供線索!!</h5>
+                  <select className="form-select" aria-label="Default select example" onChange={e => setMesVal(`${mes}${e.target.value}`)}>
+                    <option selected disabled>請選擇</option>
+                    {
+                      cityCountyData?.data?.[0].areas.map((item, index) => {
+                        return (<option value={item?.AREA_NAME}>{item?.AREA_NAME}</option>)
+                      })
+                    }
+                  </select>
+                </div>
+              </div>
+            </div>
+          );
+        case "chooseCity":
+          return (
+            <div>
+              <div className="card me-2" style={{ width: "335px" }}>
+                <div
+                  style={{
+                    width: "100%",
+                    height: "180px",
+                    overflow: "hidden",
+                  }}
+                >
+                  <img
+                    src={require('assets/image/robot.jpg')}
+                    className="card-img-top"
+                    alt=""
+                  />
+                </div>
+                <div className="card-body">
+                  <h5 className="card-title mb-4">搜尋條件不足，請繼續提供線索!!</h5>
+                  <select className="form-select" aria-label="Default select example" onChange={e => setMesVal(`${mes}${e.target.value}`)}>
+                    <option selected disabled>請選擇</option>
+                    {
+                      cityCountyData?.data?.map((item, index) => {
+                        return (<option value={item?.COU_NAME}>{item?.COU_NAME}</option>)
+                      })
+                    }
+                  </select>
+                </div>
+              </div>
+            </div>
+          );
+        case "chooseType":
+          return (
+            <div>
+              <div className="card me-2" style={{ width: "335px" }}>
+                <div
+                  style={{
+                    width: "100%",
+                    height: "180px",
+                    overflow: "hidden",
+                  }}
+                >
+                  <img
+                    src={require('assets/image/robot.jpg')}
+                    className="card-img-top"
+                    alt=""
+                  />
+                </div>
+                <div className="card-body">
+                  <h5 className="card-title mb-4">請問您想得到什麼類型的資訊呢？</h5>
+                  <div className="row">
+                    <div className="col-6">
+                      <button className="btn btn-primary w-100" onClick={e => setMesVal(`${mes}景點`)}>景點</button>
                     </div>
-                    <div className="col-3 text-center">
-                      <div>
-                        12時 <p>30 °C</p>
-                      </div>
-                    </div>
-                    <div className="col-3 text-center">
-                      <div>
-                        14時 <p>29 °C</p>
-                      </div>
-                    </div>
-                    <div className="col-3 text-center">
-                      <div>
-                        16時 <p>25 °C</p>
-                      </div>
+                    <div className="col-6">
+                      <button className="btn btn-primary w-100" onClick={e => setMesVal(`${mes}天氣`)}>天氣</button>
                     </div>
                   </div>
                 </div>

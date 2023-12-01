@@ -1,0 +1,1598 @@
+{
+    "data": [
+        {
+            "COU_NAME": "台北市",
+            "areas": [
+                {
+                    "AREA_NAME": "中正區",
+                    "ZIPCODE": "100"
+                },
+                {
+                    "AREA_NAME": "大同區",
+                    "ZIPCODE": "103"
+                },
+                {
+                    "AREA_NAME": "中山區",
+                    "ZIPCODE": "104"
+                },
+                {
+                    "AREA_NAME": "松山區",
+                    "ZIPCODE": "105"
+                },
+                {
+                    "AREA_NAME": "大安區",
+                    "ZIPCODE": "106"
+                },
+                {
+                    "AREA_NAME": "萬華區",
+                    "ZIPCODE": "108"
+                },
+                {
+                    "AREA_NAME": "信義區",
+                    "ZIPCODE": "110"
+                },
+                {
+                    "AREA_NAME": "士林區",
+                    "ZIPCODE": "111"
+                },
+                {
+                    "AREA_NAME": "北投區",
+                    "ZIPCODE": "112"
+                },
+                {
+                    "AREA_NAME": "內湖區",
+                    "ZIPCODE": "114"
+                },
+                {
+                    "AREA_NAME": "南港區",
+                    "ZIPCODE": "115"
+                },
+                {
+                    "AREA_NAME": "文山區",
+                    "ZIPCODE": "116"
+                }
+            ]
+        },
+        {
+            "COU_NAME": "基隆市",
+            "areas": [
+                {
+                    "AREA_NAME": "仁愛區",
+                    "ZIPCODE": "200"
+                },
+                {
+                    "AREA_NAME": "信義區",
+                    "ZIPCODE": "201"
+                },
+                {
+                    "AREA_NAME": "中正區",
+                    "ZIPCODE": "202"
+                },
+                {
+                    "AREA_NAME": "中山區",
+                    "ZIPCODE": "203"
+                },
+                {
+                    "AREA_NAME": "安樂區",
+                    "ZIPCODE": "204"
+                },
+                {
+                    "AREA_NAME": "暖暖區",
+                    "ZIPCODE": "205"
+                },
+                {
+                    "AREA_NAME": "七堵區",
+                    "ZIPCODE": "206"
+                }
+            ]
+        },
+        {
+            "COU_NAME": "新北市",
+            "areas": [
+                {
+                    "AREA_NAME": "萬里區",
+                    "ZIPCODE": "207"
+                },
+                {
+                    "AREA_NAME": "金山區",
+                    "ZIPCODE": "208"
+                },
+                {
+                    "AREA_NAME": "板橋區",
+                    "ZIPCODE": "220"
+                },
+                {
+                    "AREA_NAME": "汐止區",
+                    "ZIPCODE": "221"
+                },
+                {
+                    "AREA_NAME": "深坑區",
+                    "ZIPCODE": "222"
+                },
+                {
+                    "AREA_NAME": "石碇區",
+                    "ZIPCODE": "223"
+                },
+                {
+                    "AREA_NAME": "瑞芳區",
+                    "ZIPCODE": "224"
+                },
+                {
+                    "AREA_NAME": "平溪區",
+                    "ZIPCODE": "226"
+                },
+                {
+                    "AREA_NAME": "雙溪區",
+                    "ZIPCODE": "227"
+                },
+                {
+                    "AREA_NAME": "貢寮區",
+                    "ZIPCODE": "228"
+                },
+                {
+                    "AREA_NAME": "新店區",
+                    "ZIPCODE": "231"
+                },
+                {
+                    "AREA_NAME": "坪林區",
+                    "ZIPCODE": "232"
+                },
+                {
+                    "AREA_NAME": "烏來區",
+                    "ZIPCODE": "233"
+                },
+                {
+                    "AREA_NAME": "永和區",
+                    "ZIPCODE": "234"
+                },
+                {
+                    "AREA_NAME": "中和區",
+                    "ZIPCODE": "235"
+                },
+                {
+                    "AREA_NAME": "土城區",
+                    "ZIPCODE": "236"
+                },
+                {
+                    "AREA_NAME": "三峽區",
+                    "ZIPCODE": "237"
+                },
+                {
+                    "AREA_NAME": "樹林區",
+                    "ZIPCODE": "238"
+                },
+                {
+                    "AREA_NAME": "鶯歌區",
+                    "ZIPCODE": "239"
+                },
+                {
+                    "AREA_NAME": "三重區",
+                    "ZIPCODE": "241"
+                },
+                {
+                    "AREA_NAME": "新莊區",
+                    "ZIPCODE": "242"
+                },
+                {
+                    "AREA_NAME": "泰山區",
+                    "ZIPCODE": "243"
+                },
+                {
+                    "AREA_NAME": "林口區",
+                    "ZIPCODE": "244"
+                },
+                {
+                    "AREA_NAME": "蘆洲區",
+                    "ZIPCODE": "247"
+                },
+                {
+                    "AREA_NAME": "五股區",
+                    "ZIPCODE": "248"
+                },
+                {
+                    "AREA_NAME": "八里區",
+                    "ZIPCODE": "249"
+                },
+                {
+                    "AREA_NAME": "淡水區",
+                    "ZIPCODE": "251"
+                },
+                {
+                    "AREA_NAME": "三芝區",
+                    "ZIPCODE": "252"
+                },
+                {
+                    "AREA_NAME": "石門區",
+                    "ZIPCODE": "253"
+                }
+            ]
+        },
+        {
+            "COU_NAME": "宜蘭縣",
+            "areas": [
+                {
+                    "AREA_NAME": "宜蘭市",
+                    "ZIPCODE": "260"
+                },
+                {
+                    "AREA_NAME": "頭城鎮",
+                    "ZIPCODE": "261"
+                },
+                {
+                    "AREA_NAME": "礁溪鄉",
+                    "ZIPCODE": "262"
+                },
+                {
+                    "AREA_NAME": "壯圍鄉",
+                    "ZIPCODE": "263"
+                },
+                {
+                    "AREA_NAME": "員山鄉",
+                    "ZIPCODE": "264"
+                },
+                {
+                    "AREA_NAME": "羅東鎮",
+                    "ZIPCODE": "265"
+                },
+                {
+                    "AREA_NAME": "三星鄉",
+                    "ZIPCODE": "266"
+                },
+                {
+                    "AREA_NAME": "大同鄉",
+                    "ZIPCODE": "267"
+                },
+                {
+                    "AREA_NAME": "五結鄉",
+                    "ZIPCODE": "268"
+                },
+                {
+                    "AREA_NAME": "冬山鄉",
+                    "ZIPCODE": "269"
+                },
+                {
+                    "AREA_NAME": "蘇澳鎮",
+                    "ZIPCODE": "270"
+                },
+                {
+                    "AREA_NAME": "南澳鄉",
+                    "ZIPCODE": "272"
+                },
+                {
+                    "AREA_NAME": "釣魚台",
+                    "ZIPCODE": "290"
+                }
+            ]
+        },
+        {
+            "COU_NAME": "新竹市",
+            "areas": [
+                {
+                    "AREA_NAME": "北區",
+                    "ZIPCODE": "300"
+                },
+                {
+                    "AREA_NAME": "東區",
+                    "ZIPCODE": "300"
+                },
+                {
+                    "AREA_NAME": "香山區",
+                    "ZIPCODE": "300"
+                }
+            ]
+        },
+        {
+            "COU_NAME": "新竹縣",
+            "areas": [
+                {
+                    "AREA_NAME": "竹北市",
+                    "ZIPCODE": "302"
+                },
+                {
+                    "AREA_NAME": "湖口鄉",
+                    "ZIPCODE": "303"
+                },
+                {
+                    "AREA_NAME": "新豐鄉",
+                    "ZIPCODE": "304"
+                },
+                {
+                    "AREA_NAME": "新埔鎮",
+                    "ZIPCODE": "305"
+                },
+                {
+                    "AREA_NAME": "關西鎮",
+                    "ZIPCODE": "306"
+                },
+                {
+                    "AREA_NAME": "芎林鄉",
+                    "ZIPCODE": "307"
+                },
+                {
+                    "AREA_NAME": "寶山鄉",
+                    "ZIPCODE": "308"
+                },
+                {
+                    "AREA_NAME": "竹東鎮",
+                    "ZIPCODE": "310"
+                },
+                {
+                    "AREA_NAME": "五峰鄉",
+                    "ZIPCODE": "311"
+                },
+                {
+                    "AREA_NAME": "橫山鄉",
+                    "ZIPCODE": "312"
+                },
+                {
+                    "AREA_NAME": "尖石鄉",
+                    "ZIPCODE": "313"
+                },
+                {
+                    "AREA_NAME": "北埔鄉",
+                    "ZIPCODE": "314"
+                },
+                {
+                    "AREA_NAME": "峨眉鄉",
+                    "ZIPCODE": "315"
+                }
+            ]
+        },
+        {
+            "COU_NAME": "桃園市",
+            "areas": [
+                {
+                    "AREA_NAME": "中壢區",
+                    "ZIPCODE": "320"
+                },
+                {
+                    "AREA_NAME": "平鎮區",
+                    "ZIPCODE": "324"
+                },
+                {
+                    "AREA_NAME": "龍潭區",
+                    "ZIPCODE": "325"
+                },
+                {
+                    "AREA_NAME": "楊梅區",
+                    "ZIPCODE": "326"
+                },
+                {
+                    "AREA_NAME": "新屋區",
+                    "ZIPCODE": "327"
+                },
+                {
+                    "AREA_NAME": "觀音區",
+                    "ZIPCODE": "328"
+                },
+                {
+                    "AREA_NAME": "桃園區",
+                    "ZIPCODE": "330"
+                },
+                {
+                    "AREA_NAME": "龜山區",
+                    "ZIPCODE": "333"
+                },
+                {
+                    "AREA_NAME": "八德區",
+                    "ZIPCODE": "334"
+                },
+                {
+                    "AREA_NAME": "大溪區",
+                    "ZIPCODE": "335"
+                },
+                {
+                    "AREA_NAME": "復興區",
+                    "ZIPCODE": "336"
+                },
+                {
+                    "AREA_NAME": "大園區",
+                    "ZIPCODE": "337"
+                },
+                {
+                    "AREA_NAME": "蘆竹區",
+                    "ZIPCODE": "338"
+                }
+            ]
+        },
+        {
+            "COU_NAME": "苗栗縣",
+            "areas": [
+                {
+                    "AREA_NAME": "竹南鎮",
+                    "ZIPCODE": "350"
+                },
+                {
+                    "AREA_NAME": "頭份市",
+                    "ZIPCODE": "351"
+                },
+                {
+                    "AREA_NAME": "三灣鄉",
+                    "ZIPCODE": "352"
+                },
+                {
+                    "AREA_NAME": "南庄鄉",
+                    "ZIPCODE": "353"
+                },
+                {
+                    "AREA_NAME": "獅潭鄉",
+                    "ZIPCODE": "354"
+                },
+                {
+                    "AREA_NAME": "後龍鎮",
+                    "ZIPCODE": "356"
+                },
+                {
+                    "AREA_NAME": "通霄鎮",
+                    "ZIPCODE": "357"
+                },
+                {
+                    "AREA_NAME": "苑裡鎮",
+                    "ZIPCODE": "358"
+                },
+                {
+                    "AREA_NAME": "苗栗市",
+                    "ZIPCODE": "360"
+                },
+                {
+                    "AREA_NAME": "造橋鄉",
+                    "ZIPCODE": "361"
+                },
+                {
+                    "AREA_NAME": "頭屋鄉",
+                    "ZIPCODE": "362"
+                },
+                {
+                    "AREA_NAME": "公館鄉",
+                    "ZIPCODE": "363"
+                },
+                {
+                    "AREA_NAME": "大湖鄉",
+                    "ZIPCODE": "364"
+                },
+                {
+                    "AREA_NAME": "泰安鄉",
+                    "ZIPCODE": "365"
+                },
+                {
+                    "AREA_NAME": "銅鑼鄉",
+                    "ZIPCODE": "366"
+                },
+                {
+                    "AREA_NAME": "三義鄉",
+                    "ZIPCODE": "367"
+                },
+                {
+                    "AREA_NAME": "西湖鄉",
+                    "ZIPCODE": "368"
+                },
+                {
+                    "AREA_NAME": "卓蘭鎮",
+                    "ZIPCODE": "369"
+                }
+            ]
+        },
+        {
+            "COU_NAME": "台中市",
+            "areas": [
+                {
+                    "AREA_NAME": "中區",
+                    "ZIPCODE": "400"
+                },
+                {
+                    "AREA_NAME": "東區",
+                    "ZIPCODE": "401"
+                },
+                {
+                    "AREA_NAME": "南區",
+                    "ZIPCODE": "402"
+                },
+                {
+                    "AREA_NAME": "西區",
+                    "ZIPCODE": "403"
+                },
+                {
+                    "AREA_NAME": "北區",
+                    "ZIPCODE": "404"
+                },
+                {
+                    "AREA_NAME": "北屯區",
+                    "ZIPCODE": "406"
+                },
+                {
+                    "AREA_NAME": "西屯區",
+                    "ZIPCODE": "407"
+                },
+                {
+                    "AREA_NAME": "南屯區",
+                    "ZIPCODE": "408"
+                },
+                {
+                    "AREA_NAME": "太平區",
+                    "ZIPCODE": "411"
+                },
+                {
+                    "AREA_NAME": "大里區",
+                    "ZIPCODE": "412"
+                },
+                {
+                    "AREA_NAME": "霧峰區",
+                    "ZIPCODE": "413"
+                },
+                {
+                    "AREA_NAME": "烏日區",
+                    "ZIPCODE": "414"
+                },
+                {
+                    "AREA_NAME": "豐原區",
+                    "ZIPCODE": "420"
+                },
+                {
+                    "AREA_NAME": "后里區",
+                    "ZIPCODE": "421"
+                },
+                {
+                    "AREA_NAME": "石岡區",
+                    "ZIPCODE": "422"
+                },
+                {
+                    "AREA_NAME": "東勢區",
+                    "ZIPCODE": "423"
+                },
+                {
+                    "AREA_NAME": "和平區",
+                    "ZIPCODE": "424"
+                },
+                {
+                    "AREA_NAME": "新社區",
+                    "ZIPCODE": "426"
+                },
+                {
+                    "AREA_NAME": "潭子區",
+                    "ZIPCODE": "427"
+                },
+                {
+                    "AREA_NAME": "大雅區",
+                    "ZIPCODE": "428"
+                },
+                {
+                    "AREA_NAME": "神岡區",
+                    "ZIPCODE": "429"
+                },
+                {
+                    "AREA_NAME": "大肚區",
+                    "ZIPCODE": "432"
+                },
+                {
+                    "AREA_NAME": "沙鹿區",
+                    "ZIPCODE": "433"
+                },
+                {
+                    "AREA_NAME": "龍井區",
+                    "ZIPCODE": "434"
+                },
+                {
+                    "AREA_NAME": "梧棲區",
+                    "ZIPCODE": "435"
+                },
+                {
+                    "AREA_NAME": "清水區",
+                    "ZIPCODE": "436"
+                },
+                {
+                    "AREA_NAME": "大甲區",
+                    "ZIPCODE": "437"
+                },
+                {
+                    "AREA_NAME": "外埔區",
+                    "ZIPCODE": "438"
+                },
+                {
+                    "AREA_NAME": "大安區",
+                    "ZIPCODE": "439"
+                }
+            ]
+        },
+        {
+            "COU_NAME": "彰化縣",
+            "areas": [
+                {
+                    "AREA_NAME": "彰化市",
+                    "ZIPCODE": "500"
+                },
+                {
+                    "AREA_NAME": "芬園鄉",
+                    "ZIPCODE": "502"
+                },
+                {
+                    "AREA_NAME": "花壇鄉",
+                    "ZIPCODE": "503"
+                },
+                {
+                    "AREA_NAME": "秀水鄉",
+                    "ZIPCODE": "504"
+                },
+                {
+                    "AREA_NAME": "鹿港鎮",
+                    "ZIPCODE": "505"
+                },
+                {
+                    "AREA_NAME": "福興鄉",
+                    "ZIPCODE": "506"
+                },
+                {
+                    "AREA_NAME": "線西鄉",
+                    "ZIPCODE": "507"
+                },
+                {
+                    "AREA_NAME": "和美鎮",
+                    "ZIPCODE": "508"
+                },
+                {
+                    "AREA_NAME": "伸港鄉",
+                    "ZIPCODE": "509"
+                },
+                {
+                    "AREA_NAME": "員林市",
+                    "ZIPCODE": "510"
+                },
+                {
+                    "AREA_NAME": "社頭鄉",
+                    "ZIPCODE": "511"
+                },
+                {
+                    "AREA_NAME": "永靖鄉",
+                    "ZIPCODE": "512"
+                },
+                {
+                    "AREA_NAME": "埔心鄉",
+                    "ZIPCODE": "513"
+                },
+                {
+                    "AREA_NAME": "溪湖鎮",
+                    "ZIPCODE": "514"
+                },
+                {
+                    "AREA_NAME": "大村鄉",
+                    "ZIPCODE": "515"
+                },
+                {
+                    "AREA_NAME": "埔鹽鄉",
+                    "ZIPCODE": "516"
+                },
+                {
+                    "AREA_NAME": "田中鎮",
+                    "ZIPCODE": "520"
+                },
+                {
+                    "AREA_NAME": "北斗鎮",
+                    "ZIPCODE": "521"
+                },
+                {
+                    "AREA_NAME": "田尾鄉",
+                    "ZIPCODE": "522"
+                },
+                {
+                    "AREA_NAME": "埤頭鄉",
+                    "ZIPCODE": "523"
+                },
+                {
+                    "AREA_NAME": "溪州鄉",
+                    "ZIPCODE": "524"
+                },
+                {
+                    "AREA_NAME": "竹塘鄉",
+                    "ZIPCODE": "525"
+                },
+                {
+                    "AREA_NAME": "二林鎮",
+                    "ZIPCODE": "526"
+                },
+                {
+                    "AREA_NAME": "大城鄉",
+                    "ZIPCODE": "527"
+                },
+                {
+                    "AREA_NAME": "芳苑鄉",
+                    "ZIPCODE": "528"
+                },
+                {
+                    "AREA_NAME": "二水鄉",
+                    "ZIPCODE": "530"
+                }
+            ]
+        },
+        {
+            "COU_NAME": "南投縣",
+            "areas": [
+                {
+                    "AREA_NAME": "南投市",
+                    "ZIPCODE": "540"
+                },
+                {
+                    "AREA_NAME": "中寮鄉",
+                    "ZIPCODE": "541"
+                },
+                {
+                    "AREA_NAME": "草屯鎮",
+                    "ZIPCODE": "542"
+                },
+                {
+                    "AREA_NAME": "國姓鄉",
+                    "ZIPCODE": "544"
+                },
+                {
+                    "AREA_NAME": "埔里鎮",
+                    "ZIPCODE": "545"
+                },
+                {
+                    "AREA_NAME": "仁愛鄉",
+                    "ZIPCODE": "546"
+                },
+                {
+                    "AREA_NAME": "名間鄉",
+                    "ZIPCODE": "551"
+                },
+                {
+                    "AREA_NAME": "集集鎮",
+                    "ZIPCODE": "552"
+                },
+                {
+                    "AREA_NAME": "水里鄉",
+                    "ZIPCODE": "553"
+                },
+                {
+                    "AREA_NAME": "魚池鄉",
+                    "ZIPCODE": "555"
+                },
+                {
+                    "AREA_NAME": "信義鄉",
+                    "ZIPCODE": "556"
+                },
+                {
+                    "AREA_NAME": "竹山鎮",
+                    "ZIPCODE": "557"
+                },
+                {
+                    "AREA_NAME": "鹿谷鄉",
+                    "ZIPCODE": "558"
+                }
+            ]
+        },
+        {
+            "COU_NAME": "嘉義市",
+            "areas": [
+                {
+                    "AREA_NAME": "東區",
+                    "ZIPCODE": "600"
+                },
+                {
+                    "AREA_NAME": "西區",
+                    "ZIPCODE": "600"
+                }
+            ]
+        },
+        {
+            "COU_NAME": "嘉義縣",
+            "areas": [
+                {
+                    "AREA_NAME": "番路鄉",
+                    "ZIPCODE": "602"
+                },
+                {
+                    "AREA_NAME": "梅山鄉",
+                    "ZIPCODE": "603"
+                },
+                {
+                    "AREA_NAME": "竹崎鄉",
+                    "ZIPCODE": "604"
+                },
+                {
+                    "AREA_NAME": "阿里山鄉",
+                    "ZIPCODE": "605"
+                },
+                {
+                    "AREA_NAME": "中埔鄉",
+                    "ZIPCODE": "606"
+                },
+                {
+                    "AREA_NAME": "大埔鄉",
+                    "ZIPCODE": "607"
+                },
+                {
+                    "AREA_NAME": "水上鄉",
+                    "ZIPCODE": "608"
+                },
+                {
+                    "AREA_NAME": "鹿草鄉",
+                    "ZIPCODE": "611"
+                },
+                {
+                    "AREA_NAME": "太保市",
+                    "ZIPCODE": "612"
+                },
+                {
+                    "AREA_NAME": "朴子市",
+                    "ZIPCODE": "613"
+                },
+                {
+                    "AREA_NAME": "東石鄉",
+                    "ZIPCODE": "614"
+                },
+                {
+                    "AREA_NAME": "六腳鄉",
+                    "ZIPCODE": "615"
+                },
+                {
+                    "AREA_NAME": "新港鄉",
+                    "ZIPCODE": "616"
+                },
+                {
+                    "AREA_NAME": "民雄鄉",
+                    "ZIPCODE": "621"
+                },
+                {
+                    "AREA_NAME": "大林鎮",
+                    "ZIPCODE": "622"
+                },
+                {
+                    "AREA_NAME": "溪口鄉",
+                    "ZIPCODE": "623"
+                },
+                {
+                    "AREA_NAME": "義竹鄉",
+                    "ZIPCODE": "624"
+                },
+                {
+                    "AREA_NAME": "布袋鎮",
+                    "ZIPCODE": "625"
+                }
+            ]
+        },
+        {
+            "COU_NAME": "雲林縣",
+            "areas": [
+                {
+                    "AREA_NAME": "斗南鎮",
+                    "ZIPCODE": "630"
+                },
+                {
+                    "AREA_NAME": "大埤鄉",
+                    "ZIPCODE": "631"
+                },
+                {
+                    "AREA_NAME": "虎尾鎮",
+                    "ZIPCODE": "632"
+                },
+                {
+                    "AREA_NAME": "土庫鎮",
+                    "ZIPCODE": "633"
+                },
+                {
+                    "AREA_NAME": "褒忠鄉",
+                    "ZIPCODE": "634"
+                },
+                {
+                    "AREA_NAME": "東勢鄉",
+                    "ZIPCODE": "635"
+                },
+                {
+                    "AREA_NAME": "台西鄉",
+                    "ZIPCODE": "636"
+                },
+                {
+                    "AREA_NAME": "崙背鄉",
+                    "ZIPCODE": "637"
+                },
+                {
+                    "AREA_NAME": "麥寮鄉",
+                    "ZIPCODE": "638"
+                },
+                {
+                    "AREA_NAME": "斗六市",
+                    "ZIPCODE": "640"
+                },
+                {
+                    "AREA_NAME": "林內鄉",
+                    "ZIPCODE": "643"
+                },
+                {
+                    "AREA_NAME": "古坑鄉",
+                    "ZIPCODE": "646"
+                },
+                {
+                    "AREA_NAME": "莿桐鄉",
+                    "ZIPCODE": "647"
+                },
+                {
+                    "AREA_NAME": "西螺鎮",
+                    "ZIPCODE": "648"
+                },
+                {
+                    "AREA_NAME": "二崙鄉",
+                    "ZIPCODE": "649"
+                },
+                {
+                    "AREA_NAME": "北港鎮",
+                    "ZIPCODE": "651"
+                },
+                {
+                    "AREA_NAME": "水林鄉",
+                    "ZIPCODE": "652"
+                },
+                {
+                    "AREA_NAME": "口湖鄉",
+                    "ZIPCODE": "653"
+                },
+                {
+                    "AREA_NAME": "四湖鄉",
+                    "ZIPCODE": "654"
+                },
+                {
+                    "AREA_NAME": "元長鄉",
+                    "ZIPCODE": "655"
+                }
+            ]
+        },
+        {
+            "COU_NAME": "台南市",
+            "areas": [
+                {
+                    "AREA_NAME": "中西區",
+                    "ZIPCODE": "700"
+                },
+                {
+                    "AREA_NAME": "東區",
+                    "ZIPCODE": "701"
+                },
+                {
+                    "AREA_NAME": "南區",
+                    "ZIPCODE": "702"
+                },
+                {
+                    "AREA_NAME": "北區",
+                    "ZIPCODE": "704"
+                },
+                {
+                    "AREA_NAME": "安平區",
+                    "ZIPCODE": "708"
+                },
+                {
+                    "AREA_NAME": "安南區",
+                    "ZIPCODE": "709"
+                },
+                {
+                    "AREA_NAME": "永康區",
+                    "ZIPCODE": "710"
+                },
+                {
+                    "AREA_NAME": "歸仁區",
+                    "ZIPCODE": "711"
+                },
+                {
+                    "AREA_NAME": "新化區",
+                    "ZIPCODE": "712"
+                },
+                {
+                    "AREA_NAME": "左鎮區",
+                    "ZIPCODE": "713"
+                },
+                {
+                    "AREA_NAME": "玉井區",
+                    "ZIPCODE": "714"
+                },
+                {
+                    "AREA_NAME": "楠西區",
+                    "ZIPCODE": "715"
+                },
+                {
+                    "AREA_NAME": "南化區",
+                    "ZIPCODE": "716"
+                },
+                {
+                    "AREA_NAME": "仁德區",
+                    "ZIPCODE": "717"
+                },
+                {
+                    "AREA_NAME": "關廟區",
+                    "ZIPCODE": "718"
+                },
+                {
+                    "AREA_NAME": "龍崎區",
+                    "ZIPCODE": "719"
+                },
+                {
+                    "AREA_NAME": "官田區",
+                    "ZIPCODE": "720"
+                },
+                {
+                    "AREA_NAME": "麻豆區",
+                    "ZIPCODE": "721"
+                },
+                {
+                    "AREA_NAME": "佳里區",
+                    "ZIPCODE": "722"
+                },
+                {
+                    "AREA_NAME": "西港區",
+                    "ZIPCODE": "723"
+                },
+                {
+                    "AREA_NAME": "七股區",
+                    "ZIPCODE": "724"
+                },
+                {
+                    "AREA_NAME": "將軍區",
+                    "ZIPCODE": "725"
+                },
+                {
+                    "AREA_NAME": "學甲區",
+                    "ZIPCODE": "726"
+                },
+                {
+                    "AREA_NAME": "北門區",
+                    "ZIPCODE": "727"
+                },
+                {
+                    "AREA_NAME": "新營區",
+                    "ZIPCODE": "730"
+                },
+                {
+                    "AREA_NAME": "後壁區",
+                    "ZIPCODE": "731"
+                },
+                {
+                    "AREA_NAME": "白河區",
+                    "ZIPCODE": "732"
+                },
+                {
+                    "AREA_NAME": "東山區",
+                    "ZIPCODE": "733"
+                },
+                {
+                    "AREA_NAME": "六甲區",
+                    "ZIPCODE": "734"
+                },
+                {
+                    "AREA_NAME": "下營區",
+                    "ZIPCODE": "735"
+                },
+                {
+                    "AREA_NAME": "柳營區",
+                    "ZIPCODE": "736"
+                },
+                {
+                    "AREA_NAME": "鹽水區",
+                    "ZIPCODE": "737"
+                },
+                {
+                    "AREA_NAME": "善化區",
+                    "ZIPCODE": "741"
+                },
+                {
+                    "AREA_NAME": "大內區",
+                    "ZIPCODE": "742"
+                },
+                {
+                    "AREA_NAME": "山上區",
+                    "ZIPCODE": "743"
+                },
+                {
+                    "AREA_NAME": "新市區",
+                    "ZIPCODE": "744"
+                },
+                {
+                    "AREA_NAME": "安定區",
+                    "ZIPCODE": "745"
+                }
+            ]
+        },
+        {
+            "COU_NAME": "高雄市",
+            "areas": [
+                {
+                    "AREA_NAME": "新興區",
+                    "ZIPCODE": "800"
+                },
+                {
+                    "AREA_NAME": "前金區",
+                    "ZIPCODE": "801"
+                },
+                {
+                    "AREA_NAME": "苓雅區",
+                    "ZIPCODE": "802"
+                },
+                {
+                    "AREA_NAME": "鹽埕區",
+                    "ZIPCODE": "803"
+                },
+                {
+                    "AREA_NAME": "鼓山區",
+                    "ZIPCODE": "804"
+                },
+                {
+                    "AREA_NAME": "旗津區",
+                    "ZIPCODE": "805"
+                },
+                {
+                    "AREA_NAME": "前鎮區",
+                    "ZIPCODE": "806"
+                },
+                {
+                    "AREA_NAME": "三民區",
+                    "ZIPCODE": "807"
+                },
+                {
+                    "AREA_NAME": "楠梓區",
+                    "ZIPCODE": "811"
+                },
+                {
+                    "AREA_NAME": "小港區",
+                    "ZIPCODE": "812"
+                },
+                {
+                    "AREA_NAME": "左營區",
+                    "ZIPCODE": "813"
+                },
+                {
+                    "AREA_NAME": "南沙群島",
+                    "ZIPCODE": "819"
+                },
+                {
+                    "AREA_NAME": "東沙群島",
+                    "ZIPCODE": "817"
+                },
+                {
+                    "AREA_NAME": "仁武區",
+                    "ZIPCODE": "814"
+                },
+                {
+                    "AREA_NAME": "大社區",
+                    "ZIPCODE": "815"
+                },
+                {
+                    "AREA_NAME": "岡山區",
+                    "ZIPCODE": "820"
+                },
+                {
+                    "AREA_NAME": "路竹區",
+                    "ZIPCODE": "821"
+                },
+                {
+                    "AREA_NAME": "阿蓮區",
+                    "ZIPCODE": "822"
+                },
+                {
+                    "AREA_NAME": "田寮區",
+                    "ZIPCODE": "823"
+                },
+                {
+                    "AREA_NAME": "燕巢區",
+                    "ZIPCODE": "824"
+                },
+                {
+                    "AREA_NAME": "橋頭區",
+                    "ZIPCODE": "825"
+                },
+                {
+                    "AREA_NAME": "梓官區",
+                    "ZIPCODE": "826"
+                },
+                {
+                    "AREA_NAME": "彌陀區",
+                    "ZIPCODE": "827"
+                },
+                {
+                    "AREA_NAME": "永安區",
+                    "ZIPCODE": "828"
+                },
+                {
+                    "AREA_NAME": "湖內區",
+                    "ZIPCODE": "829"
+                },
+                {
+                    "AREA_NAME": "鳳山區",
+                    "ZIPCODE": "830"
+                },
+                {
+                    "AREA_NAME": "大寮區",
+                    "ZIPCODE": "831"
+                },
+                {
+                    "AREA_NAME": "林園區",
+                    "ZIPCODE": "832"
+                },
+                {
+                    "AREA_NAME": "鳥松區",
+                    "ZIPCODE": "833"
+                },
+                {
+                    "AREA_NAME": "大樹區",
+                    "ZIPCODE": "840"
+                },
+                {
+                    "AREA_NAME": "旗山區",
+                    "ZIPCODE": "842"
+                },
+                {
+                    "AREA_NAME": "美濃區",
+                    "ZIPCODE": "843"
+                },
+                {
+                    "AREA_NAME": "六龜區",
+                    "ZIPCODE": "844"
+                },
+                {
+                    "AREA_NAME": "內門區",
+                    "ZIPCODE": "845"
+                },
+                {
+                    "AREA_NAME": "杉林區",
+                    "ZIPCODE": "846"
+                },
+                {
+                    "AREA_NAME": "甲仙區",
+                    "ZIPCODE": "847"
+                },
+                {
+                    "AREA_NAME": "桃源區",
+                    "ZIPCODE": "848"
+                },
+                {
+                    "AREA_NAME": "那瑪夏區",
+                    "ZIPCODE": "849"
+                },
+                {
+                    "AREA_NAME": "茂林區",
+                    "ZIPCODE": "851"
+                },
+                {
+                    "AREA_NAME": "茄萣區",
+                    "ZIPCODE": "852"
+                }
+            ]
+        },
+        {
+            "COU_NAME": "屏東縣",
+            "areas": [
+                {
+                    "AREA_NAME": "屏東市",
+                    "ZIPCODE": "900"
+                },
+                {
+                    "AREA_NAME": "三地門鄉",
+                    "ZIPCODE": "901"
+                },
+                {
+                    "AREA_NAME": "霧台鄉",
+                    "ZIPCODE": "902"
+                },
+                {
+                    "AREA_NAME": "瑪家鄉",
+                    "ZIPCODE": "903"
+                },
+                {
+                    "AREA_NAME": "九如鄉",
+                    "ZIPCODE": "904"
+                },
+                {
+                    "AREA_NAME": "里港鄉",
+                    "ZIPCODE": "905"
+                },
+                {
+                    "AREA_NAME": "高樹鄉",
+                    "ZIPCODE": "906"
+                },
+                {
+                    "AREA_NAME": "鹽埔鄉",
+                    "ZIPCODE": "907"
+                },
+                {
+                    "AREA_NAME": "長治鄉",
+                    "ZIPCODE": "908"
+                },
+                {
+                    "AREA_NAME": "麟洛鄉",
+                    "ZIPCODE": "909"
+                },
+                {
+                    "AREA_NAME": "竹田鄉",
+                    "ZIPCODE": "911"
+                },
+                {
+                    "AREA_NAME": "內埔鄉",
+                    "ZIPCODE": "912"
+                },
+                {
+                    "AREA_NAME": "萬丹鄉",
+                    "ZIPCODE": "913"
+                },
+                {
+                    "AREA_NAME": "潮州鎮",
+                    "ZIPCODE": "920"
+                },
+                {
+                    "AREA_NAME": "泰武鄉",
+                    "ZIPCODE": "921"
+                },
+                {
+                    "AREA_NAME": "來義鄉",
+                    "ZIPCODE": "922"
+                },
+                {
+                    "AREA_NAME": "萬巒鄉",
+                    "ZIPCODE": "923"
+                },
+                {
+                    "AREA_NAME": "崁頂鄉",
+                    "ZIPCODE": "924"
+                },
+                {
+                    "AREA_NAME": "新埤鄉",
+                    "ZIPCODE": "925"
+                },
+                {
+                    "AREA_NAME": "南州鄉",
+                    "ZIPCODE": "926"
+                },
+                {
+                    "AREA_NAME": "林邊鄉",
+                    "ZIPCODE": "927"
+                },
+                {
+                    "AREA_NAME": "東港鎮",
+                    "ZIPCODE": "928"
+                },
+                {
+                    "AREA_NAME": "琉球鄉",
+                    "ZIPCODE": "929"
+                },
+                {
+                    "AREA_NAME": "佳冬鄉",
+                    "ZIPCODE": "931"
+                },
+                {
+                    "AREA_NAME": "新園鄉",
+                    "ZIPCODE": "932"
+                },
+                {
+                    "AREA_NAME": "枋寮鄉",
+                    "ZIPCODE": "940"
+                },
+                {
+                    "AREA_NAME": "枋山鄉",
+                    "ZIPCODE": "941"
+                },
+                {
+                    "AREA_NAME": "春日鄉",
+                    "ZIPCODE": "942"
+                },
+                {
+                    "AREA_NAME": "獅子鄉",
+                    "ZIPCODE": "943"
+                },
+                {
+                    "AREA_NAME": "車城鄉",
+                    "ZIPCODE": "944"
+                },
+                {
+                    "AREA_NAME": "牡丹鄉",
+                    "ZIPCODE": "945"
+                },
+                {
+                    "AREA_NAME": "恆春鎮",
+                    "ZIPCODE": "946"
+                },
+                {
+                    "AREA_NAME": "滿州鄉",
+                    "ZIPCODE": "947"
+                }
+            ]
+        },
+        {
+            "COU_NAME": "台東縣",
+            "areas": [
+                {
+                    "AREA_NAME": "台東市",
+                    "ZIPCODE": "950"
+                },
+                {
+                    "AREA_NAME": "綠島鄉",
+                    "ZIPCODE": "951"
+                },
+                {
+                    "AREA_NAME": "蘭嶼鄉",
+                    "ZIPCODE": "952"
+                },
+                {
+                    "AREA_NAME": "延平鄉",
+                    "ZIPCODE": "953"
+                },
+                {
+                    "AREA_NAME": "卑南鄉",
+                    "ZIPCODE": "954"
+                },
+                {
+                    "AREA_NAME": "鹿野鄉",
+                    "ZIPCODE": "955"
+                },
+                {
+                    "AREA_NAME": "關山鎮",
+                    "ZIPCODE": "956"
+                },
+                {
+                    "AREA_NAME": "海端鄉",
+                    "ZIPCODE": "957"
+                },
+                {
+                    "AREA_NAME": "池上鄉",
+                    "ZIPCODE": "958"
+                },
+                {
+                    "AREA_NAME": "東河鄉",
+                    "ZIPCODE": "959"
+                },
+                {
+                    "AREA_NAME": "成功鎮",
+                    "ZIPCODE": "961"
+                },
+                {
+                    "AREA_NAME": "長濱鄉",
+                    "ZIPCODE": "962"
+                },
+                {
+                    "AREA_NAME": "太麻里鄉",
+                    "ZIPCODE": "963"
+                },
+                {
+                    "AREA_NAME": "金峰鄉",
+                    "ZIPCODE": "964"
+                },
+                {
+                    "AREA_NAME": "大武鄉",
+                    "ZIPCODE": "965"
+                },
+                {
+                    "AREA_NAME": "達仁鄉",
+                    "ZIPCODE": "966"
+                }
+            ]
+        },
+        {
+            "COU_NAME": "花蓮縣",
+            "areas": [
+                {
+                    "AREA_NAME": "花蓮市",
+                    "ZIPCODE": "970"
+                },
+                {
+                    "AREA_NAME": "新城鄉",
+                    "ZIPCODE": "971"
+                },
+                {
+                    "AREA_NAME": "秀林鄉",
+                    "ZIPCODE": "972"
+                },
+                {
+                    "AREA_NAME": "吉安鄉",
+                    "ZIPCODE": "973"
+                },
+                {
+                    "AREA_NAME": "壽豐鄉",
+                    "ZIPCODE": "974"
+                },
+                {
+                    "AREA_NAME": "鳳林鎮",
+                    "ZIPCODE": "975"
+                },
+                {
+                    "AREA_NAME": "光復鄉",
+                    "ZIPCODE": "976"
+                },
+                {
+                    "AREA_NAME": "豐濱鄉",
+                    "ZIPCODE": "977"
+                },
+                {
+                    "AREA_NAME": "瑞穗鄉",
+                    "ZIPCODE": "978"
+                },
+                {
+                    "AREA_NAME": "萬榮鄉",
+                    "ZIPCODE": "979"
+                },
+                {
+                    "AREA_NAME": "玉里鎮",
+                    "ZIPCODE": "981"
+                },
+                {
+                    "AREA_NAME": "卓溪鄉",
+                    "ZIPCODE": "982"
+                },
+                {
+                    "AREA_NAME": "富里鄉",
+                    "ZIPCODE": "983"
+                }
+            ]
+        },
+        {
+            "COU_NAME": "澎湖縣",
+            "areas": [
+                {
+                    "AREA_NAME": "七美鄉",
+                    "ZIPCODE": "883"
+                },
+                {
+                    "AREA_NAME": "白沙鄉",
+                    "ZIPCODE": "884"
+                },
+                {
+                    "AREA_NAME": "馬公市",
+                    "ZIPCODE": "880"
+                },
+                {
+                    "AREA_NAME": "望安鄉",
+                    "ZIPCODE": "882"
+                },
+                {
+                    "AREA_NAME": "西嶼鄉",
+                    "ZIPCODE": "881"
+                },
+                {
+                    "AREA_NAME": "湖西鄉",
+                    "ZIPCODE": "885"
+                }
+            ]
+        },
+        {
+            "COU_NAME": "金門縣",
+            "areas": [
+                {
+                    "AREA_NAME": "金湖鎮",
+                    "ZIPCODE": "891"
+                },
+                {
+                    "AREA_NAME": "金寧鄉",
+                    "ZIPCODE": "892"
+                },
+                {
+                    "AREA_NAME": "烈嶼鄉",
+                    "ZIPCODE": "894"
+                },
+                {
+                    "AREA_NAME": "金城鎮",
+                    "ZIPCODE": "893"
+                },
+                {
+                    "AREA_NAME": "烏坵鄉",
+                    "ZIPCODE": "896"
+                },
+                {
+                    "AREA_NAME": "金沙鎮",
+                    "ZIPCODE": "890"
+                }
+            ]
+        },
+        {
+            "COU_NAME": "連江縣",
+            "areas": [
+                {
+                    "AREA_NAME": "南竿鄉",
+                    "ZIPCODE": "209"
+                },
+                {
+                    "AREA_NAME": "北竿鄉",
+                    "ZIPCODE": "210"
+                },
+                {
+                    "AREA_NAME": "莒光鄉",
+                    "ZIPCODE": "211"
+                },
+                {
+                    "AREA_NAME": "東引鄉",
+                    "ZIPCODE": "212"
+                }
+            ]
+        }
+    ]
+}

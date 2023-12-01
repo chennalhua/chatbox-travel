@@ -1,105 +1,69 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Nav from "components/layout/Nav";
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 import Icon from "components/Icon";
 import dayjs from "dayjs";
 import { getWeek } from "assets/function/dateTool";
+import { callWeather, getCityKey } from "API/callWeather";
+import WeatherBox from "components/WeatherBox";
 const HomePage = () => {
-  let splideSlideList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  let splideSlideValue = "400px";
-  let splideOptions = {
-    rewind: true,
-    width: "100%",
-    gap: "0.5em",
-    type: "loop",
-    focus: "start",
-    pagination: true,
-    arrows: false,
-    breakpoints: {
-      992: {
-        perPage: 3
-      },
-      768: {
-        perPage: 2
-      },
-      576: {
-        perPage: 1,
-      },
+  //@ VALUE
+  let [weatherData, setWeatherData] = useState(null)
+  //@ EVENT
+  useEffect(() => {
+    const getWeather = async () => {
+      const response = await callWeather(getCityKey('高雄'));
+      setWeatherData(response)
     }
-  };
+    getWeather()
+  }, [])
+
   return (
     <div
-      className="bg-primary-light py-4"
+      className="bg-primary-light pb-4"
       style={{ height: "85vh", overflow: "scroll" }}
     >
-      <div className="container">
-        <div className="chat mb-4">
-          <div className="d-flex align-items-center">
-            <input
-              type="text"
-              className="form-control form-control-lg rounded-pill"
-              placeholder="搜尋"
+      <div id="carouselExampleIndicators" className="carousel slide">
+        <div className="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div className="carousel-inner">
+          <div className="carousel-item active">
+            <img
+              src={`https://picsum.photos/1000/1000?random=1`}
+              className="img-fluid"
             />
-            <a href="#" className="mx-3">
-              <Icon icon="search" color="#252525" size={24} />
-            </a>
+          </div>
+          <div className="carousel-item">
+            <img
+              src={`https://picsum.photos/1000/1000?random=2`}
+              className="img-fluid"
+            />
+          </div>
+          <div className="carousel-item">
+            <img
+              src={`https://picsum.photos/1000/1000?random=3`}
+              className="img-fluid"
+            />
           </div>
         </div>
-        {/* slide */}
-        <div>
-          <Splide hasTrack={false} options={splideOptions}>
-            <SplideTrack options={{ gap: "1em" }}>
-              {splideSlideList?.map((item, index) => {
-                return (
-                  <SplideSlide key={`slider-${index}`}>
-                    <div
-                      className="splide-img-wrap"
-                      style={{
-                        width: splideSlideValue,
-                        height: splideSlideValue,
-                      }}
-                    >
-                      <img
-                        src={`https://picsum.photos/1000/1000?random=${index + 1
-                          }`}
-                        alt={`img-${index}`}
-                      />
-                    </div>
-                  </SplideSlide>
-                );
-              })}
-            </SplideTrack>
-          </Splide>
-        </div>
+        <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Previous</span>
+        </button>
+        <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span className="carousel-control-next-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Next</span>
+        </button>
+      </div>
+      <div className="container">
         {/* weather */}
-        <div className="mt-4 ms-2">
-          <div className="row justify-content-between align-items-center p-2 rounded">
-            <div className="col-6 d-flex align-items-center">
-              <Icon
-                icon="sun"
-                size={50}
-                color="#353535"
-                className="text-center"
-              />
-              <div className="fw-bolder ms-4 text-dark">
-                <p className="my-0">
-                  {dayjs().format("YYYY/MM/DD")}{" "}
-                  <span className="ms-2">{getWeek(dayjs().day())}</span>
-                </p>
-                <p className="my-0" style={{ fontSize: "28px" }}>
-                  25 °C
-                </p>
-              </div>
-            </div>
-            <div className="col-6 text-end">
-              <img
-                src={require("assets/image/weather/sun.png")}
-                className="img-fluid"
-                width={200}
-              />
-            </div>
-          </div>
-        </div>
+        {
+          weatherData !== null &&
+          <WeatherBox data={weatherData} />
+        }
       </div>
       <Nav />
     </div>
