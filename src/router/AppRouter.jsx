@@ -4,6 +4,7 @@ import RouterWrapper from "./RouterWrapper";
 
 import HomePage from "view/HomePage";
 import Chat from "view/Chat";
+import Test from "view/Test";
 
 const Routes = () => {
     const routes = useRoutes([
@@ -12,6 +13,7 @@ const Routes = () => {
             children: [
                 { index: true, element: <HomePage /> },
                 { path: "chat", element: <Chat /> },
+                { path: "test", element: <Test /> },
             ],
         },
         {
