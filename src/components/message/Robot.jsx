@@ -8,10 +8,11 @@ import scrollToBottom from "assets/function/scrollToBottom";
 import cityCountyData from 'assets/data/cityCountyData.json'
 import TextLongToDot from "assets/function/TextLongToDot";
 import WeatherBox from "components/WeatherBox";
-import { callWeather, getCityKey } from "API/callWeather";
+import { callWeather } from "API/callWeather";
+import PlaceBox from "components/PlaceBox";
 const MesBox = ({ type, data, mes, setMesVal }) => {
   let [isLoader, setIsLoader] = useState(true),
-    [modalData, setModalData] = useState(null);
+    [modalData, setModalData] = useState(null)
 
   const handleStyle = {
     imgMask: {
@@ -42,17 +43,9 @@ const MesBox = ({ type, data, mes, setMesVal }) => {
     },
   };
 
+
   //@ VALUE
   let [weatherData, setWeatherData] = useState(null)
-  //@ EVENT
-  useEffect(() => {
-    const getWeather = async () => {
-      const response = await callWeather(getCityKey(mes));
-      setWeatherData(response)
-    }
-    getWeather()
-  }, [])
-
   //@ EVENT
   const handleEvent = {
     typeFormat: function (type, data) {
@@ -71,48 +64,7 @@ const MesBox = ({ type, data, mes, setMesVal }) => {
                   {data?.map((item, index) => {
                     return (
                       <SplideSlide key={`slider-${index}`}>
-                        <div className="card me-2" style={{ width: "350px" }}>
-                          <div
-                            style={{
-                              width: "100%",
-                              height: "180px",
-                              overflow: "hidden",
-                            }}
-                          >
-                            {item?.images?.length > 0 ?
-                              <img src={item?.images[0].src}
-                                className="card-img-top"
-                                alt={item?.name}
-                              /> :
-                              <img src={require('assets/image/robot.jpg')}
-                                className="card-img-top"
-                                alt={`${item?.name}-沒有相關圖片 QQ`}
-                              />
-                            }
-                          </div>
-                          <div className="card-body">
-                            <h5 className="card-title">{item?.name}</h5>
-                            <p
-                              className="card-text"
-                              dangerouslySetInnerHTML={{
-                                __html: TextLongToDot(item?.introduction),
-                              }}
-                            ></p>
-                            <div className="text-center">
-                              <button
-                                type="button"
-                                className="btn btn-primary w-100"
-                                data-bs-toggle="modal"
-                                data-bs-target="#exampleModal"
-                                onClick={(e) => (
-                                  e.preventDefault(), setModalData(item)
-                                )}
-                              >
-                                查看更多
-                              </button>
-                            </div>
-                          </div>
-                        </div>
+                        <PlaceBox item={item} setModalData={setModalData} />
                       </SplideSlide>
                     );
                   })}
@@ -220,10 +172,16 @@ const MesBox = ({ type, data, mes, setMesVal }) => {
         default:
           break;
       }
-    },
+    }
   };
 
   useEffect(() => {
+    const getWeather = async () => {
+      const response = await callWeather(mes);
+      response[0] && setWeatherData(response[1])
+    }
+    getWeather()
+
     setTimeout(() => {
       setIsLoader(false);
     }, 800);

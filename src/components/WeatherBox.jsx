@@ -1,8 +1,6 @@
 import { getWeek } from 'assets/function/dateTool';
 import dayjs from 'dayjs';
-import React, { useState } from 'react';
 const WeatherBox = ({ data }) => {
-
 
     //@ UIBLOCK
     const uiBlock = {
@@ -37,7 +35,6 @@ const WeatherBox = ({ data }) => {
 
             }
         }
-
     }
 
     return (
@@ -52,8 +49,8 @@ const WeatherBox = ({ data }) => {
                             <span className="ms-2 d-block">{getWeek(dayjs().day())}</span>
                         </p>
                         <div className="fw-bolder ms-4 text-dark">
-                            <p className="my-0" style={uiBlock?.textColor(data?.MaxT)}>
-                                {data?.MaxT} °C
+                            <p className="my-0" style={{ fontSize: '20px' }}>
+                                {data?.Wx}
                             </p>
                         </div>
                     </div>

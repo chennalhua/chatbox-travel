@@ -5,8 +5,8 @@ const Nav = () => {
   let navList = [
     { path: "", name: "首頁", icon: "home" },
     { path: "chat", name: "聊天", icon: "mes" },
+    { path: "myTag", name: "收藏", icon: "heart-outline" },
     // { path: "weather", name: "天氣", icon: "map" },
-    // { path: "tag", name: "收藏", icon: "tag" },
   ];
   return (
     <>
@@ -22,8 +22,8 @@ const Nav = () => {
                       isPending
                         ? "pending"
                         : isActive
-                        ? "active"
-                        : "btn nav-btn"
+                          ? "active"
+                          : "btn nav-btn"
                     }
                   >
                     <Icon icon={item?.icon} size={24} color="#4493bd" />

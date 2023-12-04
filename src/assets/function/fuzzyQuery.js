@@ -5,8 +5,8 @@
  */
 export default function fuzzyQuery(rule, keyWord) {
   if (keyWord.search(rule) > -1) {
-    return true;
+    return [true, keyWord.match(rule)[0]];
   } else {
-    return false
+    return [false]
   }
 }

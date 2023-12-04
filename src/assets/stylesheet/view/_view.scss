@@ -10,7 +10,7 @@ html {
     height: 90vh;
     position: relative;
   }
-  &-content{
+  &-content {
     height: 70vh;
     overflow-y: scroll;
     padding: 10px 15px;
@@ -20,9 +20,9 @@ html {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    bottom: 97px;
+    bottom: 77px;
     padding: 0 20px;
-    @include view-576{
+    @include view-576 {
       width: 100%;
     }
   }
@@ -51,11 +51,25 @@ html {
 }
 
 .mes-box {
-    max-width: 450px;
-    height: auto;
-    background: #c5c5c5;
-    border-radius: 10px;
-    padding: 15px;
-    margin: 10px 15px;
-    text-align: justify;
+  max-width: 450px;
+  height: auto;
+  background: #c5c5c5;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 10px 15px;
+  text-align: justify;
+}
+
+.keyword-list {
+  overflow-x: scroll;
+  padding-bottom: 10px;
+  //@ scroll bar @//
+  ::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #c2c2c2;
+    border-radius: 5px;
+  }
 }

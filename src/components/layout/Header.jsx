@@ -2,7 +2,6 @@ import { Decrypt } from "assets/function/AES";
 import React, { useEffect, useState } from "react";
 const Header = ({ userData }) => {
   useEffect(() => {
-    console.log(userData);
   }, [userData]);
   return (
     <div className="container">

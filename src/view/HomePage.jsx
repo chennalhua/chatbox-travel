@@ -4,7 +4,7 @@ import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 import Icon from "components/Icon";
 import dayjs from "dayjs";
 import { getWeek } from "assets/function/dateTool";
-import { callWeather, getCityKey } from "API/callWeather";
+import { callWeather } from "API/callWeather";
 import WeatherBox from "components/WeatherBox";
 const HomePage = () => {
   //@ VALUE
@@ -12,8 +12,8 @@ const HomePage = () => {
   //@ EVENT
   useEffect(() => {
     const getWeather = async () => {
-      const response = await callWeather(getCityKey('高雄'));
-      setWeatherData(response)
+      const response = await callWeather('高雄');
+      response[0] && setWeatherData(response[1])
     }
     getWeather()
   }, [])

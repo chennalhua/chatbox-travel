@@ -49,8 +49,7 @@ const Chat = () => {
     [mesVal, setMesVal] = useState(""), //輸入框
     [keywordList, setKeyWordList] = useState([
       "現在天氣",
-      "台北景點推薦",
-      "台北中山區景點",
+      "台北信義區景點",
       "台北美食",
     ]);
 
@@ -82,11 +81,11 @@ const Chat = () => {
           attractions: { rule: /景點|好玩|玩|地方/ }
         }
         let fuzzyKeyWord = {
-          allCity: fuzzyQuery(keyWord.allCity.rule, val),
-          city: fuzzyQuery(keyWord.city.rule, val),
-          area: fuzzyQuery(keyWord.area.rule, val),
-          weather: fuzzyQuery(keyWord.weather.rule, val),
-          attractions: fuzzyQuery(keyWord.attractions.rule, val)
+          allCity: fuzzyQuery(keyWord.allCity.rule, val)[0],
+          city: fuzzyQuery(keyWord.city.rule, val)[0],
+          area: fuzzyQuery(keyWord.area.rule, val)[0],
+          weather: fuzzyQuery(keyWord.weather.rule, val)[0],
+          attractions: fuzzyQuery(keyWord.attractions.rule, val)[0]
         }
 
         //@ run 模組
@@ -197,7 +196,7 @@ const Chat = () => {
         <div className="container">
           <div className="col-12 col-md-8">
             <div className="chat-input-wrap">
-              <div className="mb-2">
+              <div className="mb-2 keyword-list d-flex">
                 {keywordList?.map((item, index) => {
                   return (
                     <a
