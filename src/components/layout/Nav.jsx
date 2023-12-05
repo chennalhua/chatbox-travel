@@ -1,17 +1,16 @@
 import Icon from "components/Icon";
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 const Nav = () => {
   let navList = [
     { path: "", name: "首頁", icon: "home" },
     { path: "chat", name: "聊天", icon: "mes" },
-    { path: "myTag", name: "收藏", icon: "heart-outline" },
-    // { path: "weather", name: "天氣", icon: "map" },
+    { path: "myTag", name: "收藏", icon: "heart-outline" }
   ];
   return (
     <>
       <div className="nav">
-        <div className="container">
+        <div className="container my-auto">
           <div className="d-flex justify-content-evenly">
             {navList?.map((item, index) => {
               return (
@@ -22,7 +21,7 @@ const Nav = () => {
                       isPending
                         ? "pending"
                         : isActive
-                          ? "active"
+                          ? "btn nav-btn active"
                           : "btn nav-btn"
                     }
                   >

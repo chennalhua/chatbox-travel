@@ -11,3 +11,24 @@
     width: 400px !important;
   }
 }
+
+//@ Tour
+.tour {
+  &-open-btn {
+      //打開指引按鈕
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      &:hover {
+          color: $secondary !important;
+          text-decoration: underline;
+          fill: #5faa58;
+      }
+      &:hover > &-question-icon {
+          transition: all 0.1s;
+          transform: rotate(20deg);
+          width: 20px !important;
+          height: 20px !important;
+      }
+  }
+}

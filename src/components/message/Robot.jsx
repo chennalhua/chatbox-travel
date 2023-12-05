@@ -43,7 +43,6 @@ const MesBox = ({ type, data, mes, setMesVal }) => {
     },
   };
 
-
   //@ VALUE
   let [weatherData, setWeatherData] = useState(null)
   //@ EVENT

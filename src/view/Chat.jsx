@@ -7,51 +7,20 @@ import axios from "axios";
 import scrollToBottom from "assets/function/scrollToBottom";
 import fuzzyQuery from "assets/function/fuzzyQuery";
 import { callAttractions } from "API/callAttractions";
+import { Loading } from "components/Loading";
 const Chat = () => {
-  //景點 data
-  let data = [
-    {
-      title: "將軍漁港",
-      img: "",
-      introduction:
-        "\r\n漁船回港後，琳瑯滿目的漁獲在港邊拍賣的熱鬧景象，一直是將軍漁港在許多遊客心中的印象。",
-      open_time: "全年開放",
-      address: "725 臺南市將軍區平沙里156號",
-    },
-    {
-      title: "安平老街",
-      img: "",
-      introduction:
-        "\r\n漁船回港後，琳瑯滿目的漁獲在港邊拍賣的熱鬧景象，一直是將軍漁港在許多遊客心中的印象。",
-      open_time: "全年開放",
-      address: "725 臺南市將軍區平沙里156號",
-    },
-    {
-      title: "將軍漁港",
-      img: "",
-      introduction:
-        "\r\n漁船回港後，琳瑯滿目的漁獲在港邊拍賣的熱鬧景象，一直是將軍漁港在許多遊客心中的印象。",
-      open_time: "全年開放",
-      address: "725 臺南市將軍區平沙里156號",
-    },
-    {
-      title: "將軍漁港",
-      img: "",
-      introduction:
-        "\r\n漁船回港後，琳瑯滿目的漁獲在港邊拍賣的熱鬧景象，一直是將軍漁港在許多遊客心中的印象。",
-      open_time: "全年開放",
-      address: "725 臺南市將軍區平沙里156號",
-    },
-  ];
+  let data = [];
 
   //@ VALUE
   let [chatData, setChatData] = useState([]),
     [mesVal, setMesVal] = useState(""), //輸入框
     [keywordList, setKeyWordList] = useState([
+      "如何使用",
       "現在天氣",
       "台北信義區景點",
       "台北美食",
-    ]);
+    ]),
+    [isLoader, setIsLoader] = useState(false)
 
   useEffect(() => {
     let getHistoryData = localStorage.getItem('_HISTORY')
@@ -77,8 +46,8 @@ const Chat = () => {
           allCity: { rule: /台北|臺北|基隆|新北|宜蘭|新竹市|新竹縣|桃園|苗栗|台中市|臺中市|台中|臺中|彰化|南投|嘉義市|嘉義縣|雲林|台南|臺南|台南|臺南|高雄|屏東|台東|花蓮|澎湖|金門|連江/ },
           city: { rule: /台北|台北市|臺北|臺北市/ },
           area: { rule: /區/ },
-          weather: { rule: /天氣|溫度|幾度|度/ },
-          attractions: { rule: /景點|好玩|玩|地方/ }
+          weather: { rule: /天氣|溫度|幾度|度|降雨|最高|最低/ },
+          attractions: { rule: /景點|好玩|玩|地方|介紹/ }
         }
         let fuzzyKeyWord = {
           allCity: fuzzyQuery(keyWord.allCity.rule, val)[0],
@@ -161,6 +130,13 @@ const Chat = () => {
       robotParseKeyword(val);
       setMesVal(""); //reset
     },
+    clearRecord: function (e) {
+      setIsLoader(true)
+      e.preventDefault()
+      setChatData([])
+      localStorage.removeItem('_HISTORY')
+      setTimeout(() => { setIsLoader(false) }, 800)
+    }
   };
 
   useEffect(() => {
@@ -177,6 +153,7 @@ const Chat = () => {
   //聊天室
   return (
     <>
+      <Loading isLoader={isLoader} />
       <div className="chat-wrap">
         <div className="container">
           <div className="col-12 col-md-10 mx-auto">
@@ -193,10 +170,12 @@ const Chat = () => {
             </div>
           </div>
         </div>
-        <div className="container">
-          <div className="col-12 col-md-8">
-            <div className="chat-input-wrap">
-              <div className="mb-2 keyword-list d-flex">
+      </div>
+      <div className="position-absolute w-100" style={{ bottom: '60px' }}>
+        <div className="bg-primary-light py-3">
+          <div className="container">
+            <div className="col-12 col-md-10 mx-auto">
+              <div className="mb-2 keyword-list d-flex" data-tour="keyword-list">
                 {keywordList?.map((item, index) => {
                   return (
                     <a
@@ -215,6 +194,10 @@ const Chat = () => {
                 })}
               </div>
               <div className="chat-input d-flex align-items-center">
+                <a href="#" className="text-danger text-center me-2" data-tour="clear" onClick={e => handleEvent?.clearRecord(e)}>
+                  <Icon icon='trash' size={24} color="#dc3545" />
+                  <span className="d-block" style={{ fontSize: '14px', whiteSpace: 'pre' }}>清除紀錄</span>
+                </a>
                 <input
                   type="text"
                   className="form-control form-control-lg rounded-pill"
@@ -232,7 +215,6 @@ const Chat = () => {
             </div>
           </div>
         </div>
-        <Nav />
       </div>
     </>
   );

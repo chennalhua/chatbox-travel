@@ -32,19 +32,19 @@ const HomePage = () => {
         <div className="carousel-inner">
           <div className="carousel-item active">
             <img
-              src={`https://picsum.photos/1000/1000?random=1`}
+              src={`https://picsum.photos/1920/800?random=1`}
               className="img-fluid"
             />
           </div>
           <div className="carousel-item">
             <img
-              src={`https://picsum.photos/1000/1000?random=2`}
+              src={`https://picsum.photos/1920/800?random=2`}
               className="img-fluid"
             />
           </div>
           <div className="carousel-item">
             <img
-              src={`https://picsum.photos/1000/1000?random=3`}
+              src={`https://picsum.photos/1920/800?random=3`}
               className="img-fluid"
             />
           </div>
@@ -65,7 +65,7 @@ const HomePage = () => {
           <WeatherBox data={weatherData} />
         }
       </div>
-      <Nav />
+      {/* <Nav /> */}
     </div>
   );
 };

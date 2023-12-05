@@ -6,6 +6,7 @@ import axios from "axios";
 import url from "url";
 import jwtDecode from "jwt-decode";
 import randomStr from "assets/function/randomStr";
+import Nav from "components/layout/Nav";
 const RouterWrapper = ({ children }) => {
   //@ VALUE
   let [isLoading, setIsLoading] = useState(true);
@@ -115,8 +116,15 @@ const RouterWrapper = ({ children }) => {
   return (
     <>
       <Loading isLoader={isLoading} />
-      <Header userData={userData} />
-      {children}
+      <div className="position-fixed w-100" style={{ top: 0, zIndex: 10, background: '#fff' }}>
+        <Header userData={userData} />
+      </div>
+      <div style={{ marginTop: '74px' }}>
+        {children}
+      </div>
+      <div className="position-fixed w-100" style={{ bottom: 0, zIndex: 10 }}>
+        <Nav />
+      </div>
     </>
   );
 };

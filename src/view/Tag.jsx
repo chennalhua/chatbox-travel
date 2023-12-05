@@ -67,7 +67,7 @@ const Tag = () => {
                         }
                     </div>
                 </div>
-                <Nav />
+                {/* <Nav /> */}
             </div>
             <div className="container">
                 <div
