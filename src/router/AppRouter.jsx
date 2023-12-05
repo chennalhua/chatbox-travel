@@ -6,6 +6,7 @@ import HomePage from "view/HomePage";
 import Chat from "view/Chat";
 import Test from "view/Test";
 import Tag from "view/Tag";
+import Detail from "view/Detail";
 
 const Routes = () => {
     const routes = useRoutes([
@@ -15,6 +16,7 @@ const Routes = () => {
                 { index: true, element: <HomePage /> },
                 { path: "chat", element: <Chat /> },
                 { path: "myTag", element: <Tag /> },
+                { path: "detail", element: <Detail /> },
                 { path: "test", element: <Test /> },
             ],
         },

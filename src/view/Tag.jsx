@@ -1,9 +1,9 @@
+import NoDataBox from 'components/NoDataBox';
 import PlaceBox from 'components/PlaceBox';
 import Nav from 'components/layout/Nav';
 import React, { useEffect, useState } from 'react';
 const Tag = () => {
-    let [modalData, setModalData] = useState(null),
-        [data, setData] = useState([]),
+    let [data, setData] = useState([]),
         [tagPlace, setTagPlace] = useState([])
 
     //@ EVENT
@@ -57,58 +57,15 @@ const Tag = () => {
                 <div className="container">
                     <div className="row justify-content-center">
                         {
-                            data?.length > 0 && data?.map((item, index) => {
+                            data?.length > 0 ? data?.map((item, index) => {
                                 return (
                                     <div className='py-4'>
-                                        <PlaceBox item={item} setModalData={setModalData} />
+                                        <PlaceBox item={item} />
                                     </div>
                                 )
-                            })
+                            }) :
+                                <NoDataBox mes='尚無收藏' />
                         }
-                    </div>
-                </div>
-                {/* <Nav /> */}
-            </div>
-            <div className="container">
-                <div
-                    className="modal fade"
-                    id="exampleModal"
-                    tabindex="-1"
-                    aria-labelledby="exampleModalLabel"
-                    aria-hidden="true"
-                >
-                    <div className="modal-dialog modal-dialog-centered modal-xl">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h1 className="modal-title fs-5" id="exampleModalLabel">
-                                    {modalData?.title}
-                                </h1>
-                                <button
-                                    type="button"
-                                    className="btn-close"
-                                    data-bs-dismiss="modal"
-                                    aria-label="Close"
-                                ></button>
-                            </div>
-                            <div className="modal-body">
-                                <img
-                                    src={`https://picsum.photos/1000/1000?random=101`}
-                                    className="card-img-top"
-                                    width='50%'
-                                    alt=""
-                                />
-                                <p className="mt-3">{modalData?.introduction}</p>
-                            </div>
-                            <div className="modal-footer">
-                                <button
-                                    type="button"
-                                    className="btn btn-secondary"
-                                    data-bs-dismiss="modal"
-                                >
-                                    關閉
-                                </button>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

@@ -116,14 +116,16 @@ const RouterWrapper = ({ children }) => {
   return (
     <>
       <Loading isLoader={isLoading} />
-      <div className="position-fixed w-100" style={{ top: 0, zIndex: 10, background: '#fff' }}>
-        <Header userData={userData} />
-      </div>
-      <div style={{ marginTop: '74px' }}>
-        {children}
-      </div>
-      <div className="position-fixed w-100" style={{ bottom: 0, zIndex: 10 }}>
-        <Nav />
+      <div className="bg-primary-light">
+        <div className="position-fixed w-100" style={{ top: 0, zIndex: 10, background: '#fff' }}>
+          <Header userData={userData} />
+        </div>
+        <div style={{ marginTop: '76px' }}>
+          {children}
+        </div>
+        <div className="position-fixed w-100" style={{ bottom: 0, zIndex: 10 }}>
+          <Nav />
+        </div>
       </div>
     </>
   );

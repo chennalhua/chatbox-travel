@@ -10,7 +10,7 @@
     width: 45px;
     height: 45px;
     padding: 10px;
-    background: $primary-dark;
+    background: $primary;
     border-radius: 50%;
     border: none;
     display: flex;
@@ -34,7 +34,7 @@
       box-shadow: 0 0 15px 0px rgba(150, 150, 150, 0.3);
     }
     &:hover {
-      background-color: $primary-dark;
+      background-color: $primary;
       box-shadow: 0 0 15px 0 rgba(#389fde, 0.8);
       display: flex;
       justify-content: center;
@@ -61,6 +61,7 @@
 //@ Header @//
 .header {
   &-wrap {
+    height: 74px;
     display: flex;
     align-items: center;
     justify-content: space-between;

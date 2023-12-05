@@ -1,10 +1,11 @@
 import { Decrypt } from "assets/function/AES";
 import Icon from "components/Icon";
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Tour from "reactour";
 const Header = ({ userData }) => {
-  const location = useLocation()
+  const location = useLocation(),
+    router = useNavigate()
   //@ VALUE
   let [isTourShow, setIsTourShow] = useState(false)
 
@@ -37,11 +38,17 @@ const Header = ({ userData }) => {
       <div className="w-100">
         <div className="container">
           <div className="header-wrap">
-            <h1 style={{ fontSize: "18px" }}>
-              <span style={{ color: "#959595" }}>Hello,</span>
-              <br />
-              {userData !== null ? userData?.name : "User"}
-            </h1>
+            <div className="d-flex align-items-center">
+              {
+                location?.pathname == '/detail' &&
+                <a href="#" className="me-4" onClick={e => (e.preventDefault(), router(-1))}><Icon icon='arrow-left' size={24} color="#000" /></a>
+              }
+              <h1 style={{ fontSize: "18px" }}>
+                <span style={{ color: "#959595" }}>Hello,</span>
+                <br />
+                {userData !== null ? userData?.name : "User"}
+              </h1>
+            </div>
             <div className="d-flex align-items-center">
               {
                 location?.pathname == '/chat' &&

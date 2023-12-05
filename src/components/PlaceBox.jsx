@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Icon from './Icon';
 import TextLongToDot from "assets/function/TextLongToDot";
-const PlaceBox = ({ item, setModalData }) => {
+import { useNavigate } from 'react-router-dom';
+const PlaceBox = ({ item }) => {
+    const router = useNavigate()
+
     let [tagPlace, setTagPlace] = useState([])
 
     //@EVENT
@@ -20,6 +23,7 @@ const PlaceBox = ({ item, setModalData }) => {
                 return arr.indexOf(element) == index;
             });
             setTagPlace(filterRepeat)
+            localStorage.setItem('_TAGPLACE', JSON.stringify(filterRepeat))
         }
     };
 
@@ -30,11 +34,11 @@ const PlaceBox = ({ item, setModalData }) => {
         }
     }, [])
 
-    useEffect(() => {
-        if (tagPlace?.length > 0) {
-            localStorage.setItem('_TAGPLACE', JSON.stringify(tagPlace))
-        }
-    }, [tagPlace])
+    // useEffect(() => {
+    //     if (tagPlace?.length > 0) {
+    //         localStorage.setItem('_TAGPLACE', JSON.stringify(tagPlace))
+    //     }
+    // }, [tagPlace])
     return (
         <>
             <div className="card me-2" style={{ width: "350px" }}>
@@ -73,10 +77,13 @@ const PlaceBox = ({ item, setModalData }) => {
                         <button
                             type="button"
                             className="btn btn-primary w-100"
-                            data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"
+                            // data-bs-toggle="modal"
+                            // data-bs-target="#exampleModal"
                             onClick={(e) => (
-                                e.preventDefault(), setModalData(item)
+                                e.preventDefault(), router({
+                                    pathname: `/detail`,
+                                    search: `key=${item?.name}`
+                                })
                             )}
                         >
                             查看更多
