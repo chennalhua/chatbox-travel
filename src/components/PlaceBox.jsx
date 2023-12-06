@@ -2,17 +2,17 @@ import React, { useEffect, useState } from 'react';
 import Icon from './Icon';
 import TextLongToDot from "assets/function/TextLongToDot";
 import { useNavigate } from 'react-router-dom';
-const PlaceBox = ({ item }) => {
+const PlaceBox = ({ item, width, setArr }) => {
     const router = useNavigate()
 
     let [tagPlace, setTagPlace] = useState([])
 
-    //@EVENT
+    //@ EVENT
     const handleEvent = {
         setLove: function (e, name) {
             e.preventDefault()
-            let newArr = tagPlace
 
+            let newArr = tagPlace
             if (newArr.includes(name)) {
                 newArr.splice(newArr.indexOf(name), 1);
             } else {
@@ -23,6 +23,7 @@ const PlaceBox = ({ item }) => {
                 return arr.indexOf(element) == index;
             });
             setTagPlace(filterRepeat)
+            setArr(filterRepeat)
             localStorage.setItem('_TAGPLACE', JSON.stringify(filterRepeat))
         }
     };
@@ -31,17 +32,19 @@ const PlaceBox = ({ item }) => {
         let getHistoryData = localStorage.getItem('_TAGPLACE')
         if (getHistoryData !== null && getHistoryData !== undefined && getHistoryData !== 'undefined') {
             setTagPlace(JSON.parse(getHistoryData))
+            setArr(JSON.parse(getHistoryData))
         }
     }, [])
 
-    // useEffect(() => {
-    //     if (tagPlace?.length > 0) {
-    //         localStorage.setItem('_TAGPLACE', JSON.stringify(tagPlace))
-    //     }
-    // }, [tagPlace])
+    useEffect(() => {
+        if (tagPlace?.length > 0) {
+            localStorage.setItem('_TAGPLACE', JSON.stringify(tagPlace))
+            setArr(tagPlace)
+        }
+    }, [tagPlace])
     return (
         <>
-            <div className="card me-2" style={{ width: "350px" }}>
+            <div className="card me-2" style={width == 'auto' ? {} : { width: "350px" }}>
                 <div
                     style={{
                         width: "100%",

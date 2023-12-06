@@ -23,7 +23,7 @@ const Detail = () => { //詳細資料
     }, [])
 
     return (
-        <div style={{ height: '80vh' }}>
+        <div style={{ height: 'calc(100vh - 120px)', overflowY: 'scroll' }}>
             <div className='detail bg-primary-light'>
                 {
                     data !== null ?
@@ -63,7 +63,9 @@ const Detail = () => { //詳細資料
                                     <div>營業：{data?.open_time}</div>
                                     <div>電話：{data?.tel}</div>
                                 </div>
-                                <p className='mt-4'>{data?.introduction}</p>
+                                <p className='mt-4' style={{ textAlign: 'justify' }} dangerouslySetInnerHTML={{
+                                    __html: data?.introduction,
+                                }}></p>
                                 <div className='pb-4'><Map position={[data?.nlat, data?.elong]} /></div>
                             </div>
                         </>

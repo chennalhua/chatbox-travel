@@ -10,8 +10,7 @@ html {
     position: relative;
   }
   &-content {
-    // height: 63vh;
-    height: calc(100vh - 255px);
+    height: calc(100vh - 249px);
     overflow-y: scroll;
     overflow-x: hidden;
   }

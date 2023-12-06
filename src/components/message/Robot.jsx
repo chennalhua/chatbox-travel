@@ -13,6 +13,8 @@ import PlaceBox from "components/PlaceBox";
 const MesBox = ({ type, data, mes, setMesVal }) => {
   let [isLoader, setIsLoader] = useState(true)
 
+  let [arr, setArr] = useState([])
+
   const handleStyle = {
     imgMask: {
       width: "50px",
@@ -62,7 +64,7 @@ const MesBox = ({ type, data, mes, setMesVal }) => {
                   {data?.map((item, index) => {
                     return (
                       <SplideSlide key={`slider-${index}`}>
-                        <PlaceBox item={item} />
+                        <PlaceBox item={item} setArr={setArr} />
                       </SplideSlide>
                     );
                   })}
