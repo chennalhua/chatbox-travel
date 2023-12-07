@@ -1,6 +1,5 @@
 import fuzzyQuery from 'assets/function/fuzzyQuery';
 import axios from 'axios'
-import dayjs from 'dayjs';
 
 export const getCityKey = (message) => {
     switch (true) {
@@ -79,8 +78,6 @@ export const callWeather = async (mes) => {
     let newMes = mes.replace('台', '臺') //字串特定文字轉換
     let rule = /台北|臺北|基隆|新北|宜蘭|新竹市|新竹縣|桃園|苗栗|台中市|臺中市|台中|臺中|彰化|南投|嘉義市|嘉義縣|雲林|台南|臺南|台南|臺南|高雄|屏東|台東|花蓮|澎湖|金門|連江/
 
-    let nowDateTime = dayjs().valueOf() // 現在時間
-
     if (fuzzyQuery(rule, newMes)[0]) {
         try {
             const response = await axios.get('https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=rdec-key-123-45678-011121314');
@@ -97,20 +94,13 @@ export const callWeather = async (mes) => {
             // 資料判斷 (日期時間)
             let jsonData = {}
             filterData?.weatherElement?.map((item, index) => {
-                item?.time?.map((kitem) => {
-                    let startTime = dayjs(kitem?.startTime).valueOf(),
-                        endTime = dayjs(kitem?.endTime).valueOf()
-
-                    if (nowDateTime >= startTime && startTime <= endTime) {
-                        jsonData[`${item?.elementName}`] = kitem?.parameter?.parameterName
-                    }
-                })
+                jsonData[`${item?.elementName}`] = item?.time[0]?.parameter?.parameterName
             })
             return [true, jsonData];
         } catch (error) {
             return [false];
         }
-    } else { //匹配不成功
+    } else { // 匹配不成功
         return [false];
     }
 };
