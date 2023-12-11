@@ -5,15 +5,16 @@ import dayjs from "dayjs";
 import { getWeek } from "assets/function/dateTool";
 import { DotLoader } from "components/Loading";
 import scrollToBottom from "assets/function/scrollToBottom";
-import cityCountyData from 'assets/data/cityCountyData.json'
+import cityCountyData from "assets/data/cityCountyData.json";
 import TextLongToDot from "assets/function/TextLongToDot";
 import WeatherBox from "components/WeatherBox";
 import { callWeather } from "API/callWeather";
 import PlaceBox from "components/PlaceBox";
+import { callFoodShop } from "API/callFoodShop";
 const MesBox = ({ type, data, mes, setMesVal }) => {
-  let [isLoader, setIsLoader] = useState(true)
+  let [isLoader, setIsLoader] = useState(true);
 
-  let [arr, setArr] = useState([])
+  let [arr, setArr] = useState([]);
 
   const handleStyle = {
     imgMask: {
@@ -45,7 +46,8 @@ const MesBox = ({ type, data, mes, setMesVal }) => {
   };
 
   //@ VALUE
-  let [weatherData, setWeatherData] = useState(null)
+  let [weatherData, setWeatherData] = useState(null),
+    [foodData, setFoodData] = useState([]);
   //@ EVENT
   const handleEvent = {
     typeFormat: function (type, data) {
@@ -53,7 +55,12 @@ const MesBox = ({ type, data, mes, setMesVal }) => {
         case "text":
           return (
             <>
-              <div className="bg-light p-3 rounded d-inline-block" style={{ whiteSpace: 'pre-line' }} >{data}</div>
+              <div
+                className="bg-light p-3 rounded d-inline-block"
+                style={{ whiteSpace: "pre-line" }}
+              >
+                {data}
+              </div>
             </>
           );
         case "card":
@@ -72,10 +79,29 @@ const MesBox = ({ type, data, mes, setMesVal }) => {
               </Splide>
             </>
           );
-        case "weather":
+        case "tainanCard":
           return (
-            <WeatherBox data={weatherData} />
+            <>
+              <Splide hasTrack={false} options={splideOptions}>
+                  <SplideTrack options={{ gap: "1em" }}>
+                    {foodData?.map((item, index) => {
+                      console.log(item?.introduction);
+                      return (
+                        <SplideSlide key={`slider-${index}`}>
+                          <PlaceBox
+                            item={item}
+                            setArr={setArr}
+                            type={"tainan"}
+                          />
+                        </SplideSlide>
+                      );
+                    })}
+                  </SplideTrack>
+                </Splide>
+            </>
           );
+        case "weather":
+          return <WeatherBox data={weatherData} />;
         case "chooseArea":
           return (
             <div>
@@ -88,20 +114,71 @@ const MesBox = ({ type, data, mes, setMesVal }) => {
                   }}
                 >
                   <img
-                    src={require('assets/image/robot.jpg')}
+                    src={require("assets/image/QUESTION.png")}
                     className="card-img-top"
                     alt=""
                   />
                 </div>
                 <div className="card-body">
-                  <h5 className="card-title mb-4">搜尋條件不足，請繼續提供線索!!</h5>
-                  <select className="form-select" aria-label="Default select example" onChange={e => setMesVal(`${mes}${e.target.value}`)}>
-                    <option selected disabled>請選擇</option>
-                    {
-                      cityCountyData?.data?.[0].areas.map((item, index) => {
-                        return (<option value={item?.AREA_NAME}>{item?.AREA_NAME}</option>)
-                      })
-                    }
+                  <h5 className="card-title mb-4">
+                    搜尋條件不足，請繼續提供線索!!
+                  </h5>
+                  <select
+                    className="form-select"
+                    aria-label="Default select example"
+                    onChange={(e) => setMesVal(`${mes}${e.target.value}`)}
+                  >
+                    <option selected disabled>
+                      請選擇
+                    </option>
+                    {cityCountyData?.data?.[0].areas.map((item, index) => {
+                      return (
+                        <option value={item?.AREA_NAME}>
+                          {item?.AREA_NAME}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
+              </div>
+            </div>
+          );
+        case "chooseTainanArea":
+          return (
+            <div>
+              <div className="card me-2" style={{ width: "335px" }}>
+                <div
+                  style={{
+                    width: "100%",
+                    height: "180px",
+                    overflow: "hidden",
+                  }}
+                >
+                  <img
+                    src={require("assets/image/QUESTION.png")}
+                    className="card-img-top"
+                    alt=""
+                  />
+                </div>
+                <div className="card-body">
+                  <h5 className="card-title mb-4">
+                    搜尋條件不足，請繼續提供線索!!
+                  </h5>
+                  <select
+                    className="form-select"
+                    aria-label="Default select example"
+                    onChange={(e) => setMesVal(`${mes}${e.target.value}`)}
+                  >
+                    <option selected disabled>
+                      請選擇
+                    </option>
+                    {cityCountyData?.data?.[14].areas.map((item, index) => {
+                      return (
+                        <option value={item?.AREA_NAME}>
+                          {item?.AREA_NAME}
+                        </option>
+                      );
+                    })}
                   </select>
                 </div>
               </div>
@@ -119,20 +196,28 @@ const MesBox = ({ type, data, mes, setMesVal }) => {
                   }}
                 >
                   <img
-                    src={require('assets/image/robot.jpg')}
+                    src={require("assets/image/QUESTION.png")}
                     className="card-img-top"
                     alt=""
                   />
                 </div>
                 <div className="card-body">
-                  <h5 className="card-title mb-4">搜尋條件不足，請繼續提供線索!!</h5>
-                  <select className="form-select" aria-label="Default select example" onChange={e => setMesVal(`${mes}${e.target.value}`)}>
-                    <option selected disabled>請選擇</option>
-                    {
-                      cityCountyData?.data?.map((item, index) => {
-                        return (<option value={item?.COU_NAME}>{item?.COU_NAME}</option>)
-                      })
-                    }
+                  <h5 className="card-title mb-4">
+                    搜尋條件不足，請繼續提供線索!!
+                  </h5>
+                  <select
+                    className="form-select"
+                    aria-label="Default select example"
+                    onChange={(e) => setMesVal(`${mes}${e.target.value}`)}
+                  >
+                    <option selected disabled>
+                      請選擇
+                    </option>
+                    {cityCountyData?.data?.map((item, index) => {
+                      return (
+                        <option value={item?.COU_NAME}>{item?.COU_NAME}</option>
+                      );
+                    })}
                   </select>
                 </div>
               </div>
@@ -150,19 +235,39 @@ const MesBox = ({ type, data, mes, setMesVal }) => {
                   }}
                 >
                   <img
-                    src={require('assets/image/robot.jpg')}
+                    src={require("assets/image/robot.jpg")}
                     className="card-img-top"
                     alt=""
                   />
                 </div>
                 <div className="card-body">
-                  <h5 className="card-title mb-4">請問您想得到什麼類型的資訊呢？</h5>
+                  <h5 className="card-title mb-4">
+                    請問您想得到什麼類型的資訊呢？
+                  </h5>
                   <div className="row">
-                    <div className="col-6">
-                      <button className="btn btn-primary w-100" onClick={e => setMesVal(`${mes}景點`)}>景點</button>
+                    <div className="col-4">
+                      <button
+                        className="btn btn-primary w-100"
+                        onClick={(e) => setMesVal(`${mes}景點`)}
+                      >
+                        景點
+                      </button>
                     </div>
-                    <div className="col-6">
-                      <button className="btn btn-primary w-100" onClick={e => setMesVal(`${mes}天氣`)}>天氣</button>
+                    <div className="col-4">
+                      <button
+                        className="btn btn-primary w-100"
+                        onClick={(e) => setMesVal(`${mes}美食`)}
+                      >
+                        美食
+                      </button>
+                    </div>
+                    <div className="col-4">
+                      <button
+                        className="btn btn-primary w-100"
+                        onClick={(e) => setMesVal(`${mes}天氣`)}
+                      >
+                        天氣
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -172,15 +277,21 @@ const MesBox = ({ type, data, mes, setMesVal }) => {
         default:
           break;
       }
-    }
+    },
   };
 
   useEffect(() => {
     const getWeather = async () => {
       const response = await callWeather(mes);
-      response[0] && setWeatherData(response[1])
-    }
-    getWeather()
+      response[0] && setWeatherData(response[1]);
+    };
+    getWeather();
+
+    const getFood = async () => {
+      const response = await callFoodShop(mes);
+      setFoodData(response);
+    };
+    getFood();
 
     setTimeout(() => {
       setIsLoader(false);

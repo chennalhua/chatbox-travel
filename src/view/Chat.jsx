@@ -18,7 +18,7 @@ const Chat = () => {
       "如何使用",
       "現在天氣",
       "台北信義區景點",
-      "台北美食",
+      "台南美食",
     ]),
     [isLoader, setIsLoader] = useState(false)
 
@@ -47,20 +47,21 @@ const Chat = () => {
           city: { rule: /台北|台北市|臺北|臺北市/ },
           area: { rule: /區/ },
           weather: { rule: /天氣|溫度|幾度|度|降雨|最高|最低/ },
-          attractions: { rule: /景點|好玩|玩|地方|介紹/ }
+          attractions: { rule: /景點|好玩|玩|地方|介紹/ },
+          food: { rule: /美食|好吃|吃|美味|美食介紹|餓|食物/ },
         }
         let fuzzyKeyWord = {
           allCity: fuzzyQuery(keyWord.allCity.rule, val)[0],
           city: fuzzyQuery(keyWord.city.rule, val)[0],
           area: fuzzyQuery(keyWord.area.rule, val)[0],
           weather: fuzzyQuery(keyWord.weather.rule, val)[0],
-          attractions: fuzzyQuery(keyWord.attractions.rule, val)[0]
+          attractions: fuzzyQuery(keyWord.attractions.rule, val)[0],
+          food: fuzzyQuery(keyWord.food.rule, val)[0]
         }
 
         //@ run 模組
         function runModal(key) {
-          console.log(key)
-          if (fuzzyKeyWord?.attractions) { //* run 景點
+          if (fuzzyKeyWord?.attractions) { //* run
             switch (key) {
               case '1': return setChatData(oldArray => [...oldArray, {
                 key: key,
@@ -84,7 +85,7 @@ const Chat = () => {
               }]);
               default: break;
             }
-          } else if (fuzzyKeyWord?.weather) {//* run 天氣
+          }else if (fuzzyKeyWord?.weather) {//* run 天氣
             if (fuzzyKeyWord?.allCity) {
               return setChatData(oldArray => [...oldArray, {
                 key: key,
@@ -98,7 +99,25 @@ const Chat = () => {
                 component: { type: "chooseCity", data, val, setMesVal },
               }]);
             }
-          } else { //* no run
+          }else if(fuzzyKeyWord?.food){ //* run 美食
+            switch (key) {
+              case '1':
+              case '2':
+              case '3': return setChatData(oldArray => [...oldArray, 
+                {
+                  key: key,
+                  type: "robot",
+                  component: { type: "tainanCard", data, val, setMesVal },
+                }
+              ]);
+              case '4': return setChatData(oldArray => [...oldArray, {
+                key: key,
+                type: "robot",
+                component: { type: "chooseTainanArea", data, val, setMesVal }
+              }]);
+              default: break;
+            }
+          }else { //* no run
             switch (key) {
               case '1':
               case '2':
