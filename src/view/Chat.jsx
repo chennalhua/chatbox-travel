@@ -108,7 +108,7 @@ const Chat = () => {
               case '3': return setChatData(oldArray => [...oldArray, {
                 key: key,
                 type: "robot",
-                component: { type: "chooseTainanArea", data, val, setMesVal }
+                component: { type: "chooseHaveCity", data, val, setMesVal }
               }]);
               default: break;
             }
