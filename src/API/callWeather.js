@@ -100,7 +100,7 @@ export const callWeather = async (mes) => {
         } catch (error) {
             return [false];
         }
-    } else { // 匹配不成功
+    } else { // 配對不成功
         return [false];
     }
 };

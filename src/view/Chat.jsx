@@ -8,6 +8,8 @@ import scrollToBottom from "assets/function/scrollToBottom";
 import fuzzyQuery from "assets/function/fuzzyQuery";
 import { callAttractions } from "API/callAttractions";
 import { Loading } from "components/Loading";
+import searchKeyword from "assets/data/searchKeyword";
+import { callFoodShop } from "API/callFoodShop";
 const Chat = () => {
   let data = [];
 
@@ -16,15 +18,14 @@ const Chat = () => {
     [mesVal, setMesVal] = useState(""), //輸入框
     [keywordList, setKeyWordList] = useState([
       "如何使用",
-      "現在天氣",
-      "台北信義區景點",
+      "天氣預報",
+      "台南安平區景點",
       "台南美食",
     ]),
     [isLoader, setIsLoader] = useState(false)
 
   useEffect(() => {
     let getHistoryData = localStorage.getItem('_HISTORY')
-    console.log(JSON.parse(getHistoryData))
     if (getHistoryData !== null && getHistoryData !== undefined && getHistoryData !== 'undefined') {
       setChatData(JSON.parse(getHistoryData))
     }
@@ -42,108 +43,120 @@ const Chat = () => {
       }]);
       //* 解析關鍵字
       function robotParseKeyword(val) {
-        let keyWord = {
-          allCity: { rule: /台北|臺北|基隆|新北|宜蘭|新竹市|新竹縣|桃園|苗栗|台中市|臺中市|台中|臺中|彰化|南投|嘉義市|嘉義縣|雲林|台南|臺南|台南|臺南|高雄|屏東|台東|花蓮|澎湖|金門|連江/ },
-          city: { rule: /台北|台北市|臺北|臺北市/ },
-          area: { rule: /區/ },
-          weather: { rule: /天氣|溫度|幾度|度|降雨|最高|最低/ },
-          attractions: { rule: /景點|好玩|玩|地方|介紹/ },
-          food: { rule: /美食|好吃|吃|美味|美食介紹|餓|食物/ },
+        let fuzzyKeyword = {
+          allCity: fuzzyQuery(searchKeyword().allCity.rule, val)[0],
+          city: fuzzyQuery(searchKeyword().city.rule, val)[0],
+          area: fuzzyQuery(searchKeyword().area.rule, val)[0],
+          weather: fuzzyQuery(searchKeyword().weather.rule, val)[0],
+          attractions: fuzzyQuery(searchKeyword().attractions.rule, val)[0],
+          food: fuzzyQuery(searchKeyword().food.rule, val)[0],
+          haveCity: {
+            taipeiArea: fuzzyQuery(searchKeyword().taipei.areaRule, val)[0],
+            tainanArea: fuzzyQuery(searchKeyword().tainan.areaRule, val)[0]
+          }
         }
-        let fuzzyKeyWord = {
-          allCity: fuzzyQuery(keyWord.allCity.rule, val)[0],
-          city: fuzzyQuery(keyWord.city.rule, val)[0],
-          area: fuzzyQuery(keyWord.area.rule, val)[0],
-          weather: fuzzyQuery(keyWord.weather.rule, val)[0],
-          attractions: fuzzyQuery(keyWord.attractions.rule, val)[0],
-          food: fuzzyQuery(keyWord.food.rule, val)[0]
-        }
-
         //@ run 模組
         function runModal(key) {
-          if (fuzzyKeyWord?.attractions) { //* run
+          if (fuzzyKeyword?.attractions) { //* run 景點
+            let themeType = '景點'
             switch (key) {
               case '1': return setChatData(oldArray => [...oldArray, {
                 key: key,
                 type: "robot",
-                component: { type: "card", data: callAttractions(val), val, setMesVal },
+                component: { type: "card", data: callAttractions(val).ResponseData, val, setMesVal, themeType },
               }]);
               case '2': return setChatData(oldArray => [...oldArray, {
                 key: key,
                 type: "robot",
-                component: { type: "chooseArea", data, val, setMesVal },
+                component: { type: "chooseArea", data, val, setMesVal, themeType },
               }]);
               case '3': return setChatData(oldArray => [...oldArray, {
                 key: key,
                 type: "robot",
-                component: { type: "chooseArea", data, val, setMesVal },
-              }]);
-              case '4': return setChatData(oldArray => [...oldArray, {
-                key: key,
-                type: "robot",
-                component: { type: "chooseArea", data, val, setMesVal },
+                component: { type: "chooseHaveCity", data, val, setMesVal, themeType },
               }]);
               default: break;
             }
-          }else if (fuzzyKeyWord?.weather) {//* run 天氣
-            if (fuzzyKeyWord?.allCity) {
+          } else if (fuzzyKeyword?.weather) {//* run 天氣
+            let themeType = '天氣'
+            if (fuzzyKeyword?.allCity) {
               return setChatData(oldArray => [...oldArray, {
                 key: key,
                 type: "robot",
-                component: { type: "weather", data, val, setMesVal },
+                component: { type: "weather", data, val, setMesVal, themeType },
               }]);
             } else {
               return setChatData(oldArray => [...oldArray, {
                 key: key,
                 type: "robot",
-                component: { type: "chooseCity", data, val, setMesVal },
+                component: { type: "chooseAllCity", data, val, setMesVal, themeType },
               }]);
             }
-          }else if(fuzzyKeyWord?.food){ //* run 美食
+          } else if (fuzzyKeyword?.food) { //* run 美食
+            let themeType = '美食'
             switch (key) {
-              case '1':
-              case '2':
-              case '3': return setChatData(oldArray => [...oldArray, 
-                {
-                  key: key,
-                  type: "robot",
-                  component: { type: "tainanCard", data, val, setMesVal },
-                }
-              ]);
-              case '4': return setChatData(oldArray => [...oldArray, {
+              case '1': return setChatData(oldArray => [...oldArray, {
+                key: key,
+                type: "robot",
+                component: { type: "card", data: callFoodShop(val).ResponseData, val, setMesVal, themeType },
+              }]);
+              case '2': return setChatData(oldArray => [...oldArray, {
+                key: key,
+                type: "robot",
+                component: { type: "chooseArea", data, val, setMesVal, themeType },
+              }]);
+              case '3': return setChatData(oldArray => [...oldArray, {
                 key: key,
                 type: "robot",
                 component: { type: "chooseTainanArea", data, val, setMesVal }
               }]);
               default: break;
             }
-          }else { //* no run
+          } else { //* no run
             switch (key) {
               case '1':
-              case '2':
-              case '3': return setChatData(oldArray => [...oldArray, {
+              case '2': return setChatData(oldArray => [...oldArray, {
                 key: key,
                 type: "robot",
                 component: { type: "chooseType", data, val, setMesVal },
               }]);
-              case '4': return setChatData(oldArray => [...oldArray, {
+              case '3': return setChatData(oldArray => [...oldArray, {
                 key: key,
                 type: "robot",
-                component: { type: "text", data: '請提供更完整的條件\n景點查詢：ex. 台北市信義區景點\n天氣：ex.台北市天氣', val, setMesVal }
+                component: { type: "text", data: '請提供更完整的條件\n景點查詢：ex. 台南市安平區景點\n天氣：ex.台南市天氣', val, setMesVal }
               }]);
               default: break;
             }
           }
         }
 
-        if (fuzzyKeyWord?.city && fuzzyKeyWord?.area) {// 符合 台北市 臺北市 有區
-          runModal('1')
-        } else if (fuzzyKeyWord?.city && !fuzzyKeyWord?.area) {// 符合 台北市 臺北市 沒區
-          runModal('2')
-        } else if (!fuzzyKeyWord?.city && fuzzyKeyWord?.area) { //符合區域
+        /*
+          IF 是否符合所有縣市
+              Y : 判斷台北或台南
+                  Y : 判斷區域
+                      Y : 給景點卡片
+                      N : 根據縣市給區域 list
+                  N : 讓選擇台北或台南
+              N : 讓選擇台北或台南
+          ---
+          MODAL
+          1 - 有符合縣市及區域
+          2 - 只符合縣市
+          3 - 都未符合
+        */
+        if (fuzzyKeyword.allCity) { //符合縣市
+          if (fuzzyKeyword?.city) { //有符合台北 台南
+            let thisCity = val.includes('台北') ? 'taipei' : 'tainan' //判斷文字是屬於哪個縣市
+            if (fuzzyKeyword.haveCity[`${thisCity}Area`]) { //區域有符合
+              runModal('1')
+            } else { //未符合區域
+              runModal('2')
+            }
+          } else {
+            runModal('3')
+          }
+        } else { //未符合縣市
           runModal('3')
-        } else if (!fuzzyKeyWord?.city && !fuzzyKeyWord?.area) {
-          runModal('4')
         }
       }
       robotParseKeyword(val);
@@ -183,7 +196,7 @@ const Chat = () => {
                   if (item?.type == 'user') {
                     return <User data={item?.component?.val} />
                   } else {
-                    return <Robot type={item?.component?.type} data={item?.component?.data} mes={item?.component?.val} setMesVal={item?.component?.setMesVal} />
+                    return <Robot type={item?.component?.type} data={item?.component?.data} mes={item?.component?.val} setMesVal={item?.component?.setMesVal} themeType={item?.component?.themeType} />
                   }
                 })}
             </div>

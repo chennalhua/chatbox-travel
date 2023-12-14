@@ -6,14 +6,14 @@ import { getWeek } from "assets/function/dateTool";
 import { DotLoader } from "components/Loading";
 import scrollToBottom from "assets/function/scrollToBottom";
 import cityCountyData from "assets/data/cityCountyData.json";
-import TextLongToDot from "assets/function/TextLongToDot";
 import WeatherBox from "components/WeatherBox";
 import { callWeather } from "API/callWeather";
 import PlaceBox from "components/PlaceBox";
 import { callFoodShop } from "API/callFoodShop";
-const MesBox = ({ type, data, mes, setMesVal }) => {
+import fuzzyQuery from "assets/function/fuzzyQuery";
+import searchKeyword from "assets/data/searchKeyword";
+const MesBox = ({ type, data, mes, setMesVal, themeType }) => {
   let [isLoader, setIsLoader] = useState(true);
-
   let [arr, setArr] = useState([]);
 
   const handleStyle = {
@@ -47,12 +47,13 @@ const MesBox = ({ type, data, mes, setMesVal }) => {
 
   //@ VALUE
   let [weatherData, setWeatherData] = useState(null),
-    [foodData, setFoodData] = useState([]);
+    [foodData, setFoodData] = useState([])
+  let thisCity = fuzzyQuery(searchKeyword().taipei.rule, mes)[0] ? '台北市' : '台南市'
   //@ EVENT
   const handleEvent = {
     typeFormat: function (type, data) {
       switch (type) {
-        case "text":
+        case "text": //文字框
           return (
             <>
               <div
@@ -63,7 +64,7 @@ const MesBox = ({ type, data, mes, setMesVal }) => {
               </div>
             </>
           );
-        case "card":
+        case "card": //卡片
           return (
             <>
               <Splide hasTrack={false} options={splideOptions}>
@@ -71,7 +72,7 @@ const MesBox = ({ type, data, mes, setMesVal }) => {
                   {data?.map((item, index) => {
                     return (
                       <SplideSlide key={`slider-${index}`}>
-                        <PlaceBox item={item} setArr={setArr} />
+                        <PlaceBox item={item} setArr={setArr} themeType={themeType}/>
                       </SplideSlide>
                     );
                   })}
@@ -79,30 +80,9 @@ const MesBox = ({ type, data, mes, setMesVal }) => {
               </Splide>
             </>
           );
-        case "tainanCard":
-          return (
-            <>
-              <Splide hasTrack={false} options={splideOptions}>
-                  <SplideTrack options={{ gap: "1em" }}>
-                    {foodData?.map((item, index) => {
-                      console.log(item?.introduction);
-                      return (
-                        <SplideSlide key={`slider-${index}`}>
-                          <PlaceBox
-                            item={item}
-                            setArr={setArr}
-                            type={"tainan"}
-                          />
-                        </SplideSlide>
-                      );
-                    })}
-                  </SplideTrack>
-                </Splide>
-            </>
-          );
-        case "weather":
+        case "weather": //天氣
           return <WeatherBox data={weatherData} />;
-        case "chooseArea":
+        case "chooseArea": //選擇區域
           return (
             <div>
               <div className="card me-2" style={{ width: "335px" }}>
@@ -126,24 +106,34 @@ const MesBox = ({ type, data, mes, setMesVal }) => {
                   <select
                     className="form-select"
                     aria-label="Default select example"
-                    onChange={(e) => setMesVal(`${mes}${e.target.value}`)}
+                    onChange={(e) => setMesVal(`${thisCity}${e.target.value}${themeType}`)}
                   >
                     <option selected disabled>
                       請選擇
                     </option>
-                    {cityCountyData?.data?.[0].areas.map((item, index) => {
-                      return (
-                        <option value={item?.AREA_NAME}>
-                          {item?.AREA_NAME}
-                        </option>
-                      );
-                    })}
+                    {
+                      cityCountyData?.data.filter((val) => {
+                        if (thisCity == val.COU_NAME) {
+                          return val
+                        }
+                      }).map((item) => {
+                        return (
+                          item.areas.map((kitem, kindex) => {
+                            return (
+                              <option value={kitem?.AREA_NAME}>
+                                {kitem?.AREA_NAME}
+                              </option>
+                            );
+                          })
+                        )
+                      })
+                    }
                   </select>
                 </div>
               </div>
             </div>
           );
-        case "chooseTainanArea":
+        case "chooseHaveCity": //選擇目前提供查詢的縣市
           return (
             <div>
               <div className="card me-2" style={{ width: "335px" }}>
@@ -162,29 +152,31 @@ const MesBox = ({ type, data, mes, setMesVal }) => {
                 </div>
                 <div className="card-body">
                   <h5 className="card-title mb-4">
-                    搜尋條件不足，請繼續提供線索!!
+                    {`目前僅提供以下縣市資訊..><`}
                   </h5>
-                  <select
-                    className="form-select"
-                    aria-label="Default select example"
-                    onChange={(e) => setMesVal(`${mes}${e.target.value}`)}
-                  >
-                    <option selected disabled>
-                      請選擇
-                    </option>
-                    {cityCountyData?.data?.[14].areas.map((item, index) => {
-                      return (
-                        <option value={item?.AREA_NAME}>
-                          {item?.AREA_NAME}
-                        </option>
-                      );
-                    })}
-                  </select>
+                  <div className="row">
+                    <div className="col-6">
+                      <button
+                        className="btn btn-primary w-100"
+                        onClick={(e) => setMesVal(`台北${themeType}`)}
+                      >
+                        台北
+                      </button>
+                    </div>
+                    <div className="col-6">
+                      <button
+                        className="btn btn-primary w-100"
+                        onClick={(e) => setMesVal(`台南${themeType}`)}
+                      >
+                        台南
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           );
-        case "chooseCity":
+        case "chooseAllCity": //選擇縣市 list for weather
           return (
             <div>
               <div className="card me-2" style={{ width: "335px" }}>
@@ -208,7 +200,7 @@ const MesBox = ({ type, data, mes, setMesVal }) => {
                   <select
                     className="form-select"
                     aria-label="Default select example"
-                    onChange={(e) => setMesVal(`${mes}${e.target.value}`)}
+                    onChange={(e) => setMesVal(`${e.target.value}${themeType}`)}
                   >
                     <option selected disabled>
                       請選擇
@@ -223,7 +215,7 @@ const MesBox = ({ type, data, mes, setMesVal }) => {
               </div>
             </div>
           );
-        case "chooseType":
+        case "chooseType": //選擇主題類型: 景點,美食,天氣
           return (
             <div>
               <div className="card me-2" style={{ width: "335px" }}>

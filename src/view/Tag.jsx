@@ -12,12 +12,25 @@ const Tag = () => {
     let sourceData = require('assets/data/attractions.json')
     //@ EVENT
     const handleEvent = {
-        getData: function () {
-            sourceData?.map((item, index) => {
-                if (tagPlace?.includes(item.name)) {
-                    setData(oldArr => [...oldArr, item])
-                }
-            })
+        getAllData: function () {
+            let attrData = require('assets/data/attractions.json'),
+                foodData = require('assets/data/foods.json')
+
+            let newAttrArr = [],
+                newFoodArr = []
+            function contact(storage, data, themeType) {
+                Object.keys(data).map((item) => {
+                    data[item].map((kitem) => {
+                        kitem.themeType = themeType
+                        storage.push(kitem)
+                    })
+                })
+            }
+
+            contact(newAttrArr, attrData, '景點')
+            contact(newFoodArr, foodData, '美食')
+
+            return newAttrArr.concat(newFoodArr)
         },
         clear: function (e) {
             e.preventDefault()
@@ -34,6 +47,7 @@ const Tag = () => {
     useEffect(() => {
         if (getHistoryData !== null && getHistoryData !== undefined && getHistoryData !== 'undefined') {
             setTagPlace(JSON.parse(getHistoryData))
+
         }
     }, [])
 
@@ -54,11 +68,11 @@ const Tag = () => {
                     }
                     <div className="row justify-content-center">
                         {
-                            tagPlace?.length > 0 ? sourceData?.map((item, index) => {
+                            tagPlace?.length > 0 ? handleEvent?.getAllData()?.map((item, index) => {
                                 if (tagPlace?.includes(item.name)) {
                                     return (
                                         <div className='col-12 col-md-4 my-2'>
-                                            <PlaceBox item={item} width={'auto'} setArr={setTagPlace} />
+                                            <PlaceBox item={item} width={'auto'} setArr={setTagPlace} themeType={item.themeType} />
                                         </div>
                                     )
                                 }

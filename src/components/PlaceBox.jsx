@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import Icon from "./Icon";
 import TextLongToDot from "assets/function/TextLongToDot";
 import { useNavigate } from "react-router-dom";
-const PlaceBox = ({ item, width, setArr, type }) => {
-  console.log(item);
+const PlaceBox = ({ item, width, setArr, themeType }) => {
   const router = useNavigate();
 
   let [tagPlace, setTagPlace] = useState([]);
@@ -66,7 +65,7 @@ const PlaceBox = ({ item, width, setArr, type }) => {
               className="card-img-top"
               alt={item?.name}
             />
-          ) : type == "tainan" ? (
+          ) : themeType == "美食" ? (
             <img
               src={require("assets/image/FOOD.png")}
               className="card-img-top"
@@ -111,7 +110,7 @@ const PlaceBox = ({ item, width, setArr, type }) => {
                 e.preventDefault(),
                 router({
                   pathname: `/detail`,
-                  search: `key=${item?.name}`,
+                  search: `key=${item?.name}&themeType=${themeType}`,
                 })
               )}
             >

@@ -1,26 +1,28 @@
-import axios from "axios";
+import searchKeyword from 'assets/data/searchKeyword' //搜尋關鍵字
+import fuzzyQuery from 'assets/function/fuzzyQuery'
 
-export const callFoodShop = async (district) => {
-    try {
-        const response = await axios.get(
-            "https://www.twtainan.net/data/shops_zh-tw.json"
-        );
-        console.log(response)
-        const filteredData = response.data.filter((item) => {
-            if (district?.includes(item.district)) {
-                return item
-            }
-        });
+export const callFoodShop = (mes) => {
+    let data = require('assets/data/foods.json')
 
-        if (filteredData.length > 0) {
-            return filteredData;
+    // 模糊搜尋是否有相關關鍵字
+    if (fuzzyQuery(searchKeyword().tainan.rule, mes)[0]) { // 配對"縣市"
+        if (fuzzyQuery(searchKeyword().tainan.areaRule, mes)[0]) {// 配對"區"
+            return { ResponseCode: 'success', ResponseData: runAPI('台南'), ResponseMes: 'success' }
         } else {
-            return [];
+            return { ResponseCode: 'runChooseTainan', ResponseData: [], ResponseMes: '縣市區域配對失敗，重新選擇對的區域' }
         }
-    } catch (error) {
-        console.error("Error:", error);
-        console.log("搜尋失敗");
-        console.log("請重新解鎖CORS https://cors-anywhere.herokuapp.com/corsdemo");
-        return [];
+    } else { // 配對縣市失敗
+        /* 流程 - runChooseCity : 跑卡片讓選 "台北" , "台南" */
+        return { ResponseCode: 'runChooseCity', ResponseData: [], ResponseMes: '尚未搜尋到景點' }
+    }
+
+    function runAPI(city) {
+        let returnArr = []
+        data[city]?.map((item, index) => {
+            if (mes?.includes(item?.distric)) {
+                returnArr.push(item)
+            }
+        })
+        return returnArr
     }
 };

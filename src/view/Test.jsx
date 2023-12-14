@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 const Test = () => {
     useEffect(()=>{
-        console.log(callFoodShop('西港區'))
+        // console.log(callFoodShop('西港區'))
     },[])
     return (
         <>
