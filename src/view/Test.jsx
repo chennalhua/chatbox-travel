@@ -1,12 +1,10 @@
-import { callAttractions } from 'API/callAttractions';
 import { callFoodShop } from 'API/callFoodShop';
 import React, { useEffect, useState } from 'react';
-import cityData from 'assets/data/cityCountyData.json'
-import callPositionInfo from 'API/callPostionInfo';
+
 const Test = () => {
-    useEffect(() => {
-        callFoodShop('安平區')
-    }, [])
+    useEffect(()=>{
+        console.log(callFoodShop('西港區'))
+    },[])
     return (
         <>
             <div className='bg-primary'>
