@@ -3,8 +3,9 @@ import axios from "axios";
 export const callFoodShop = async (district) => {
     try {
         const response = await axios.get(
-            "https://cors-anywhere.herokuapp.com/https://www.twtainan.net/data/shops_zh-tw.json"
+            "https://www.twtainan.net/data/shops_zh-tw.json"
         );
+        console.log(response)
         const filteredData = response.data.filter((item) => {
             if (district?.includes(item.district)) {
                 return item
