@@ -77,7 +77,9 @@ const HomePage = () => {
                 </div>
               </div>
               <div className="col-12 pb-4">
-                {weatherData !== null && <WeatherBox data={weatherData} />}
+                {weatherData !== null && (
+                  <WeatherBox data={weatherData} location={positionInfoData} />
+                )}
               </div>
             </div>
           </div>

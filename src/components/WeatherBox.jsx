@@ -1,6 +1,6 @@
 import { getWeek } from 'assets/function/dateTool';
 import dayjs from 'dayjs';
-const WeatherBox = ({ data }) => {
+const WeatherBox = ({ data,location }) => {
 
     //@ UIBLOCK
     const uiBlock = {
@@ -41,6 +41,7 @@ const WeatherBox = ({ data }) => {
         <>
             <div className="mt-4 ms-2">
                 <div className="bg-light p-2 rounded">
+                    {location !== undefined && <p className='fs-5 fw-bolder text-center pt-3 mb-0'>{location?.city}</p>}
                     <div className="d-flex align-items-center justify-content-around py-4">
                         {uiBlock?.temperature(data?.MaxT)}
                         {/* DATE */}
