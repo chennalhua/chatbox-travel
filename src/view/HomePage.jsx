@@ -59,7 +59,7 @@ const HomePage = () => {
                     />
                   </div>
                   <div className="col-sm-8">
-                    <div className="message-box">
+                    <div className="message-box mx-2">
                       <div className="text">
                         <span
                           className="fw-bolder"
@@ -76,7 +76,7 @@ const HomePage = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-12">
+              <div className="col-12 pb-4">
                 {weatherData !== null && <WeatherBox data={weatherData} />}
               </div>
             </div>
