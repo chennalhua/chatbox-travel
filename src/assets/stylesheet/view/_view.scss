@@ -74,3 +74,33 @@ html {
     padding-left: 5px;
   }
 }
+
+//@ message-box
+.message-box {
+  .text {
+    transform: translatey(0px);
+    animation: float 5s ease-in-out infinite;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 3px;
+    font-size: 15px;
+    color: $dark;
+    background-color: $primary;
+    padding: 20px;
+    border-radius: 11px;
+    position: relative;
+    box-shadow: 10px 10px $primary-dark;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translatey(0px);
+  }
+  50% {
+    transform: translatey(-20px);
+  }
+  100% {
+    transform: translatey(0px);
+  }
+}
