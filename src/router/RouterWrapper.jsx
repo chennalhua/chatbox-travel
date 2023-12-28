@@ -9,8 +9,9 @@ import randomStr from "assets/function/randomStr";
 import Nav from "components/layout/Nav";
 const RouterWrapper = ({ children }) => {
   //@ VALUE
-  let [isLoading, setIsLoading] = useState(true);
-  let [userData, setUserData] = useState(null);
+  let [isLoading, setIsLoading] = useState(true),
+    [userData, setUserData] = useState({ picture: require('assets/image/user.jpg'), name: 'User' }),
+    [darkMode, setDarkMode] = useState('light') //深色模式
   const state = randomStr(20);
   const nonce = randomStr(25);
 
@@ -107,8 +108,9 @@ const RouterWrapper = ({ children }) => {
           lineLogin();
         }
       }
-      isLogin()
-      getAccessToken(window.location.href);
+      // isLogin()
+      // getAccessToken(window.location.href);
+      setIsLoading(false);
     } else {
       setUserData(JSON.parse(Decrypt(checkLogin)));
       setTimeout(() => {
@@ -120,9 +122,9 @@ const RouterWrapper = ({ children }) => {
   return (
     <>
       <Loading isLoader={isLoading} />
-      <div className="bg-primary-light">
-        <div className=" w-100" style={{  background: '#fff' }}>
-          <Header userData={userData} />
+      <div className="bg-primary-light" data-theme={darkMode}>
+        <div className=" w-100" style={{ background: '#fff' }}>
+          <Header userData={userData} setDarkMode={setDarkMode} />
         </div>
         {children}
         <div className="position-fixed w-100" style={{ bottom: 0, zIndex: 1000 }}>

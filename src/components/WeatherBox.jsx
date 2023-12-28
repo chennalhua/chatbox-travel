@@ -1,6 +1,6 @@
 import { getWeek } from 'assets/function/dateTool';
 import dayjs from 'dayjs';
-const WeatherBox = ({ data,location }) => {
+const WeatherBox = ({ data, location }) => {
 
     //@ UIBLOCK
     const uiBlock = {
@@ -19,7 +19,7 @@ const WeatherBox = ({ data,location }) => {
 
                 }
             }
-            return (<div className='temperature-circle' style={getStyle(val)}></div>)
+            return (<span className='temperature-circle d-block' style={getStyle(val)}></span>)
         },
         textColor: function (val) {
             if (val <= 20) {
@@ -40,7 +40,7 @@ const WeatherBox = ({ data,location }) => {
     return (
         <>
             <div className="mt-4 ms-2">
-                <div className="bg-light p-2 rounded">
+                <div className="bg-light p-2 rounded weather-box">
                     {location !== undefined && <p className='fs-5 fw-bolder text-center pt-3 mb-0'>{location?.city}</p>}
                     <div className="d-flex align-items-center justify-content-around py-4">
                         {uiBlock?.temperature(data?.MaxT)}
@@ -55,7 +55,7 @@ const WeatherBox = ({ data,location }) => {
                             </p>
                         </div>
                     </div>
-                    <div className="row">
+                    <div className="row g-0">
                         <div className="col-4 text-center">
                             <p>最低溫</p>
                             <p>{data?.MinT} °C</p>

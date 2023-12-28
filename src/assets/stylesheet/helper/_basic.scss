@@ -12,6 +12,31 @@ html {
   font-family: "Baloo 2", cursive;
 }
 
+//@ dark mode
+div[data-theme="dark"] {
+  html,
+  body,
+  div {
+    background: $dark !important;
+    color: #fff !important;
+  }
+  .message-box {
+    .text {
+      border: 1px solid #fff;
+    }
+    span {
+      color: #fff;
+    }
+  }
+  .weather-box,
+  .card {
+    border: 1px solid #fff;
+  }
+  .loading{
+    background: rgba(255, 255, 255, 0.9);
+  }
+}
+
 input,
 button {
   &:active,

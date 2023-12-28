@@ -3,7 +3,7 @@ import Icon from "components/Icon";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Tour from "reactour";
-const Header = ({ userData }) => {
+const Header = ({ userData, setDarkMode }) => {
   const location = useLocation(),
     router = useNavigate()
   //@ VALUE
@@ -50,6 +50,11 @@ const Header = ({ userData }) => {
               </h1>
             </div>
             <div className="d-flex align-items-center">
+              <div className="form-check form-switch">
+                <input className="form-check-input" type="checkbox" role="switch" id="darkMode" onChange={e => e.target.checked ? setDarkMode('dark') : setDarkMode('light')} />
+                <Icon icon='sun' size={16} color="#fff" />
+                <label className="form-check-label" for="darkMode"></label>
+              </div>
               {
                 location?.pathname == '/chat' &&
                 <a href="#" className="btn text-dark me-3" onClick={e => (e.preventDefault(), setIsTourShow(true))}>

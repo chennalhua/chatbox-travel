@@ -215,3 +215,15 @@
   // box-shadow: 0 0 10px 8px rgba(orange, 0.5);
   border-radius: 50%;
 }
+
+
+//@ switch size
+.form-switch.form-switch-lg {
+  margin-bottom: 1.5rem; /* JUST FOR STYLING PURPOSE */
+}
+
+.form-switch.form-switch-lg .form-check-input {
+  height: 2rem;
+  width: calc(3rem + 0.75rem);
+  border-radius: 4rem;
+}
