@@ -82,7 +82,6 @@ export const callWeather = async (mes) => {
         try {
             const response = await axios.get('https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=rdec-key-123-45678-011121314');
             const data = response.data;
-            console.log(data)
 
             // 篩選出關鍵縣市
             let filterData = null

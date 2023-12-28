@@ -67,16 +67,24 @@ const Header = ({ userData, darkMode, setDarkMode }) => {
                   type="checkbox"
                   role="switch"
                   id="darkMode"
+                  checked={darkMode == "dark" && "checked"}
                   onChange={(e) =>
                     e.target.checked
-                      ? setDarkMode("dark")
-                      : setDarkMode("light")
+                      ? (setDarkMode("dark"),
+                        localStorage.setItem("darkMode", "dark"))
+                      : (setDarkMode("light"),
+                        localStorage.setItem("darkMode", "light"))
                   }
                 />
                 {darkMode == "dark" ? (
-                  <Icon icon="sun" size={24} color="#fff" className="ms-2"/>
+                  <Icon icon="sun" size={24} color="#fff" className="ms-2" />
                 ) : (
-                  <Icon icon="moon" size={22} color="#212529" className="ms-2"/>
+                  <Icon
+                    icon="moon"
+                    size={22}
+                    color="#212529"
+                    className="ms-2"
+                  />
                 )}
                 <label className="form-check-label" for="darkMode"></label>
               </div>
