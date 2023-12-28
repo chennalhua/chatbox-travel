@@ -57,7 +57,7 @@ const MesBox = ({ type, data, mes, setMesVal, themeType }) => {
           return (
             <>
               <div
-                className="bg-light p-3 rounded d-inline-block"
+                className="bg-light p-3 rounded d-inline-block light-box"
                 style={{ whiteSpace: "pre-line" }}
               >
                 {data}

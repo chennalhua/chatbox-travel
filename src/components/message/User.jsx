@@ -30,7 +30,7 @@ const MesBox = ({ type, data }) => {
           />
         </div>
         <div className="mt-2 text-end">
-          <div className="bg-light p-3 rounded d-inline-block">{data}</div>
+          <div className="bg-light p-3 rounded d-inline-block light-box">{data}</div>
         </div>
       </div>
     </>

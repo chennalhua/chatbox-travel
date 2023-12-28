@@ -76,12 +76,13 @@ export const getCityKey = (message) => {
 
 export const callWeather = async (mes) => {
     let newMes = mes.replace('台', '臺') //字串特定文字轉換
-    let rule = /台北|臺北|基隆|新北|宜蘭|新竹市|新竹縣|桃園|苗栗|台中市|臺中市|台中|臺中|彰化|南投|嘉義市|嘉義縣|雲林|台南|臺南|台南|臺南|高雄|屏東|台東|花蓮|澎湖|金門|連江/
+    let rule = /台北|臺北|基隆|新北|宜蘭|新竹市|新竹縣|桃園|苗栗|台中市|臺中市|台中|臺中|彰化|南投|嘉義市|嘉義縣|雲林|台南|臺南|台南|臺南|高雄|屏東|台東|臺東|花蓮|澎湖|金門|連江/
 
     if (fuzzyQuery(rule, newMes)[0]) {
         try {
             const response = await axios.get('https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=rdec-key-123-45678-011121314');
             const data = response.data;
+            console.log(data)
 
             // 篩選出關鍵縣市
             let filterData = null

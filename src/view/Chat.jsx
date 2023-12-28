@@ -181,6 +181,19 @@ const Chat = () => {
     }
   }, [chatData])
 
+  useEffect(() => { // watch keyboard
+    const keyDownHandler = e => {
+      if (e.key == 'Enter') {
+        e.preventDefault();
+        handleEvent?.chat("user", mesVal)
+      }
+    };
+    document.addEventListener('keydown', keyDownHandler);
+    return () => {
+      document.removeEventListener('keydown', keyDownHandler);
+    };
+  }, [mesVal]);
+
 
   //聊天室
   return (
@@ -203,7 +216,7 @@ const Chat = () => {
           </div>
         </div>
       </div>
-      <div className="position-fixed w-100 bg-primary-light py-3" style={{ bottom: '58px', zIndex: 10 }}>
+      <div className="position-fixed w-100 bg-primary-light py-3" style={{ bottom: '55px', zIndex: 10 }}>
         <div className="container">
           <div className="col-12 col-md-10 mx-auto">
             <div className="mb-2 keyword-list d-flex" data-tour="keyword-list">
@@ -225,7 +238,7 @@ const Chat = () => {
               })}
             </div>
             <div className="chat-input d-flex align-items-center">
-              <a href="#" className="text-danger text-center me-2" data-tour="clear" onClick={e => handleEvent?.clearRecord(e)}>
+              <a href="#" className="text-danger text-center me-2 clear" data-tour="clear" onClick={e => handleEvent?.clearRecord(e)}>
                 <Icon icon='trash' size={24} color="#dc3545" />
                 <span className="d-block" style={{ fontSize: '14px', whiteSpace: 'pre' }}>清除紀錄</span>
               </a>
@@ -246,51 +259,6 @@ const Chat = () => {
           </div>
         </div>
       </div>
-      {/* <div className="position-absolute w-100" style={{ bottom: '60px' }}>
-        <div className="bg-primary-light py-3">
-          <div className="container">
-            <div className="col-12 col-md-10 mx-auto">
-              <div className="mb-2 keyword-list d-flex" data-tour="keyword-list">
-                {keywordList?.map((item, index) => {
-                  return (
-                    <a
-                      href="#"
-                      className="mx-2"
-                      onClick={(e) => setMesVal(item)}
-                    >
-                      <span
-                        className="badge rounded-pill text-bg-secondary text-light"
-                        style={{ fontSize: "16px" }}
-                      >
-                        + {item}
-                      </span>
-                    </a>
-                  );
-                })}
-              </div>
-              <div className="chat-input d-flex align-items-center">
-                <a href="#" className="text-danger text-center me-2" data-tour="clear" onClick={e => handleEvent?.clearRecord(e)}>
-                  <Icon icon='trash' size={24} color="#dc3545" />
-                  <span className="d-block" style={{ fontSize: '14px', whiteSpace: 'pre' }}>清除紀錄</span>
-                </a>
-                <input
-                  type="text"
-                  className="form-control form-control-lg rounded-pill"
-                  value={mesVal}
-                  onChange={(e) => setMesVal(e.target.value)}
-                />
-                <button
-                  type="button"
-                  className="btn chat-input-icon"
-                  onClick={(e) => handleEvent?.chat("user", mesVal)}
-                >
-                  <Icon icon="send" size={24} color="#252525" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
     </>
   );
 };

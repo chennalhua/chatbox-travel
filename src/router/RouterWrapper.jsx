@@ -124,7 +124,7 @@ const RouterWrapper = ({ children }) => {
       <Loading isLoader={isLoading} />
       <div className="bg-primary-light" data-theme={darkMode}>
         <div className=" w-100" style={{ background: '#fff' }}>
-          <Header userData={userData} setDarkMode={setDarkMode} />
+          <Header userData={userData} darkMode={darkMode} setDarkMode={setDarkMode} />
         </div>
         {children}
         <div className="position-fixed w-100" style={{ bottom: 0, zIndex: 1000 }}>
