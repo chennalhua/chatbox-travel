@@ -56,7 +56,7 @@ const Tag = () => {
             <Loading isLoader={isLoader} />
             <div
                 className="bg-primary-light pb-4"
-                style={{ height: "85vh", overflow: "scroll" }}
+                style={{ height: "90vh", overflow: "scroll" }}
             >
                 <div className="container py-3">
                     {

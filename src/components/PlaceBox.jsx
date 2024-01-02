@@ -88,6 +88,7 @@ const PlaceBox = ({ item, width, setArr, themeType }) => {
                     ? "heart-solid"
                     : "heart-outline"
                 }
+                className="love-icon"
                 size={22}
                 color={tagPlace.includes(item?.name) ? "#da1e11" : "#000"}
               />

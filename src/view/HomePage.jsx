@@ -43,7 +43,7 @@ const HomePage = () => {
   return (
     <div
       className="bg-primary-light pb-4"
-      style={{ height: "85vh", overflow: "scroll" }}
+      style={{ height: "90vh", overflow: "scroll" }}
     >
       {positionInfoData !== null && (
         <>
