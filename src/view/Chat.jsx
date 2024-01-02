@@ -33,16 +33,17 @@ const Chat = () => {
 
   //@ EVENT
   const handleEvent = {
-    chat: function (type, val) {
-      let key = `key-${chatData?.length}`;
+    chat: function (type, val) { //聊天對話 (type:類型 user(使用者) robot(機器人), val:value)
+      let key = `key-${chatData?.length}`; //對話框 id key，給每個訊息唯一碼
 
-      setChatData(oldArray => [...oldArray, {
+      //@ run user message
+      setChatData(oldArray => [...oldArray, { // 儲存 chat data
         key: key,
-        type: "user",
-        component: { val },
+        type: "user", // 表示為 "user" 對話類型
+        component: { val }, //元件類型: 一般對話框，無特殊元件
       }]);
-      //* 解析關鍵字
-      function robotParseKeyword(val) {
+
+      function robotParseKeyword(val) { //解析關鍵字
         let fuzzyKeyword = {
           allCity: fuzzyQuery(searchKeyword().allCity.rule, val)[0],
           city: fuzzyQuery(searchKeyword().city.rule, val)[0],
@@ -55,15 +56,22 @@ const Chat = () => {
             tainanArea: fuzzyQuery(searchKeyword().tainan.areaRule, val)[0]
           }
         }
-        //@ run 模組
+
+        //@ run robot message modal
         function runModal(key) {
           if (fuzzyKeyword?.attractions) { //* run 景點
             let themeType = '景點'
-            switch (key) {
+            switch (key) { // 根據 key 給出機器人要丟出的類型
               case '1': return setChatData(oldArray => [...oldArray, {
                 key: key,
                 type: "robot",
                 component: { type: "card", data: callAttractions(val).ResponseData, val, setMesVal, themeType },
+                /* type:類型，card: 卡片式,chooseArea:地區下拉選單,chooseHaveCity:縣市按鈕
+                  data:資料
+                  val:value
+                  setMesVal:子組件回傳更新的 state
+                  themeType:主題類型
+                */
               }]);
               case '2': return setChatData(oldArray => [...oldArray, {
                 key: key,
@@ -108,7 +116,7 @@ const Chat = () => {
               case '3': return setChatData(oldArray => [...oldArray, {
                 key: key,
                 type: "robot",
-                component: { type: "chooseHaveCity", data, val, setMesVal,themeType }
+                component: { type: "chooseHaveCity", data, val, setMesVal, themeType }
               }]);
               default: break;
             }
@@ -144,23 +152,25 @@ const Chat = () => {
           2 - 只符合縣市
           3 - 都未符合
         */
-        if (fuzzyKeyword.allCity) { //符合縣市
+
+        //判斷給出相對應要跑的模組 key
+        if (fuzzyKeyword.allCity) { //查詢是否符合全縣市
           if (fuzzyKeyword?.city) { //有符合台北 台南
-            let thisCity = val.includes('台北') ? 'taipei' : 'tainan' //判斷文字是屬於哪個縣市
-            if (fuzzyKeyword.haveCity[`${thisCity}Area`]) { //區域有符合
+            let thisCity = val.includes('台北') ? 'taipei' : 'tainan' //判斷文字是屬於哪個縣市 台北 台南
+            if (fuzzyKeyword.haveCity[`${thisCity}Area`]) { //判斷符合縣市且區域也配對完全
               runModal('1')
-            } else { //未符合區域
+            } else { //未符合區域配對完全
               runModal('2')
             }
-          } else {
+          } else { //未符合配對
             runModal('3')
           }
         } else { //未符合縣市
           runModal('3')
         }
       }
-      robotParseKeyword(val);
-      setMesVal(""); //reset
+      robotParseKeyword(val); //run 解析關鍵字
+      setMesVal(""); //reset message
     },
     clearRecord: function (e) {
       setIsLoader(true)
