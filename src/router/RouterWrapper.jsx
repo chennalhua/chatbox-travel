@@ -114,8 +114,8 @@ const RouterWrapper = ({ children }) => {
           lineLogin();
         }
       };
-      // isLogin()
-      // getAccessToken(window.location.href);
+      isLogin()
+      getAccessToken(window.location.href);
       setIsLoading(false);
     } else {
       let isDarkMode = localStorage.getItem("darkMode");

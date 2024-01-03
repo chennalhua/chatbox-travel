@@ -24,9 +24,8 @@ const HomePage = () => {
             setPositionInfoData(ResponseData), getWeatherAPI(ResponseData.city)
           );
         case "error":
-          return; //!顯示抓不到
-        default:
-          break;
+          return getWeatherAPI('嘉義') //!顯示抓不到
+        default: return getWeatherAPI('嘉義')
       }
     };
     getPositionInfoAPI();
