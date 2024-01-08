@@ -6,7 +6,7 @@ import { Decrypt } from "assets/function/AES";
 const HomePage = () => {
   //@ VALUE
   let [weatherData, setWeatherData] = useState(null),
-    [positionInfoData, setPositionInfoData] = useState("嘉義縣");
+    [positionInfoData, setPositionInfoData] = useState(null);
 
   //@ EVENT
   useEffect(() => {
@@ -21,13 +21,11 @@ const HomePage = () => {
       switch (ResponseCode) {
         case "success":
           return (
-            setPositionInfoData({ city: "嘉義縣" }),
-            getWeatherAPI(ResponseData.city)
+            setPositionInfoData(ResponseData), getWeatherAPI(ResponseData.city)
           );
         case "error":
-          return getWeatherAPI("嘉義"); //!顯示抓不到
-        default:
-          return getWeatherAPI("嘉義");
+          return getWeatherAPI('嘉義') //!顯示抓不到
+        default: return getWeatherAPI('嘉義')
       }
     };
     getPositionInfoAPI();
