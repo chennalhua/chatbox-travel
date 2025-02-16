@@ -35,7 +35,7 @@ const HomePage = () => {
 
   //@ VALUE
   let [weatherData, setWeatherData] = useState(null),
-    [positionInfoData, setPositionInfoData] = useState("嘉義縣");
+    [positionInfoData, setPositionInfoData] = useState(null);
 
   //@ EVENT
   useEffect(() => {
