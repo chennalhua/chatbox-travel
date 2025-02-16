@@ -1,11 +1,16 @@
+import { ArrowLeftOutlined, HeartOutlined } from "@ant-design/icons";
+import { Button } from "antd";
 import { Decrypt } from "assets/function/AES";
 import Icon from "components/Icon";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import Tour from "reactour";
-const Header = ({ userData, darkMode, setDarkMode }) => {
+const Header = () => {
   const location = useLocation(),
     router = useNavigate();
+  //@ REDUX
+  const userData = useSelector(state => state.userRe);
   //@ VALUE
   let [isTourShow, setIsTourShow] = useState(false);
 
@@ -20,7 +25,8 @@ const Header = ({ userData, darkMode, setDarkMode }) => {
       content: "關鍵字快捷鍵，往右滑可看更多",
     },
   ];
-  useEffect(() => {}, [userData]);
+
+  console.log('ppp6', userData)
   return (
     <>
       {
@@ -36,83 +42,36 @@ const Header = ({ userData, darkMode, setDarkMode }) => {
           />
         )
       }
-      <div className="w-100">
+      <div className="w-100 bg-primary-light">
         <div className="container">
           <div className="header-wrap">
             <div className="d-flex align-items-center">
-              {location?.pathname == "/detail" && (
-                <a
-                  href="#"
-                  className="me-4"
-                  onClick={(e) => (e.preventDefault(), router(-1))}
-                >
-                  <Icon
-                    icon="arrow-left"
-                    size={24}
-                    color="#000"
-                    className="arrow-left"
-                  />
-                </a>
+              {(location?.pathname !== "/") && (
+                <Button className="me-2" size="large" shape="circle" color="default" icon={<ArrowLeftOutlined />} onClick={(e) => (e.preventDefault(), router(-1))}></Button>
+
               )}
-              <h1 style={{ fontSize: "18px" }}>
-                <span style={{ color: "#959595" }}>Hello,</span>
-                <br />
-                {userData !== null ? userData?.name : "User"}
+              <h1 className="mb-0" style={{ fontSize: "18px" }}>
+                <span style={{ color: "#959595" }} className="me-2">Hello,</span>
+                {userData?.userData !== null ? userData?.userData?.name : "旅行者"}
               </h1>
             </div>
-            <div className="d-flex align-items-center">
-              <div className="form-check form-switch form-switch-lg mb-0 me-3">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  role="switch"
-                  id="darkMode"
-                  checked={darkMode == "dark" && "checked"}
-                  onChange={(e) =>
-                    e.target.checked
-                      ? (setDarkMode("dark"),
-                        localStorage.setItem("darkMode", "dark"))
-                      : (setDarkMode("light"),
-                        localStorage.setItem("darkMode", "light"))
-                  }
-                />
-                {darkMode == "dark" ? (
-                  <Icon icon="sun" size={24} color="#fff" className="ms-2" />
-                ) : (
-                  <Icon
-                    icon="moon"
-                    size={22}
-                    color="#212529"
-                    className="ms-2"
-                  />
-                )}
-                <label className="form-check-label" for="darkMode"></label>
-              </div>
-              {location?.pathname == "/chat" && (
-                <a
-                  href="#"
-                  className="btn text-dark me-3 clear"
-                  onClick={(e) => (e.preventDefault(), setIsTourShow(true))}
-                >
-                  <Icon icon="map-solid" size={24} color="#000" />
-                  <span className="text-dark d-block">指引</span>
-                </a>
-              )}
+            {
+              location?.pathname == "/" &&
               <div
-                className="img-circle-mask"
+                className="img-circle-mask me-3"
                 style={{ width: "45px", height: "45px" }}
               >
                 <img
                   src={
-                    userData !== null
-                      ? userData?.picture
+                    userData?.userData !== null
+                      ? userData?.userData?.picture
                       : require("assets/image/user.jpg")
                   }
                   className="img-fluid"
                   alt="xxx"
                 />
               </div>
-            </div>
+            }
           </div>
         </div>
       </div>

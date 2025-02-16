@@ -1,3 +1,4 @@
+import { DeleteOutlined } from '@ant-design/icons';
 import Icon from 'components/Icon';
 import { Loading } from 'components/Loading';
 import NoDataBox from 'components/NoDataBox';
@@ -62,13 +63,13 @@ const Tag = () => {
                     {
                         tagPlace?.length > 0 &&
                         <a href="#" className="text-danger text-end me-2" data-tour="clear" onClick={e => handleEvent?.clear(e)}>
-                            <Icon icon='trash' size={24} color="#dc3545" />
+                            <DeleteOutlined style={{ fontSize: '20px' }} />
                             <span className='ms-2 fw-bolder' style={{ fontSize: '14px', whiteSpace: 'pre' }}>清除收藏紀錄</span>
                         </a>
                     }
                     <div className="row justify-content-center">
                         {
-                            tagPlace?.length > 0 ? handleEvent?.getAllData()?.map((item, index) => {
+                            tagPlace?.length > 0 && handleEvent?.getAllData()?.map((item, index) => {
                                 if (tagPlace?.includes(item.name)) {
                                     return (
                                         <div className='col-12 col-md-4 my-2'>
@@ -76,10 +77,10 @@ const Tag = () => {
                                         </div>
                                     )
                                 }
-                            }) :
-                                <NoDataBox mes='尚無收藏' />
+                            })
                         }
                     </div>
+                    {tagPlace?.length <= 0 && <NoDataBox mes='尚無收藏' />}
                 </div>
             </div>
         </>

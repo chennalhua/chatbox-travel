@@ -10,7 +10,7 @@ export const callWeather = async (mes) => { //@ 取得"天氣"
         try {
             // GET API
             // const response = await axios.get('https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=rdec-key-123-45678-011121314'); 
-            const data = require('assets/data/weather.json'); // GET response
+            const data = require('assets/data/weather.json'); // GET response - 因 API 掛掉，暫時找替代方式
 
             // 篩選出關鍵縣市
             let filterData = null

@@ -104,3 +104,27 @@ html {
     transform: translatey(0px);
   }
 }
+
+.icon-href {
+  width: 80px;
+  height: 80px;
+  display: block;
+  text-align: center;
+  padding: 15px;
+  border-radius: 30px;
+  margin: 0 20px 10px 20px;
+  background: #f8f8f8;
+  box-shadow: 4px 4px 8px rgba(112, 112, 112, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  &:hover {
+    background-color: rgba($primary, 0.1);
+  }
+  a {
+    text-decoration: none;
+    color: #1e1e1e;
+    margin-top: 10px;
+    display: block;
+    margin-top: 0;
+  }
+}

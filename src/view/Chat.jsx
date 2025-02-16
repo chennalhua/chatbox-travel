@@ -10,6 +10,7 @@ import { callAttractions } from "API/callAttractions";
 import { Loading } from "components/Loading";
 import searchKeyword from "assets/data/searchKeyword";
 import { callFoodShop } from "API/callFoodShop";
+import { DeleteOutlined, SendOutlined } from "@ant-design/icons";
 const Chat = () => {
   let data = [];
 
@@ -226,7 +227,7 @@ const Chat = () => {
           </div>
         </div>
       </div>
-      <div className="position-fixed w-100 bg-primary-light py-3" style={{ bottom: '55px', zIndex: 10 }}>
+      <div className="bg-primary-light position-fixed w-100 py-3" style={{ bottom: '55px', zIndex: 10 }}>
         <div className="container">
           <div className="col-12 col-md-10 mx-auto">
             <div className="mb-2 keyword-list d-flex" data-tour="keyword-list">
@@ -238,7 +239,7 @@ const Chat = () => {
                     onClick={(e) => setMesVal(item)}
                   >
                     <span
-                      className="badge rounded-pill text-bg-secondary text-light"
+                      className="badge rounded-pill text-bg-dark text-light"
                       style={{ fontSize: "16px" }}
                     >
                       + {item}
@@ -247,9 +248,10 @@ const Chat = () => {
                 );
               })}
             </div>
-            <div className="chat-input d-flex align-items-center">
+            <div className="chat-input d-flex align-items-center mb-3">
+
               <a href="#" className="text-danger text-center me-2 clear" data-tour="clear" onClick={e => handleEvent?.clearRecord(e)}>
-                <Icon icon='trash' size={24} color="#dc3545" />
+                <DeleteOutlined style={{ fontSize: '20px' }} />
                 <span className="d-block" style={{ fontSize: '14px', whiteSpace: 'pre' }}>清除紀錄</span>
               </a>
               <input
@@ -263,7 +265,7 @@ const Chat = () => {
                 className="btn chat-input-icon"
                 onClick={(e) => handleEvent?.chat("user", mesVal)}
               >
-                <Icon icon="send" size={24} color="#252525" />
+                <SendOutlined style={{ fontSize: '20px' }} />
               </button>
             </div>
           </div>

@@ -71,8 +71,8 @@ const Detail = () => { //詳細資料
     }
 
     return (
-        <div style={{ height: 'calc(100vh - 120px)', overflowY: 'scroll' }}>
-            <div className='detail bg-primary-light'>
+        <div style={{ height: 'calc(100vh - 153px)', overflowY: 'scroll' }}>
+            <div className='detail bg-primary-light vh-100'>
                 <div className="container">
                     <div className="row justify-content-center">
                         <div className="col-12 col-md-8">

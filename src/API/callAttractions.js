@@ -2,7 +2,7 @@ import searchKeyword from 'assets/data/searchKeyword' //搜尋關鍵字
 import fuzzyQuery from 'assets/function/fuzzyQuery'
 
 export const callAttractions = (mes) => {
-    let data = require('assets/data/attractions.json')
+    let data = require('assets/data/attractions.json') // GET response - 因 API 有 CORS，暫時找替代方式
 
     // 模糊搜尋是否有相關關鍵字
     if (fuzzyQuery(searchKeyword().taipei.rule, mes)[0]) { // 配對"縣市"

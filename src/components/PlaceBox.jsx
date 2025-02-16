@@ -105,8 +105,6 @@ const PlaceBox = ({ item, width, setArr, themeType }) => {
             <button
               type="button"
               className="btn btn-primary w-100"
-              // data-bs-toggle="modal"
-              // data-bs-target="#exampleModal"
               onClick={(e) => (
                 e.preventDefault(),
                 router({

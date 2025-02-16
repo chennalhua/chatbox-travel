@@ -7,13 +7,14 @@ import url from "url";
 import jwtDecode from "jwt-decode";
 import randomStr from "assets/function/randomStr";
 import Nav from "components/layout/Nav";
+import { useSelector, useDispatch } from "react-redux";
+import { checkLoginAction, userDataAction } from '../redux/action/userAction'
 const RouterWrapper = ({ children }) => {
+  //@ REDUX
+  const dispatch = useDispatch();
+  const userData = useSelector(state => state.userRe);
   //@ VALUE
   let [isLoading, setIsLoading] = useState(true),
-    [userData, setUserData] = useState({
-      picture: require("assets/image/user.jpg"),
-      name: "User",
-    }),
     [darkMode, setDarkMode] = useState("light"); //深色模式
   const state = randomStr(20);
   const nonce = randomStr(25);
@@ -79,10 +80,8 @@ const RouterWrapper = ({ children }) => {
               }
             );
             //儲存加密
-            localStorage.setItem(
-              "_LOGINDATA",
-              Encrypt(JSON.stringify(decodedIdToken))
-            );
+            dispatch(userDataAction(decodedIdToken))
+            dispatch(checkLoginAction('yes'))
             setIsLoading(false);
           } catch (err) {
             // If token is invalid.
@@ -92,23 +91,14 @@ const RouterWrapper = ({ children }) => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (query.error) {
-      // swal.fire({
-      //   icon: 'error',
-      //   title: '登入失敗 ><',
-      //   text: '需「許可」授權，才能驗證登入',
-      //   confirmButtonText: '重新登入',
-      // }).then(function () {
-      //   lineLogin()
-      // })
     }
+    // else if (query.error) {}
   };
 
-  let checkLogin = localStorage.getItem("_LOGINDATA");
   useEffect(() => {
-    if (checkLogin == null) {
-      var urlParts = url.parse(window.location.href, true);
-      var query = urlParts.query;
+    if (userData?.checkLogin === 'no') {
+      let urlParts = url.parse(window.location.href, true);
+      let query = urlParts.query;
       const isLogin = () => {
         if (Object.keys(query).length === 0) {
           lineLogin();
@@ -122,20 +112,19 @@ const RouterWrapper = ({ children }) => {
       if (isDarkMode !== null) {
         setDarkMode(isDarkMode);
       }
-      setUserData(JSON.parse(Decrypt(checkLogin)));
       setTimeout(() => {
         setIsLoading(false);
       }, 500);
     }
-  }, [checkLogin]);
+  }, []);
 
   return (
     <>
       <Loading isLoader={isLoading} />
-      <div className="bg-primary-light" data-theme={darkMode}>
+      <div data-theme={darkMode}>
         <div className=" w-100" style={{ background: "#fff" }}>
           <Header
-            userData={userData}
+            userData={userData?.userData}
             darkMode={darkMode}
             setDarkMode={setDarkMode}
           />

@@ -1,6 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
-const callPositionInfo = async () => {
+const callPositionInfo = async () => { // 抓 IP 位置
     try {
         let API = 'https://api.bigdatacloud.net/data/reverse-geocode-client?localityLanguage=zh-hant'
         let res = await axios.get(API)

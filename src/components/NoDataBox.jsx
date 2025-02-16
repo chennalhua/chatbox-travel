@@ -1,14 +1,11 @@
+import { Card } from 'antd';
 import React, { useState } from 'react';
 const NoDataBox = ({ mes }) => {
     return (
         <>
-            <div className="row mt-5">
-                <div className="col-12">
-                    <div className='bg-light rounded py-4'>
-                        <h4 className='text-primary-dark text-center'>{mes}</h4>
-                    </div>
-                </div>
-            </div>
+            <Card>
+                <p className='text-primary-dark text-center mb-0 fw-bolder' style={{ fontSize: '18px' }}>{mes}</p>
+            </Card>
         </>
     )
 }

@@ -4,7 +4,10 @@ import Icon from "components/Icon";
 import dayjs from "dayjs";
 import { getWeek } from "assets/function/dateTool";
 import { Decrypt } from "assets/function/AES";
+import { useSelector } from "react-redux";
 const MesBox = ({ type, data }) => {
+  //@ REDUX
+  const userData = useSelector(state => state.userRe.userData);
   const handleStyle = {
     imgMask: {
       width: "50px",
@@ -13,20 +16,19 @@ const MesBox = ({ type, data }) => {
     },
   };
 
-  let userData = localStorage?.getItem("_LOGINDATA");
-
   return (
     <>
       <div className="mt-2 mb-4">
         <div className="text-end">
           <img
             src={
-              userData !== null
-                ? JSON.parse(Decrypt(userData))?.picture
+              !!userData
+                ? userData?.picture
                 : require("assets/image/user.jpg")
             }
             className="img-fluid"
             style={handleStyle?.imgMask}
+            alt=""
           />
         </div>
         <div className="mt-2 text-end">

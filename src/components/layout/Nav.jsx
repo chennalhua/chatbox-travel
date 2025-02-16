@@ -1,34 +1,44 @@
-import Icon from "components/Icon";
+import { HeartOutlined, HomeOutlined, MessageOutlined, PlusOutlined, UnorderedListOutlined, UserOutlined } from "@ant-design/icons";
+import { Button } from "antd";
+import TodoForm from "components/todo/TodoForm";
 import React, { useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 const Nav = () => {
+  const location = useLocation()
   let navList = [
-    { path: "", name: "首頁", icon: "home" },
-    { path: "chat", name: "聊天", icon: "mes" },
-    { path: "myTag", name: "收藏", icon: "heart-outline" }
+    {
+      path: "",
+      name: "首頁",
+      component: <Button size="large" color="default" variant="text" icon={<HomeOutlined style={{ fontSize: '22px' }} />} onClick={(_) => window.location.href = '/'}></Button>
+    },
+    {
+      path: "chat",
+      name: "聊天",
+      component: <Button size="large" color="default" variant="text" icon={<MessageOutlined style={{ fontSize: '22px' }} />} onClick={(_) => window.location.href = '/chat'}></Button>
+    },
+    {
+      path: "todoAdd",
+      name: "紀錄新增",
+      component: <TodoForm />
+    },
+    {
+      path: "myTag",
+      name: "收藏",
+      component: <Button size="large" color="default" variant="text" icon={<HeartOutlined style={{ fontSize: '22px' }} />} onClick={(_) => window.location.href = '/myTag'}></Button>
+    },
+    {
+      path: "todo",
+      name: "紀錄",
+      component: <Button size="large" color="default" variant="text" icon={<UnorderedListOutlined style={{ fontSize: '22px' }} />} onClick={(_) => window.location.href = '/todo'}></Button>
+    }
   ];
   return (
     <>
       <div className="nav">
         <div className="container my-auto">
-          <div className="d-flex justify-content-evenly">
-            {navList?.map((item, index) => {
-              return (
-                <div className="text-center" key={`navList-${index}`}>
-                  <NavLink
-                    to={`/${item?.path}`}
-                    className={({ isActive, isPending }) =>
-                      isPending
-                        ? "pending"
-                        : isActive
-                          ? "btn nav-btn active"
-                          : "btn nav-btn"
-                    }
-                  >
-                    <Icon icon={item?.icon} size={24} color="#4493bd" />
-                  </NavLink>
-                </div>
-              );
+          <div className="d-flex justify-content-around align-items-end">
+            {navList.map((item) => {
+              return <div className={`${`/${item.path}` === location.pathname && item.path !== 'todoAdd' && 'active'}`}>{item.component}</div>
             })}
           </div>
         </div>

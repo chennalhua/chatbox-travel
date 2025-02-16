@@ -72,7 +72,7 @@ const MesBox = ({ type, data, mes, setMesVal, themeType }) => {
                   {data?.map((item, index) => {
                     return (
                       <SplideSlide key={`slider-${index}`}>
-                        <PlaceBox item={item} setArr={setArr} themeType={themeType}/>
+                        <PlaceBox item={item} setArr={setArr} themeType={themeType} />
                       </SplideSlide>
                     );
                   })}

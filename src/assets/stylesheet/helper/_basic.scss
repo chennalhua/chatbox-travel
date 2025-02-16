@@ -65,6 +65,7 @@ div[data-theme="dark"] {
 
 input,
 button {
+  cursor: pointer !important;
   &:active,
   &:focus {
     border: none;
