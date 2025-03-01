@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
 import bg from 'assets/image/view/view-1.jpg'
 const ImgHrefBox = (props) => {
-    let { img, children } = props
+    let { children } = props
     //@ STYLE
     const handleStyle = {
         bg: {

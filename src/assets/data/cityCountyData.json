@@ -2,6 +2,7 @@
     "data": [
         {
             "COU_NAME": "台北市",
+            "en":"Taipei",
             "areas": [
                 {
                     "AREA_NAME": "中正區",
@@ -55,6 +56,7 @@
         },
         {
             "COU_NAME": "基隆市",
+            "en":"Keelung",
             "areas": [
                 {
                     "AREA_NAME": "仁愛區",
@@ -88,6 +90,7 @@
         },
         {
             "COU_NAME": "新北市",
+            "en":"NewTaipei",
             "areas": [
                 {
                     "AREA_NAME": "萬里區",
@@ -209,6 +212,7 @@
         },
         {
             "COU_NAME": "宜蘭縣",
+            "en":"YilanCounty",
             "areas": [
                 {
                     "AREA_NAME": "宜蘭市",
@@ -266,6 +270,7 @@
         },
         {
             "COU_NAME": "新竹市",
+            "en":"Hsinchu",
             "areas": [
                 {
                     "AREA_NAME": "北區",
@@ -283,6 +288,7 @@
         },
         {
             "COU_NAME": "新竹縣",
+            "en":"HsinchuCounty",
             "areas": [
                 {
                     "AREA_NAME": "竹北市",
@@ -340,6 +346,7 @@
         },
         {
             "COU_NAME": "桃園市",
+            "en":"Taoyuan",
             "areas": [
                 {
                     "AREA_NAME": "中壢區",
@@ -397,6 +404,7 @@
         },
         {
             "COU_NAME": "苗栗縣",
+            "en":"MiaoliCounty",
             "areas": [
                 {
                     "AREA_NAME": "竹南鎮",
@@ -474,6 +482,7 @@
         },
         {
             "COU_NAME": "台中市",
+            "en":"Taichung",
             "areas": [
                 {
                     "AREA_NAME": "中區",
@@ -595,6 +604,7 @@
         },
         {
             "COU_NAME": "彰化縣",
+            "en":"ChanghuaCounty",
             "areas": [
                 {
                     "AREA_NAME": "彰化市",
@@ -704,6 +714,7 @@
         },
         {
             "COU_NAME": "南投縣",
+            "en":"NantouCounty",
             "areas": [
                 {
                     "AREA_NAME": "南投市",
@@ -761,6 +772,7 @@
         },
         {
             "COU_NAME": "嘉義市",
+            "en":"Chiayi",
             "areas": [
                 {
                     "AREA_NAME": "東區",
@@ -774,6 +786,7 @@
         },
         {
             "COU_NAME": "嘉義縣",
+            "en":"ChiayiCounty",
             "areas": [
                 {
                     "AREA_NAME": "番路鄉",
@@ -851,6 +864,7 @@
         },
         {
             "COU_NAME": "雲林縣",
+            "en":"YunlinCounty",
             "areas": [
                 {
                     "AREA_NAME": "斗南鎮",
@@ -936,6 +950,7 @@
         },
         {
             "COU_NAME": "台南市",
+            "en":"Tainan",
             "areas": [
                 {
                     "AREA_NAME": "中西區",
@@ -1089,6 +1104,7 @@
         },
         {
             "COU_NAME": "高雄市",
+            "en":"Kaohsiung",
             "areas": [
                 {
                     "AREA_NAME": "新興區",
@@ -1254,6 +1270,7 @@
         },
         {
             "COU_NAME": "屏東縣",
+            "en":"PingtungCounty",
             "areas": [
                 {
                     "AREA_NAME": "屏東市",
@@ -1391,6 +1408,7 @@
         },
         {
             "COU_NAME": "台東縣",
+            "en":"TaitungCounty",
             "areas": [
                 {
                     "AREA_NAME": "台東市",
@@ -1460,6 +1478,7 @@
         },
         {
             "COU_NAME": "花蓮縣",
+            "en":"HualienCounty",
             "areas": [
                 {
                     "AREA_NAME": "花蓮市",
@@ -1517,6 +1536,7 @@
         },
         {
             "COU_NAME": "澎湖縣",
+            "en":"PenghuCounty",
             "areas": [
                 {
                     "AREA_NAME": "七美鄉",
@@ -1546,6 +1566,7 @@
         },
         {
             "COU_NAME": "金門縣",
+            "en":"KinmenCounty",
             "areas": [
                 {
                     "AREA_NAME": "金湖鎮",
@@ -1575,6 +1596,7 @@
         },
         {
             "COU_NAME": "連江縣",
+            "en":"LienchiangCounty",
             "areas": [
                 {
                     "AREA_NAME": "南竿鄉",

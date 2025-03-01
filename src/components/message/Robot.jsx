@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
-import Icon from "components/Icon";
-import dayjs from "dayjs";
-import { getWeek } from "assets/function/dateTool";
 import { DotLoader } from "components/Loading";
 import scrollToBottom from "assets/function/scrollToBottom";
 import cityCountyData from "assets/data/cityCountyData.json";
 import WeatherBox from "components/WeatherBox";
 import { callWeather } from "API/callWeather";
 import PlaceBox from "components/PlaceBox";
-import { callFoodShop } from "API/callFoodShop";
-import fuzzyQuery from "assets/function/fuzzyQuery";
-import searchKeyword from "assets/data/searchKeyword";
+import { Card, Button } from "antd";
 const MesBox = ({ type, data, mes, setMesVal, themeType }) => {
   let [isLoader, setIsLoader] = useState(true);
   let [arr, setArr] = useState([]);
@@ -46,13 +41,19 @@ const MesBox = ({ type, data, mes, setMesVal, themeType }) => {
   };
 
   //@ VALUE
-  let [weatherData, setWeatherData] = useState(null),
-    [foodData, setFoodData] = useState([])
-  let thisCity = fuzzyQuery(searchKeyword().taipei.rule, mes)[0] ? '台北市' : '台南市'
+  let [weatherData, setWeatherData] = useState(null)
   //@ EVENT
   const handleEvent = {
     typeFormat: function (type, data) {
-      switch (type) {
+      let robotType = type;
+
+      //-- 判斷如果設定為 card 但沒 data 表示搜尋不到
+      if (type === 'card' && data.length <= 0) {
+        robotType = 'text';
+        data = `很抱歉尚未提供 "${mes}" 查詢`
+      }
+
+      switch (robotType) {
         case "text": //文字框
           return (
             <>
@@ -82,189 +83,58 @@ const MesBox = ({ type, data, mes, setMesVal, themeType }) => {
           );
         case "weather": //天氣
           return <WeatherBox data={weatherData} />;
-        case "chooseArea": //選擇區域
-          return (
-            <div>
-              <div className="card me-2" style={{ width: "335px" }}>
-                <div
-                  style={{
-                    width: "100%",
-                    height: "180px",
-                    overflow: "hidden",
-                  }}
-                >
-                  <img
-                    src={require("assets/image/QUESTION.png")}
-                    className="card-img-top"
-                    alt=""
-                  />
-                </div>
-                <div className="card-body">
-                  <h5 className="card-title mb-4">
-                    搜尋條件不足，請繼續提供線索!!
-                  </h5>
-                  <select
-                    className="form-select"
-                    aria-label="Default select example"
-                    onChange={(e) => setMesVal(`${thisCity}${e.target.value}${themeType}`)}
-                  >
-                    <option selected disabled>
-                      請選擇
-                    </option>
-                    {
-                      cityCountyData?.data.filter((val) => {
-                        if (thisCity == val.COU_NAME) {
-                          return val
-                        }
-                      }).map((item) => {
-                        return (
-                          item.areas.map((kitem, kindex) => {
-                            return (
-                              <option value={kitem?.AREA_NAME}>
-                                {kitem?.AREA_NAME}
-                              </option>
-                            );
-                          })
-                        )
-                      })
-                    }
-                  </select>
-                </div>
-              </div>
-            </div>
-          );
-        case "chooseHaveCity": //選擇目前提供查詢的縣市
-          return (
-            <div>
-              <div className="card me-2" style={{ width: "335px" }}>
-                <div
-                  style={{
-                    width: "100%",
-                    height: "180px",
-                    overflow: "hidden",
-                  }}
-                >
-                  <img
-                    src={require("assets/image/QUESTION.png")}
-                    className="card-img-top"
-                    alt=""
-                  />
-                </div>
-                <div className="card-body">
-                  <h5 className="card-title mb-4">
-                    {`目前僅提供以下縣市資訊..><`}
-                  </h5>
-                  <div className="row">
-                    <div className="col-6">
-                      <button
-                        className="btn btn-primary w-100"
-                        onClick={(e) => setMesVal(`台北${themeType}`)}
-                      >
-                        台北
-                      </button>
-                    </div>
-                    <div className="col-6">
-                      <button
-                        className="btn btn-primary w-100"
-                        onClick={(e) => setMesVal(`台南${themeType}`)}
-                      >
-                        台南
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          );
         case "chooseAllCity": //選擇縣市 list for weather
           return (
-            <div>
-              <div className="card me-2" style={{ width: "335px" }}>
-                <div
-                  style={{
-                    width: "100%",
-                    height: "180px",
-                    overflow: "hidden",
-                  }}
-                >
-                  <img
-                    src={require("assets/image/QUESTION.png")}
-                    className="card-img-top"
-                    alt=""
-                  />
-                </div>
-                <div className="card-body">
-                  <h5 className="card-title mb-4">
-                    搜尋條件不足，請繼續提供線索!!
-                  </h5>
-                  <select
-                    className="form-select"
-                    aria-label="Default select example"
-                    onChange={(e) => setMesVal(`${e.target.value}${themeType}`)}
-                  >
-                    <option selected disabled>
-                      請選擇
-                    </option>
-                    {cityCountyData?.data?.map((item, index) => {
-                      return (
-                        <option value={item?.COU_NAME}>{item?.COU_NAME}</option>
-                      );
-                    })}
-                  </select>
-                </div>
-              </div>
-            </div>
+            <Card
+              style={{ width: 350 }}
+              cover={
+                <img
+                  alt="q&a"
+                  src={require('assets/image/QUESTION.png')}
+                  height={183}
+                />
+              }
+            >
+              <h5 className="mb-3">
+                搜尋條件不足，請繼續提供線索!
+              </h5>
+              <select
+                className="form-select"
+                aria-label="Default select example"
+                onChange={(e) => setMesVal(`${e.target.value}${themeType}`)}
+              >
+                <option selected disabled>
+                  請選擇
+                </option>
+                {cityCountyData?.data?.map((item, index) => {
+                  return (
+                    <option value={item?.COU_NAME}>{item?.COU_NAME}</option>
+                  );
+                })}
+              </select>
+            </Card>
           );
         case "chooseType": //選擇主題類型: 景點,美食,天氣
           return (
-            <div>
-              <div className="card me-2" style={{ width: "335px" }}>
-                <div
-                  style={{
-                    width: "100%",
-                    height: "180px",
-                    overflow: "hidden",
-                  }}
-                >
-                  <img
-                    src={require("assets/image/robot.jpg")}
-                    className="card-img-top"
-                    alt=""
-                  />
-                </div>
-                <div className="card-body">
-                  <h5 className="card-title mb-4">
-                    請問您想得到什麼類型的資訊呢？
-                  </h5>
-                  <div className="row">
-                    <div className="col-4">
-                      <button
-                        className="btn btn-primary w-100"
-                        onClick={(e) => setMesVal(`${mes}景點`)}
-                      >
-                        景點
-                      </button>
-                    </div>
-                    <div className="col-4">
-                      <button
-                        className="btn btn-primary w-100"
-                        onClick={(e) => setMesVal(`${mes}美食`)}
-                      >
-                        美食
-                      </button>
-                    </div>
-                    <div className="col-4">
-                      <button
-                        className="btn btn-primary w-100"
-                        onClick={(e) => setMesVal(`${mes}天氣`)}
-                      >
-                        天氣
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Card
+              style={{ width: 350 }}
+              cover={
+                <img
+                  alt="q&a"
+                  src={require('assets/image/QUESTION.png')}
+                  height={183}
+                />
+              }
+              actions={[
+                <Button color="default" variant="solid" onClick={(e) => (setMesVal(`${mes}景點`))}>景點</Button>,
+                <Button color="default" variant="solid" onClick={(e) => (setMesVal(`${mes}美食`))}>美食</Button>,
+                <Button color="default" variant="solid" onClick={(e) => (setMesVal(`${mes}住宿`))}>住宿</Button>,
+              ]}
+            >
+              <h5 className="card-title">
+                請問您想得到什麼類型的資訊呢？
+              </h5>
+            </Card>
           );
         default:
           break;
@@ -278,12 +148,6 @@ const MesBox = ({ type, data, mes, setMesVal, themeType }) => {
       response[0] && setWeatherData(response[1]);
     };
     getWeather();
-
-    const getFood = async () => {
-      const response = await callFoodShop(mes);
-      setFoodData(response);
-    };
-    getFood();
 
     setTimeout(() => {
       setIsLoader(false);
@@ -301,6 +165,7 @@ const MesBox = ({ type, data, mes, setMesVal, themeType }) => {
           src={require("assets/image/robot.jpg")}
           className="img-fluid"
           style={handleStyle?.imgMask}
+          alt=""
         />
         {isLoader ? (
           <DotLoader isLoader={isLoader} />

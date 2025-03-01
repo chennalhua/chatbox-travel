@@ -1,86 +1,66 @@
 import { DeleteOutlined } from '@ant-design/icons';
-import Icon from 'components/Icon';
-import { Loading } from 'components/Loading';
+import { Tabs } from 'antd';
 import NoDataBox from 'components/NoDataBox';
 import PlaceBox from 'components/PlaceBox';
-import Nav from 'components/layout/Nav';
-import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearTag } from '../redux/action/chatAction';
 const Tag = () => {
-    let [data, setData] = useState([]),
-        [tagPlace, setTagPlace] = useState([]),
-        [isLoader, setIsLoader] = useState(false)
+    const dispatch = useDispatch()
+    const allChatData = useSelector(state => state.chatRe)
 
-    let sourceData = require('assets/data/attractions.json')
-    //@ EVENT
-    const handleEvent = {
-        getAllData: function () {
-            let attrData = require('assets/data/attractions.json'),
-                foodData = require('assets/data/foods.json')
-
-            let newAttrArr = [],
-                newFoodArr = []
-            function contact(storage, data, themeType) {
-                Object.keys(data).map((item) => {
-                    data[item].map((kitem) => {
-                        kitem.themeType = themeType
-                        storage.push(kitem)
-                    })
+    const handleData = {
+        getData: (type) => {
+            return (
+                allChatData.tagData?.filter(val => {
+                    return type === val.type
+                }).map((item, index) => {
+                    return (
+                        <div className='d-flex justify-content-center my-3' key={index}>
+                            <PlaceBox item={item} width={'auto'} themeType={item.type} />
+                        </div>
+                    )
                 })
-            }
-
-            contact(newAttrArr, attrData, '景點')
-            contact(newFoodArr, foodData, '美食')
-
-            return newAttrArr.concat(newFoodArr)
-        },
-        clear: function (e) {
-            e.preventDefault()
-            setIsLoader(true)
-            localStorage.removeItem('_TAGPLACE')
-            setTimeout(() => {
-                setTagPlace([])
-                setIsLoader(false)
-            }, 500)
+            )
         }
     }
 
-    let getHistoryData = localStorage.getItem('_TAGPLACE')
-    useEffect(() => {
-        if (getHistoryData !== null && getHistoryData !== undefined && getHistoryData !== 'undefined') {
-            setTagPlace(JSON.parse(getHistoryData))
-
-        }
-    }, [])
+    const items = [
+        {
+            key: '1',
+            label: '景點',
+            children: handleData.getData('attractions'),
+        },
+        {
+            key: '2',
+            label: '美食',
+            children: handleData.getData('food'),
+        },
+        {
+            key: '3',
+            label: '住宿',
+            children: handleData.getData('hotel'),
+        },
+    ];
 
     return (
         <>
-            <Loading isLoader={isLoader} />
             <div
-                className="bg-primary-light pb-4"
-                style={{ height: "90vh", overflow: "scroll" }}
+                className="bg-primary-light pb-5"
+                style={{ height: "89vh", overflow: "scroll" }}
             >
                 <div className="container py-3">
                     {
-                        tagPlace?.length > 0 &&
-                        <a href="#" className="text-danger text-end me-2" data-tour="clear" onClick={e => handleEvent?.clear(e)}>
-                            <DeleteOutlined style={{ fontSize: '20px' }} />
-                            <span className='ms-2 fw-bolder' style={{ fontSize: '14px', whiteSpace: 'pre' }}>清除收藏紀錄</span>
-                        </a>
+                        allChatData?.tagData.length > 0 ?
+                            <>
+                                <a href="#" className="text-danger text-end me-2" data-tour="clear" onClick={(_) => dispatch(clearTag())}>
+                                    <DeleteOutlined style={{ fontSize: '20px' }} />
+                                    <span className='ms-2 fw-bolder' style={{ fontSize: '14px', whiteSpace: 'pre' }}>清除收藏紀錄</span>
+                                </a>
+                                <Tabs defaultActiveKey="1" items={items} />
+                            </>
+                            :
+                            <NoDataBox mes='尚無收藏' />
                     }
-                    <div className="row justify-content-center">
-                        {
-                            tagPlace?.length > 0 && handleEvent?.getAllData()?.map((item, index) => {
-                                if (tagPlace?.includes(item.name)) {
-                                    return (
-                                        <div className='col-12 col-md-4 my-2'>
-                                            <PlaceBox item={item} width={'auto'} setArr={setTagPlace} themeType={item.themeType} />
-                                        </div>
-                                    )
-                                }
-                            })
-                        }
-                    </div>
-                    {tagPlace?.length <= 0 && <NoDataBox mes='尚無收藏' />}
                 </div>
             </div>
         </>

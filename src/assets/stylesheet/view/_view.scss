@@ -116,10 +116,9 @@ html {
   background: #f8f8f8;
   box-shadow: 4px 4px 8px rgba(112, 112, 112, 0.2);
   transition: all 0.3s ease;
-  cursor: pointer;
-  &:hover {
-    background-color: rgba($primary, 0.1);
-  }
+  // &:hover {
+  //   background-color: rgba($primary, 0.1);
+  // }
   a {
     text-decoration: none;
     color: #1e1e1e;

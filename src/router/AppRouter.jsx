@@ -1,13 +1,12 @@
-import React, { useEffect } from "react";
 import { BrowserRouter as Router, useRoutes } from "react-router-dom";
 import RouterWrapper from "./RouterWrapper";
 
 import HomePage from "view/HomePage";
 import Chat from "view/Chat";
-import Test from "view/Test";
 import Tag from "view/Tag";
 import Detail from "view/Detail";
 import Todo from "view/Todo";
+import User from "view/Member";
 
 const Routes = () => {
     const routes = useRoutes([
@@ -19,7 +18,7 @@ const Routes = () => {
                 { path: "todo", element: <Todo /> },
                 { path: "myTag", element: <Tag /> },
                 { path: "detail", element: <Detail /> },
-                { path: "test", element: <Test /> },
+                { path: "member", element: <User /> },
             ],
         },
         {

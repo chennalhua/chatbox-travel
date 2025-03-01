@@ -1,7 +1,6 @@
-import { HeartOutlined, HomeOutlined, MessageOutlined, PlusOutlined, UnorderedListOutlined, UserOutlined } from "@ant-design/icons";
+import { HeartOutlined, HomeOutlined, MessageOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 import TodoForm from "components/todo/TodoForm";
-import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 const Nav = () => {
   const location = useLocation()

@@ -92,3 +92,9 @@ button {
   background-color: #c2c2c2;
   border-radius: 5px;
 }
+
+.border-dashed {
+  width: 100%;
+  height: 1px;
+  border-top: 1px dashed $primary-dark; /* 紅色虛線邊框 */
+}

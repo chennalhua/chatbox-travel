@@ -1,8 +1,6 @@
-import { ArrowLeftOutlined, HeartOutlined } from "@ant-design/icons";
+import { ArrowLeftOutlined } from "@ant-design/icons";
 import { Button } from "antd";
-import { Decrypt } from "assets/function/AES";
-import Icon from "components/Icon";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import Tour from "reactour";
@@ -26,7 +24,6 @@ const Header = () => {
     },
   ];
 
-  console.log('ppp6', userData)
   return (
     <>
       {
@@ -55,23 +52,26 @@ const Header = () => {
                 {userData?.userData !== null ? userData?.userData?.name : "旅行者"}
               </h1>
             </div>
-            {
-              location?.pathname == "/" &&
-              <div
-                className="img-circle-mask me-3"
-                style={{ width: "45px", height: "45px" }}
-              >
-                <img
-                  src={
-                    userData?.userData !== null
-                      ? userData?.userData?.picture
-                      : require("assets/image/user.jpg")
-                  }
-                  className="img-fluid"
-                  alt="xxx"
-                />
-              </div>
-            }
+            <div className="d-flex align-items-center">
+              {
+                location?.pathname == "/" &&
+                <div
+                  className="img-circle-mask me-3"
+                  style={{ width: "45px", height: "45px" }}
+                >
+                  <img
+                    src={
+                      userData?.userData !== null
+                        ? userData?.userData?.picture
+                        : require("assets/image/user.jpg")
+                    }
+                    className="img-fluid"
+                    alt="xxx"
+                  />
+                </div>
+              }
+              {/* <Button shape="circle" size="large" onClick={(_) => window.location.href = '/member'}><UserOutlined /></Button> */}
+            </div>
           </div>
         </div>
       </div>

@@ -1,9 +1,3 @@
-import React, { useState } from "react";
-import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
-import Icon from "components/Icon";
-import dayjs from "dayjs";
-import { getWeek } from "assets/function/dateTool";
-import { Decrypt } from "assets/function/AES";
 import { useSelector } from "react-redux";
 const MesBox = ({ type, data }) => {
   //@ REDUX

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Button, Checkbox, Badge, Card, Drawer } from 'antd';
+import { Button, Badge, Card, Drawer } from 'antd';
 import { CalendarOutlined, DeleteOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleTodo, deleteTodo, targetTodo } from '../../redux/action/todoAction';
+import { deleteTodo, targetTodo } from '../../redux/action/todoAction';
 import { typeData } from 'assets/function/settingData';
 import dayjs from 'dayjs';
 import NoDataBox from 'components/NoDataBox';
@@ -22,10 +22,6 @@ const TodoCard = () => {
                         <Card key={item.id} onClick={() => (setDrawerOpen(true), dispatch(targetTodo(item.id)))} style={{ cursor: 'pointer' }}>
                             <div className='d-flex align-items-center justify-content-between'>
                                 <div className='d-flex align-items-center'>
-                                    <Checkbox
-                                        // checked={todo.completed}
-                                        onChange={() => dispatch(toggleTodo(item.id))}
-                                    ></Checkbox>
                                     <Badge className='mx-2' color={typeData(item.type).color} count={item.type} />
                                     <h2 className='mb-0 d-inline-block' style={{ fontSize: '16px' }}>{item.title}</h2>
                                 </div>

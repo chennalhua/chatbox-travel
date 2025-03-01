@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "components/layout/Header";
 import { Loading } from "components/Loading";
-import { Decrypt, Encrypt } from "assets/function/AES";
 import axios from "axios";
 import url from "url";
 import jwtDecode from "jwt-decode";
@@ -9,10 +8,18 @@ import randomStr from "assets/function/randomStr";
 import Nav from "components/layout/Nav";
 import { useSelector, useDispatch } from "react-redux";
 import { checkLoginAction, userDataAction } from '../redux/action/userAction'
+import { callTdxTokenAPI } from "API/callAuth";
+import { tdxTokenAction } from "../redux/action/authAction";
+import dayjs from "dayjs";
 const RouterWrapper = ({ children }) => {
   //@ REDUX
   const dispatch = useDispatch();
   const userData = useSelector(state => state.userRe);
+  const authData = useSelector(state => state.authRe);
+
+  //@ REF
+  const APIRef = useRef(null)
+
   //@ VALUE
   let [isLoading, setIsLoading] = useState(true),
     [darkMode, setDarkMode] = useState("light"); //深色模式
@@ -80,7 +87,10 @@ const RouterWrapper = ({ children }) => {
               }
             );
             //儲存加密
-            dispatch(userDataAction(decodedIdToken))
+            dispatch(userDataAction({
+              name: decodedIdToken?.name,
+              picture: decodedIdToken?.picture
+            }))
             dispatch(checkLoginAction('yes'))
             setIsLoading(false);
           } catch (err) {
@@ -95,7 +105,20 @@ const RouterWrapper = ({ children }) => {
     // else if (query.error) {}
   };
 
+  //@ API
+  const handleAPI = {
+    callTdxTokenAPI: async () => {
+      let res = await callTdxTokenAPI();
+      let { ResponseCode, ResponseData } = res
+      if (ResponseCode === 'success') {
+        dispatch(tdxTokenAction(ResponseData))
+      }
+    }
+  }
+  APIRef.current = handleAPI;
+
   useEffect(() => {
+    // 判斷是否有登入
     if (userData?.checkLogin === 'no') {
       let urlParts = url.parse(window.location.href, true);
       let query = urlParts.query;
@@ -115,6 +138,15 @@ const RouterWrapper = ({ children }) => {
       setTimeout(() => {
         setIsLoading(false);
       }, 500);
+    }
+
+    // 判斷是否有 TOKEN
+    if (!authData?.tdxToken) {
+      APIRef.current.callTdxTokenAPI()
+    } else {
+      if (dayjs().valueOf() >= authData?.tdxToken?.expires) {
+        APIRef.current.callTdxTokenAPI()
+      }
     }
   }, []);
 

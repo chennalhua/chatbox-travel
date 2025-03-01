@@ -1,123 +1,70 @@
-import React, { useEffect, useState } from "react";
-import Icon from "./Icon";
 import TextLongToDot from "assets/function/TextLongToDot";
 import { useNavigate } from "react-router-dom";
-const PlaceBox = ({ item, width, setArr, themeType }) => {
+import { Badge, Button, Card } from "antd";
+import { typeData } from "assets/function/settingData";
+import { HeartFilled, HeartOutlined } from "@ant-design/icons";
+import { useDispatch, useSelector } from "react-redux";
+import { addTag, removeTag } from "../redux/action/chatAction";
+const PlaceBox = ({ item, width, themeType }) => {
+  const dispatch = useDispatch()
+  const allChatData = useSelector(state => state.chatRe)
   const router = useNavigate();
 
-  let [tagPlace, setTagPlace] = useState([]);
-
-  //@ EVENT
-  const handleEvent = {
-    setLove: function (e, name) {
-      e.preventDefault();
-
-      let newArr = tagPlace;
-      if (newArr.includes(name)) {
-        newArr.splice(newArr.indexOf(name), 1);
+  const handleUI = {
+    img: (item) => {
+      if (!!item?.PictureUrl1) {
+        return <img
+          alt={item?.PictureDescription1}
+          src={item?.PictureUrl1}
+          height={183}
+        />
       } else {
-        newArr.push(name);
+        if (themeType === '美食' || themeType === 'food') {
+          return <img
+            src={require("assets/image/FOOD.png")}
+            alt={`${item?.name}-沒有相關圖片 QQ`}
+          />
+        } else if (themeType === '景點' || themeType === 'attractions') {
+          return <img
+            src={require("assets/image/ATTRACTIONS.png")}
+            alt={`${item?.name}-沒有相關圖片 QQ`}
+          />
+        } else if (themeType === '住宿' || themeType === 'hotel') {
+          return <img
+            src={require("assets/image/HOTEL.png")}
+            alt={`${item?.name}-沒有相關圖片 QQ`}
+          />
+        }
       }
-
-      let filterRepeat = newArr.filter(function (element, index, arr) {
-        return arr.indexOf(element) == index;
-      });
-      setTagPlace(filterRepeat);
-      setArr(filterRepeat);
-      localStorage.setItem("_TAGPLACE", JSON.stringify(filterRepeat));
-    },
-  };
-
-  useEffect(() => {
-    let getHistoryData = localStorage.getItem("_TAGPLACE");
-    if (
-      getHistoryData !== null &&
-      getHistoryData !== undefined &&
-      getHistoryData !== "undefined"
-    ) {
-      setTagPlace(JSON.parse(getHistoryData));
-      setArr(JSON.parse(getHistoryData));
     }
-  }, []);
+  }
 
-  useEffect(() => {
-    if (tagPlace?.length > 0) {
-      localStorage.setItem("_TAGPLACE", JSON.stringify(tagPlace));
-      setArr(tagPlace);
-    }
-  }, [tagPlace]);
   return (
     <>
-      <div
-        className="card me-2"
-        style={width == "auto" ? {} : { width: "350px" }}
+      <Card
+        style={{ width: 350 }}
+        cover={
+          handleUI.img(item?.picture)
+        }
+        actions={[
+          allChatData?.tagData.includes(item) ?
+            <HeartFilled style={{ fontSize: '20px', color: '#d82323ff' }} onClick={(_) => dispatch(removeTag(item.name))} />
+            :
+            <HeartOutlined style={{ fontSize: '20px' }} onClick={(_) => dispatch(addTag(item))} />,
+          <Button color="default" variant="solid" onClick={e =>
+            router({
+              pathname: `/detail`,
+              search: `type=${item.type}&city=${item.city}&name=${item?.name}`,
+            })}>查看更多</Button>
+        ]}
+
       >
-        <div
-          style={{
-            width: "100%",
-            height: "180px",
-            overflow: "hidden",
-          }}
-        >
-          {item?.images?.length > 0 ? (
-            <img
-              src={item?.images[0].src}
-              className="card-img-top"
-              alt={item?.name}
-            />
-          ) : themeType == "美食" ? (
-            <img
-              src={require("assets/image/FOOD.png")}
-              className="card-img-top"
-              alt={`${item?.name}-沒有相關圖片 QQ`}
-            />
-          ) : (
-            <img
-              src={require("assets/image/ATTRACTIONS.png")}
-              className="card-img-top"
-              alt={`${item?.name}-沒有相關圖片 QQ`}
-            />
-          )}
-        </div>
-        <div className="card-body">
-          <div className="text-end mb-2">
-            <a href="#" onClick={(e) => handleEvent?.setLove(e, item?.name)}>
-              <Icon
-                icon={
-                  tagPlace.includes(item?.name)
-                    ? "heart-solid"
-                    : "heart-outline"
-                }
-                className="love-icon"
-                size={22}
-                color={tagPlace.includes(item?.name) ? "#da1e11" : "#000"}
-              />
-            </a>
-          </div>
-          <h5 className="card-title">{item?.name}</h5>
-          <p
-            className="card-text"
-            dangerouslySetInnerHTML={{
-              __html: TextLongToDot(item?.introduction),
-            }}
-          ></p>
-          <div className="text-center">
-            <button
-              type="button"
-              className="btn btn-primary w-100"
-              onClick={(e) => (
-                e.preventDefault(),
-                router({
-                  pathname: `/detail`,
-                  search: `key=${item?.name}&themeType=${themeType}`,
-                })
-              )}
-            >
-              查看更多
-            </button>
-          </div>
-        </div>
-      </div>
+        <Badge className="mb-2" color={typeData(themeType).color} count={!!item?.class ? item?.class : typeData(themeType).cn} />
+        <p className="fw-bolder" style={{ fontSize: '18px' }}>{item?.name}</p>
+        {!!item?.des &&
+          <p className="text-gray">{TextLongToDot(item?.des)}</p>
+        }
+      </Card>
     </>
   );
 };

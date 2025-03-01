@@ -1,5 +1,3 @@
-// App.js
-import React, { useState } from 'react';
 import TodoForm from 'components/todo/TodoForm';
 import TodoCard from 'components/todo/TodoCard';
 

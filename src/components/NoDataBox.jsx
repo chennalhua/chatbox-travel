@@ -1,5 +1,4 @@
 import { Card } from 'antd';
-import React, { useState } from 'react';
 const NoDataBox = ({ mes }) => {
     return (
         <>
